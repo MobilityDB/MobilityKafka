@@ -32,14 +32,29 @@ services:
       kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --topic wordcount-output --partitions 1 --replication-factor 1
       echo 'Topics created.'
       "
+   #Producer version for the WordCountExample
+#  producer:
+#    image: confluentinc/cp-kafka:latest
+#    depends_on:
+#      kafka-setup:
+#        condition: service_completed_successfully
+#    entrypoint: [ "/bin/sh", "-c" ]
+#    command: [ "echo 'hello world hello kafka the quick brown fox jumps over the lazy dog' | kafka-console-producer --bootstrap-server kafka:9092 --topic wordcount-input" ]
 
+  #Producer version for AIS Data or SNCB Data
   producer:
     image: confluentinc/cp-kafka:latest
     depends_on:
       kafka-setup:
         condition: service_completed_successfully
+    volumes:
+      #- ./ais_instants.csv:/ais_instants.csv                        # mount your CSV file
+      - ./input_sncb.csv:/input_sncb.csv
     entrypoint: [ "/bin/sh", "-c" ]
-    command: [ "echo 'hello world hello kafka the quick brown fox jumps over the lazy dog' | kafka-console-producer --bootstrap-server kafka:9092 --topic wordcount-input" ]
+    #command: [ "cat /ais_instants.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic wordcount-input" ]
+    command: [ "cat /input_sncb.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic wordcount-input" ]
+
+
 
   consumer:
     image: confluentinc/cp-kafka:latest

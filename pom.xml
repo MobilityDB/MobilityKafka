@@ -26,7 +26,8 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>WordCountExample</mainClass>
+                                    <!--Modify with the name of the Example class you want to run-->
+                                    <mainClass>SNCBDataCountExample</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
