@@ -1,3 +1,5 @@
+package Examples;
+
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.KeyValue;
@@ -8,7 +10,7 @@ import org.apache.kafka.streams.kstream.Named;
 
 import java.util.Properties;
 
-public class AISDataCountExample {
+public class SNCBDataCountExample {
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -23,11 +25,11 @@ public class AISDataCountExample {
         KStream<String, String> source = builder.stream("wordcount-input");
 
         source
-                .filter((key, value) -> !value.startsWith("t,"))        // skip header row
+                .filter((key, value) -> !value.trim().isEmpty())   // skip empty lines
                 .map((key, value) -> {
                     String[] cols = value.split(",");
-                    String mmsi = cols[1].trim();                        // extract mmsi column
-                    return new KeyValue<>(mmsi, mmsi);
+                    String id = cols[1].trim();                    // column 2 = index 1
+                    return new KeyValue<>(id, id);
                 })
                 .groupByKey()
                 .count(Named.as("CountStore"))
