@@ -28,8 +28,8 @@ services:
     entrypoint: ["/bin/sh", "-c"]
     command: |
       "
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --topic query1_AIS-input --partitions 1 --replication-factor 1
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --topic query1_AIS-output --partitions 1 --replication-factor 1
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --topic query-input --partitions 1 --replication-factor 1
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --topic query-output --partitions 1 --replication-factor 1
       echo 'Topics created.'
       "
    #Producer version for the Examples.WordCountExample
@@ -51,8 +51,8 @@ services:
       - ./ais_instants.csv:/ais_instants.csv                        # mount your CSV file
       #- ./input_sncb.csv:/input_sncb.csv
     entrypoint: [ "/bin/sh", "-c" ]
-    command: [ "cat /ais_instants.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query1_AIS-input" ]
-    #command: [ "cat /input_sncb.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic wordcount-input" ]
+    command: [ "cat /ais_instants.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #AISData versiom
+    #command: [ "cat /input_sncb.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #SNCB Data version
 
 
 
@@ -62,7 +62,7 @@ services:
       kafka-setup:
         condition: service_completed_successfully
     entrypoint: [ "/bin/sh", "-c" ]
-    command: [ "kafka-console-consumer --bootstrap-server kafka:9092 --topic query1_AIS-output --from-beginning --formatter-property print.key=true --formatter-property key.separator=' -> '" ]
+    command: [ "kafka-console-consumer --bootstrap-server kafka:9092 --topic query-output --from-beginning --formatter-property print.key=true --formatter-property key.separator=' -> '" ]
 
   query-app:
     build: .

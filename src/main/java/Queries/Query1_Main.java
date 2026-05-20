@@ -64,7 +64,7 @@ public class Query1_Main {
             StreamsBuilder builder = new StreamsBuilder();
 
             TimestampExtractor myExtractor = new MyTimeStampExtractor() ;
-            KStream<String, String> source = builder.stream("query1_AIS-input", Consumed.with(Serdes.String(), Serdes.String())
+            KStream<String, String> source = builder.stream("query-input", Consumed.with(Serdes.String(), Serdes.String())
                                                                                                 .withTimestampExtractor(myExtractor));
 
             source
@@ -84,7 +84,7 @@ public class Query1_Main {
                     )
                     .toStream()
                     .process(new HighRiskZoneWindowFunction(HIGH_RISK_ZONES_WKT, ALERT_DISTANCE_METERS))
-                    .to("query1_AIS-output") ;
+                    .to("query-output") ;
 
             KafkaStreams streams = new KafkaStreams(builder.build(), props);
             streams.cleanUp();
@@ -150,12 +150,10 @@ public class Query1_Main {
                 }
                 @Override
                 public void process(Record<Windowed<String>, Object> record) {
-                    //TODO
                     String mmsi = record.key().key();
                     long windowStart = record.key().window().start();
                     long windowEnd = record.key().window().end();
 
-                    // split back into individual rows
                     String[] rows = record.value().toString().split(";");
 
                     for (String row : rows) {
@@ -177,9 +175,6 @@ public class Query1_Main {
                         }
 
                         for (int i = 0; i < hazardZones.length; i++) {
-                            // functions.geog_distance(tpoint, hazardZones[i]) < distanceMeters
-                            // your MEOS proximity check here
-                            // e.g. functions.geog_distance(...) < distanceMeters
                             if (hazardZones[i] == null) continue;
 
                             // edwithin_tgeo_geo returns 1 if tpoint is within distanceMeters of the
