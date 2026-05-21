@@ -91,7 +91,7 @@ public class Q9WindowedProcessor implements Processor<Integer, BerlinMODTrip, Lo
             if (!parts[0].startsWith("NaN") && !parts[1].startsWith("NaN")) {
                 String[] x = parts[0].split(",", 2);
                 String[] y = parts[1].split(",", 2);
-                double d = Haversine.distanceMetres(
+                double d = MEOSBridge.distanceMetres(
                         Double.parseDouble(x[0]), Double.parseDouble(x[1]),
                         Double.parseDouble(y[0]), Double.parseDouble(y[1]));
                 ctx.forward(new Record<>(winStart, d, winStart + windowSizeMs - 1));

@@ -61,7 +61,7 @@ public class Q6WindowedProcessor implements Processor<Integer, BerlinMODTrip, Lo
                     double lastLon = Double.parseDouble(f[0]);
                     double lastLat = Double.parseDouble(f[1]);
                     double prevTotal = Double.parseDouble(f[2]);
-                    double newTotal = prevTotal + Haversine.distanceMetres(
+                    double newTotal = prevTotal + MEOSBridge.distanceMetres(
                             lastLon, lastLat, trip.getLon(), trip.getLat());
                     if (rebuilt.length() > 0) rebuilt.append("|");
                     rebuilt.append(vid).append(":")

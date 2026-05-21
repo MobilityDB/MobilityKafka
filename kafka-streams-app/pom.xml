@@ -19,6 +19,23 @@
     </properties>
 
     <dependencies>
+        <!-- JMEOS dependency — supplied as a system-path jar matching
+             https://github.com/MobilityDB/JMEOS/pull/15 (MEOS 1.4 regen). -->
+        <dependency>
+            <groupId>com.mobilitydb</groupId>
+            <artifactId>jmeos</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/jar/JMEOS.jar</systemPath>
+        </dependency>
+
+        <!-- JNR-FFI — JMEOS uses jnr.ffi.Pointer in its public API. -->
+        <dependency>
+            <groupId>com.github.jnr</groupId>
+            <artifactId>jnr-ffi</artifactId>
+            <version>2.1.10</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>

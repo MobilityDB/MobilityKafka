@@ -45,7 +45,7 @@ The streaming-side parity matrix runs all nine BerlinMOD reference queries (Q1..
 
 The streaming snapshot form converges to the batch BerlinMOD result on the same scale-factor corpus, anchored against the cross-platform outputs in [MobilityDB-BerlinMOD](https://github.com/MobilityDB/MobilityDB-BerlinMOD).
 
-Spatial predicates today use pure-Java great-circle (`Haversine`) and planar segment-distance (`SegmentDistance`) utilities; each call site is marked `TODO(meos)` for JMEOS-bridge migration after [JMEOS#15](https://github.com/MobilityDB/JMEOS/pull/15) (the MEOS 1.4 regen) settles.
+Spatial predicates route through [`MEOSBridge`](kafka-streams-app/src/main/java/berlinmod/MEOSBridge.java), which calls MEOS' `geog_dwithin` over WGS84 geographies via [JMEOS#18](https://github.com/MobilityDB/JMEOS/pull/18) (the geodesic-wrapper PR, branched off the MEOS 1.4 regen at JMEOS#15) when libmeos is loadable on the runtime path. The distance entry points use [JMEOS#18](https://github.com/MobilityDB/JMEOS/pull/18)'s `utils.spatial.Haversine.distance` (MEOS `geog_distance` over POINT/POINT) and `utils.spatial.PointToSegment.distance` (MEOS `geog_distance` over POINT/LINESTRING). When libmeos is not present (e.g. the TopologyTestDriver local-test run where `-Dmobilitykafka.meos.enabled=false` is set), the bridge falls back to pure-Java great-circle (`Haversine`) and planar segment-distance (`SegmentDistance`) — same semantics, identical predicate truth values to within float-precision at BerlinMOD scale.
 
 ## Build and run
 
@@ -64,7 +64,7 @@ The driver pipes a 21-event sorted-event-time corpus plus two sentinel records a
 ## Sibling parity work in the ecosystem
 
 - [MobilityFlink#3](https://github.com/MobilityDB/MobilityFlink/pull/3) — the same 27-cell row on Flink
-- [MobilityNebula#15](https://github.com/MobilityDB/MobilityNebula/pull/15) — 15 of 27 cells on NebulaStream (Q1, Q2, Q3, Q4, Q7-via-POI-fanout)
+- [MobilityNebula#15](https://github.com/MobilityDB/MobilityNebula/pull/15) — 27 / 27 cells on NebulaStream scaffold (with [#16](https://github.com/MobilityDB/MobilityNebula/pull/16) adding `TEMPORAL_LENGTH` for Q6 and [#17](https://github.com/MobilityDB/MobilityNebula/pull/17) adding `PAIR_MEETING` + `CROSS_DISTANCE` for Q5/Q9, all calling MEOS C ABI directly)
 - [MobilityDB-BerlinMOD#29](https://github.com/MobilityDB/MobilityDB-BerlinMOD/pull/29) — the batch BerlinMOD-9 cross-platform timings (the snapshot form's gold-answer source)
 - [MobilityDB/.github#10](https://github.com/MobilityDB/.github/pull/10) — the ecosystem-profile description of the stream-layers tier
 

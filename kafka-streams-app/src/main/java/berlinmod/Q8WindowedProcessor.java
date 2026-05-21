@@ -57,7 +57,7 @@ public class Q8WindowedProcessor implements Processor<Integer, BerlinMODTrip, Lo
     public void process(Record<Integer, BerlinMODTrip> record) {
         BerlinMODTrip trip = record.value();
         if (trip == null || trip.getVehicleId() == -1) return;
-        if (!SegmentDistance.withinMetres(trip.getLon(), trip.getLat(),
+        if (!MEOSBridge.dwithinSegmentMetres(trip.getLon(), trip.getLat(),
                                           s1Lon, s1Lat, s2Lon, s2Lat,
                                           radiusMetres)) {
             return;

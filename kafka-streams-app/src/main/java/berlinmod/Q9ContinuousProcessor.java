@@ -60,7 +60,7 @@ public class Q9ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
         if (!xSlot.startsWith("NaN") && !ySlot.startsWith("NaN")) {
             String[] x = xSlot.split(",", 2);
             String[] y = ySlot.split(",", 2);
-            double d = Haversine.distanceMetres(
+            double d = MEOSBridge.distanceMetres(
                     Double.parseDouble(x[0]), Double.parseDouble(x[1]),
                     Double.parseDouble(y[0]), Double.parseDouble(y[1]));
             ctx.forward(new Record<>(trip.getTimestamp(), d, trip.getTimestamp()));

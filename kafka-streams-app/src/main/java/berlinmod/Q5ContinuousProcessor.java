@@ -63,7 +63,7 @@ public class Q5ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
                 String[] ll = kv.value.split(",", 2);
                 double lon = Double.parseDouble(ll[0]);
                 double lat = Double.parseDouble(ll[1]);
-                if (Haversine.withinMetres(lon, lat, pLon, pLat, dPMetres)) {
+                if (MEOSBridge.dwithinMetres(lon, lat, pLon, pLat, dPMetres)) {
                     ids.add(new int[]{kv.key});
                     positions.add(new double[]{lon, lat});
                 }
@@ -81,7 +81,7 @@ public class Q5ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
         }
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                double d = Haversine.distanceMetres(
+                double d = MEOSBridge.distanceMetres(
                         positions.get(i)[0], positions.get(i)[1],
                         positions.get(j)[0], positions.get(j)[1]);
                 if (d <= dMeetMetres) {

@@ -42,6 +42,7 @@ public class BerlinMODQ1LocalTest {
     private static final long SENTINEL_T2 = T0 + 20_001L;
 
     public static void main(String[] args) {
+        System.setProperty("mobilitykafka.meos.enabled", "false");
         LOG.info("BerlinMODQ1LocalTest starting (TopologyTestDriver, all continuous + snapshot forms)");
 
         Properties props = new Properties();

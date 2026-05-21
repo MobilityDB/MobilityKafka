@@ -106,7 +106,7 @@ public class Q5WindowedProcessor implements Processor<Integer, BerlinMODTrip, St
                 String[] ll = chunk.substring(colon + 1).split(",", 2);
                 double lon = Double.parseDouble(ll[0]);
                 double lat = Double.parseDouble(ll[1]);
-                if (Haversine.withinMetres(lon, lat, pLon, pLat, dPMetres)) {
+                if (MEOSBridge.dwithinMetres(lon, lat, pLon, pLat, dPMetres)) {
                     nearIds.add(new int[]{vid});
                     positions.add(new double[]{lon, lat});
                 }
@@ -122,7 +122,7 @@ public class Q5WindowedProcessor implements Processor<Integer, BerlinMODTrip, St
             }
             for (int a = 0; a < n; a++) {
                 for (int b = a + 1; b < n; b++) {
-                    double d = Haversine.distanceMetres(
+                    double d = MEOSBridge.distanceMetres(
                             positions.get(a)[0], positions.get(a)[1],
                             positions.get(b)[0], positions.get(b)[1]);
                     if (d <= dMeetMetres) {

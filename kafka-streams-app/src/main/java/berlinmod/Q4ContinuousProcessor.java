@@ -14,8 +14,10 @@ import org.apache.kafka.streams.state.KeyValueStore;
  * inside-or-outside flag for R; on each event, detect outside → inside
  * transition and emit {@code (vehicleId, entryTime)}.
  *
- * <p>TODO(meos): replace the point-in-box predicate with a MEOS
- * {@code eintersects} call against an STBox via the JMEOS bridge.
+ * <p>Predicate: pure-Java axis-aligned point-in-box. The rectangular region
+ * is degenerate as a geographic predicate (no projection needed); a generic
+ * polygon-R variant would route through {@link MEOSBridge} for MEOS
+ * {@code eintersects_tgeo_geo}.
  */
 public class Q4ContinuousProcessor implements Processor<Integer, BerlinMODTrip, Integer, Long> {
 

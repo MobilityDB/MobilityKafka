@@ -53,7 +53,7 @@ public class Q3WindowedProcessor implements Processor<Integer, BerlinMODTrip, Lo
     public void process(Record<Integer, BerlinMODTrip> record) {
         BerlinMODTrip trip = record.value();
         if (trip == null || trip.getVehicleId() == -1) return;
-        if (!Haversine.withinMetres(trip.getLon(), trip.getLat(), pLon, pLat, radiusMetres)) {
+        if (!MEOSBridge.dwithinMetres(trip.getLon(), trip.getLat(), pLon, pLat, radiusMetres)) {
             return;
         }
         long winStart = (trip.getTimestamp() / windowSizeMs) * windowSizeMs;

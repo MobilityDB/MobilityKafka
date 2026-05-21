@@ -67,7 +67,7 @@ public class Q8SnapshotProcessor implements Processor<Integer, BerlinMODTrip, Lo
                 String[] ll = kv.value.split(",", 2);
                 double lon = Double.parseDouble(ll[0]);
                 double lat = Double.parseDouble(ll[1]);
-                if (SegmentDistance.withinMetres(lon, lat, s1Lon, s1Lat, s2Lon, s2Lat, radiusMetres)) {
+                if (MEOSBridge.dwithinSegmentMetres(lon, lat, s1Lon, s1Lat, s2Lon, s2Lat, radiusMetres)) {
                     nearIds.add(kv.key);
                 }
             }

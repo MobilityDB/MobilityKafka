@@ -13,9 +13,9 @@ import org.apache.kafka.streams.processor.api.Record;
  * eventTime, near)} per incoming GPS event. Same predicate semantics
  * as MobilityFlink's {@code Q3ContinuousFunction}.
  *
- * <p>Predicate today: pure-Java great-circle distance (see {@link Haversine}).
- * TODO(meos): replace with the MEOS {@code edwithin_tgeo_geo} operator via
- * the JMEOS bridge.
+ * <p>Predicate: {@link MEOSBridge#dwithinMetres} — MEOS {@code geog_dwithin}
+ * over WGS84 geographies when libmeos is loadable, {@link Haversine}
+ * fallback otherwise.
  */
 public class Q3ContinuousProcessor implements Processor<Integer, BerlinMODTrip, Integer, Boolean> {
 
@@ -39,7 +39,7 @@ public class Q3ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
     public void process(Record<Integer, BerlinMODTrip> record) {
         BerlinMODTrip trip = record.value();
         if (trip == null || trip.getVehicleId() == -1) return;
-        boolean near = Haversine.withinMetres(
+        boolean near = MEOSBridge.dwithinMetres(
                 trip.getLon(), trip.getLat(), pLon, pLat, radiusMetres);
         ctx.forward(new Record<>(trip.getVehicleId(), near, trip.getTimestamp()));
     }

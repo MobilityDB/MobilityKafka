@@ -46,7 +46,7 @@ public class Q7ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
         for (PointOfInterest poi : pois) {
             int compositeKey = compositeKey(vehicleId, poi.id);
             if (firstPassed.get(compositeKey) != null) continue;
-            if (Haversine.withinMetres(trip.getLon(), trip.getLat(), poi.lon, poi.lat, poi.radiusMetres)) {
+            if (MEOSBridge.dwithinMetres(trip.getLon(), trip.getLat(), poi.lon, poi.lat, poi.radiusMetres)) {
                 firstPassed.put(compositeKey, trip.getTimestamp());
                 ctx.forward(new Record<>(poi.id, trip.getTimestamp(), trip.getTimestamp()));
             }

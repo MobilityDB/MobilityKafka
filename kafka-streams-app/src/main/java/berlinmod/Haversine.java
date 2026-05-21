@@ -3,12 +3,10 @@ package berlinmod;
 /**
  * Great-circle distance in metres between two WGS84 (lon, lat) points.
  *
- * <p>Matches the MobilityFlink {@code Haversine} utility verbatim so the
- * spatial-predicate cells (Q3 in this PR; Q4–Q9 in follow-ups) produce
- * cross-platform byte-identical output against the same synthetic corpus.
- * TODO(meos): cells using this utility migrate to the MEOS equivalent
- * (edwithin_tgeo_geo / NAD / etc.) via JMEOS once the in-flight 1.4 bump
- * signals settled.
+ * <p>Pure-Java fallback for {@link MEOSBridge#dwithinMetres} /
+ * {@link MEOSBridge#distanceMetres}, used by the BerlinMOD-9 × 3-form
+ * streaming scaffold when libmeos is not loadable on the runtime path. The
+ * primary spatial-predicate surface is {@link MEOSBridge}.
  */
 public final class Haversine {
 

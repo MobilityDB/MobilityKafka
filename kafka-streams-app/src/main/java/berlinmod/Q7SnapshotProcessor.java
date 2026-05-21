@@ -55,7 +55,7 @@ public class Q7SnapshotProcessor implements Processor<Integer, BerlinMODTrip, Lo
         for (PointOfInterest poi : pois) {
             int composite = trip.getVehicleId() * 1000 + poi.id;
             if (firstPassed.get(composite) != null) continue;
-            if (Haversine.withinMetres(trip.getLon(), trip.getLat(), poi.lon, poi.lat, poi.radiusMetres)) {
+            if (MEOSBridge.dwithinMetres(trip.getLon(), trip.getLat(), poi.lon, poi.lat, poi.radiusMetres)) {
                 firstPassed.put(composite, trip.getTimestamp());
             }
         }

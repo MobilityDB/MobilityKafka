@@ -18,8 +18,10 @@ import org.apache.kafka.streams.state.KeyValueStore;
  * scaffold avoids declaring a dedicated tuple SerDe; the encoding is
  * private to this processor.
  *
- * <p>TODO(meos): replace with the MEOS trajectory {@code length} call via
- * the JMEOS bridge.
+ * <p>Cumulative distance: per consecutive position-pair via
+ * {@link MEOSBridge#distanceMetres}. The future "full" path uses MEOS'
+ * {@code tpoint_length} over an aggregated trajectory; the per-event
+ * cumulative form is the same numeric quantity either way.
  */
 public class Q6ContinuousProcessor implements Processor<Integer, BerlinMODTrip, Integer, Double> {
 
@@ -50,7 +52,7 @@ public class Q6ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
             double lastLon = Double.parseDouble(parts[0]);
             double lastLat = Double.parseDouble(parts[1]);
             double prevTotal = Double.parseDouble(parts[2]);
-            total = prevTotal + Haversine.distanceMetres(lastLon, lastLat, trip.getLon(), trip.getLat());
+            total = prevTotal + MEOSBridge.distanceMetres(lastLon, lastLat, trip.getLon(), trip.getLat());
         }
         state.put(trip.getVehicleId(), trip.getLon() + "," + trip.getLat() + "," + total);
         ctx.forward(new Record<>(trip.getVehicleId(), total, trip.getTimestamp()));

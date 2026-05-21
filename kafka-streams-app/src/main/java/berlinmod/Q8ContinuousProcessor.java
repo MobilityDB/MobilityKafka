@@ -36,7 +36,7 @@ public class Q8ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
     public void process(Record<Integer, BerlinMODTrip> record) {
         BerlinMODTrip trip = record.value();
         if (trip == null || trip.getVehicleId() == -1) return;
-        boolean near = SegmentDistance.withinMetres(
+        boolean near = MEOSBridge.dwithinSegmentMetres(
                 trip.getLon(), trip.getLat(),
                 s1Lon, s1Lat, s2Lon, s2Lat,
                 radiusMetres);

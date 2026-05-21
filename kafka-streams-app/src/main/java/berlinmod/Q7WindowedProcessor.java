@@ -59,7 +59,7 @@ public class Q7WindowedProcessor implements Processor<Integer, BerlinMODTrip, Lo
         for (PointOfInterest poi : pois) {
             String marker = trip.getVehicleId() + ":" + poi.id + ":";
             if (s.contains(marker)) continue;
-            if (Haversine.withinMetres(trip.getLon(), trip.getLat(), poi.lon, poi.lat, poi.radiusMetres)) {
+            if (MEOSBridge.dwithinMetres(trip.getLon(), trip.getLat(), poi.lon, poi.lat, poi.radiusMetres)) {
                 if (appended.length() > 0) appended.append(",");
                 appended.append(trip.getVehicleId()).append(":").append(poi.id).append(":").append(trip.getTimestamp());
             }

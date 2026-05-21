@@ -66,7 +66,7 @@ public class Q3SnapshotProcessor implements Processor<Integer, BerlinMODTrip, Lo
                 String[] ll = kv.value.split(",", 2);
                 double lon = Double.parseDouble(ll[0]);
                 double lat = Double.parseDouble(ll[1]);
-                if (Haversine.withinMetres(lon, lat, pLon, pLat, radiusMetres)) {
+                if (MEOSBridge.dwithinMetres(lon, lat, pLon, pLat, radiusMetres)) {
                     nearIds.add(kv.key);
                 }
             }

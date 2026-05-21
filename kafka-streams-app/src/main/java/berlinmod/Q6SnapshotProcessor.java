@@ -57,7 +57,7 @@ public class Q6SnapshotProcessor implements Processor<Integer, BerlinMODTrip, Lo
             double lastLon = Double.parseDouble(parts[0]);
             double lastLat = Double.parseDouble(parts[1]);
             double prevTotal = Double.parseDouble(parts[2]);
-            total = prevTotal + Haversine.distanceMetres(lastLon, lastLat, trip.getLon(), trip.getLat());
+            total = prevTotal + MEOSBridge.distanceMetres(lastLon, lastLat, trip.getLon(), trip.getLat());
         }
         state.put(trip.getVehicleId(), trip.getLon() + "," + trip.getLat() + "," + total);
     }

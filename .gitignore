@@ -1,11 +1,2 @@
-# Maven build artefacts
-target/
-
-# IDE
-.idea/
-.vscode/
-*.iml
-
-# OS
-.DS_Store
-Thumbs.db
+kafka-streams-app/target/
+*.class
