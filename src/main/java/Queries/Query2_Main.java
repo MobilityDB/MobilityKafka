@@ -149,7 +149,7 @@ public class Query2_Main {
                             log.error("geog_in returned null for maintenance area {}", i + 1);
                         }
                     }
-                    log.info("MEOS initialized in BrakeMonitoringWindowFunction.open(), {} maintenance zones parsed", maintenanceZones.length);
+                    log.info("MEOS initialized in BrakeMonitoringWindowFunction.init(), {} maintenance zones parsed", maintenanceZones.length);
                 }
 
                 @Override

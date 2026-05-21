@@ -149,7 +149,7 @@ public class Query1_Main {
                             log.error("geog_in returned null for ZONE {}", i + 1);
                         }
                     }
-                    log.info("MEOS initialized in HighRiskZoneWindowFunction.open(), {} hazard zones parsed", hazardZones.length);
+                    log.info("MEOS initialized in HighRiskZoneWindowFunction.init(), {} hazard zones parsed", hazardZones.length);
                 }
                 @Override
                 public void process(Record<Windowed<String>, Object> record) {
