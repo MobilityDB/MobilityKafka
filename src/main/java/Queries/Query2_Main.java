@@ -125,7 +125,7 @@ public class Query2_Main {
             return new Processor<Windowed<String>, Object, String, String>() {
 
                 private ProcessorContext<String, String> context;
-                private transient Pointer[] maintenanceZones;
+                private Pointer[] maintenanceZones;
 
                 private final Logger log =
                         LoggerFactory.getLogger(Query2_Main.BrakeMonitoringWindowFunction.class);
@@ -133,12 +133,15 @@ public class Query2_Main {
                 private static final DateTimeFormatter TIMESTAMP_FMT =
                         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+                MeosErrorHandler errorHandler ;
+
                 @Override
                 public void init(ProcessorContext<String, String> context) {
                     this.context = context;
-                    MeosErrorHandler errorHandler = new MeosErrorHandler();
+                    errorHandler = new MeosErrorHandler();
                     functions.meos_initialize_timezone("UTC");
                     functions.meos_initialize_error_handler(errorHandler);
+
                     maintenanceZones = new Pointer[maintenanceAreasWkt.length];
                     for (int i = 0; i < maintenanceAreasWkt.length; i++) {
                         maintenanceZones[i] = functions.geog_in(maintenanceAreasWkt[i], -1);

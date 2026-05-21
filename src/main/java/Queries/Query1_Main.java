@@ -128,17 +128,20 @@ public class Query1_Main {
             return new Processor<Windowed<String>, Object, String, String>() {
 
                 private ProcessorContext<String, String> context;
-                private transient Pointer[] hazardZones;
+                private Pointer[] hazardZones;
 
                 private final Logger log =
                         LoggerFactory.getLogger(HighRiskZoneWindowFunction.class);
 
+                private MeosErrorHandler errorHandler;
+
                 @Override
                 public void init(ProcessorContext<String, String> context) {
                     this.context = context;
-                    MeosErrorHandler errorHandler = new MeosErrorHandler();
+                    errorHandler = new MeosErrorHandler();
                     functions.meos_initialize_timezone("UTC");
                     functions.meos_initialize_error_handler(errorHandler);
+
                     this.hazardZones = new Pointer[zoneWkt.length];
                     for (int i = 0; i < zoneWkt.length; i++) {
                         hazardZones[i] = functions.geog_in(zoneWkt[i], -1);
