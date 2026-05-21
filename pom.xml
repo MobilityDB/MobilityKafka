@@ -10,6 +10,7 @@
 
     <properties>
         <log4j.version>2.17.2</log4j.version>
+        <target.java.version>21</target.java.version>
     </properties>
 
     <dependencies>
@@ -74,7 +75,7 @@
                             <archive>
                                 <manifest>
                                     <!--Modify with the name of the Example class you want to run-->
-                                    <mainClass>Queries.Query1_Main</mainClass>
+                                    <mainClass>Queries.Query2_Main</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -83,6 +84,14 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- Java Compiler -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.1</version>
+                <configuration>
+                    <release>${target.java.version}</release>
+                </configuration>
             </plugin>
         </plugins>
     </build>
