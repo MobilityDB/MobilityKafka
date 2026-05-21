@@ -234,7 +234,6 @@ public class Query2_Main {
                         context.forward(new Record<>(mmsi, alert, record.timestamp()));
                     }
 
-
                 }
 
                 @Override
