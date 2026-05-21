@@ -1,6 +1,7 @@
 package Queries;
 
 import functions.functions;
+import functions.MeosErrorHandler;
 import jnr.ffi.Memory;
 import jnr.ffi.Pointer;
 import org.apache.kafka.common.serialization.Serdes;
@@ -16,11 +17,10 @@ import org.apache.kafka.streams.processor.api.ProcessorSupplier;
 import org.apache.kafka.streams.processor.api.Record;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import functions.MeosErrorHandler;
+import types.temporal.TInterpolation;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,11 +28,31 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Properties;
 
-import jnr.ffi.Runtime;
-import types.temporal.TInterpolation;
+public class Query4_Main {
+    private static final Logger logger = LoggerFactory.getLogger(Query4_Main.class);
 
-public class Query3_Main {
-    private static final Logger logger = LoggerFactory.getLogger(Query3_Main.class);
+    // Spatial bounds of the restricted zone (WGS-84 degrees).
+    // Covers the Esbjerg / North Sea area where MMSI 566948000 operates.
+    private static final double STBOX_XMIN = 4.48;
+    private static final double STBOX_XMAX = 4.64;
+    private static final double STBOX_YMIN = 55.55;
+    private static final double STBOX_YMAX = 55.66;
+
+    /**
+     * Temporal bounds of the restricted zone as a MobilityDB tstzspan literal.
+     * Covers the full day of the AIS dataset (2021-01-08).
+     * Parsed by {@code tstzspan_in()} and passed to {@code stbox_make()}.
+     *
+     * The limits of the STBOX should let only the 566948000 MMSI ship pass and only its coordinates will be
+     *      used to build the trajectory
+     *
+     * The 3 other ones should never appear since they don't fulfill the STBOX filter
+     *          265513270
+     *          219027804
+     *          219001559
+     */
+    private static final String STBOX_TSPAN = "[2021-01-08 00:00:00+00, 2021-01-09 00:00:00+00]";
+
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -44,7 +64,7 @@ public class Query3_Main {
             functions.meos_initialize_error_handler(new MeosErrorHandler());
 
             Properties props = new Properties();
-            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query3_AIS");
+            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query2_AIS");
             props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
@@ -72,19 +92,19 @@ public class Query3_Main {
                             Materialized.with(Serdes.String(), Serdes.String()) // 3. serdes
                     )
                     .toStream()
-                    .process(new TrajectoryCreationWindowFunctionV1())
-                    //.process(new TrajectoryCreationWindowFunctionV2())
+                    // Switch here to compare the 2 different implementations:
+                    //.process(new Query4_Main.RestrictedTrajectoryWindowFunctionV1(STBOX_XMIN, STBOX_XMAX, STBOX_YMIN, STBOX_YMAX, STBOX_TSPAN))
+                    .process(new Query4_Main.RestrictedTrajectoryWindowFunctionV2(STBOX_XMIN, STBOX_XMAX, STBOX_YMIN, STBOX_YMAX, STBOX_TSPAN))
                     .to("query-output") ;
 
             KafkaStreams streams = new KafkaStreams(builder.build(), props);
             streams.cleanUp();
             streams.start();
 
-            java.lang.Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+            Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
             Thread.currentThread().join();
 
             logger.info("Done");
-
 
         } catch (Exception e) {
             logger.error("Error during execution: {}", e.getMessage(), e);
@@ -97,17 +117,29 @@ public class Query3_Main {
                 logger.error("Error during MEOS finalization: {}", e.getMessage(), e);
             }
         }
+
+
     }
 
-    // =========================================================================
-    // V1: WKT StringBuilder + tgeogpoint_in
-    // =========================================================================
+    private static class RestrictedTrajectoryWindowFunctionV1 implements ProcessorSupplier<Windowed<String>, Object, String, String>{
 
-    /**
-     * Builds the entire sequence as a WKT literal {@code {POINT(lon lat)@ts,...}}
-     * and parses it in one call to {@code tgeogpoint_in()}.
-     */
-    public static class TrajectoryCreationWindowFunctionV1 implements ProcessorSupplier<Windowed<String>, Object, String, String> {
+        private final double xmin, xmax, ymin, ymax;
+        private final String tspanLiteral;
+
+        /**
+         * Parsed STBox pointer. Initialised once in init() via {@code stbox_make()}
+         * and reused across all window invocations since construction is expensive and the box
+         * never changes. Declared transient because JNR-FFI Pointer objects are not serialisable.
+         */
+        private Pointer stbox;
+
+        private RestrictedTrajectoryWindowFunctionV1(double xmin, double xmax, double ymin, double ymax, String tspanLiteral) {
+            this.xmin = xmin;
+            this.xmax = xmax;
+            this.ymin = ymin;
+            this.ymax = ymax;
+            this.tspanLiteral = tspanLiteral;
+        }
 
         @Override
         public Processor<Windowed<String>, Object, String, String> get() {
@@ -116,7 +148,7 @@ public class Query3_Main {
                 private ProcessorContext<String, String> context;
 
                 private final Logger log =
-                        LoggerFactory.getLogger(Query3_Main.TrajectoryCreationWindowFunctionV1.class);
+                        LoggerFactory.getLogger(Query4_Main.RestrictedTrajectoryWindowFunctionV1.class);
 
                 private static final DateTimeFormatter TIMESTAMP_FMT =
                         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -130,176 +162,105 @@ public class Query3_Main {
                     functions.meos_initialize_timezone("UTC");
                     functions.meos_initialize_error_handler(errorHandler);
 
-                    log.info("MEOS initialized in TrajectoryCreationWindowFunctionV1.init()");
+                    // stbox_make parameters:
+                    //   hasx=true   → include spatial (XY) dimensions
+                    //   hasz=false  → no Z (altitude) dimension
+                    //   geodetic=true → geography/WGS-84, consistent with tgeogpoint_in
+                    //   srid=4326   → WGS-84
+                    //   xmin/xmax/ymin/ymax → spatial bounds (lon/lat in degrees)
+                    //   zmin/zmax=0 → unused (hasz=false)
+                    //   s           → temporal span pointer (tstzspan)
+                    Pointer tspan = functions.tstzspan_in(tspanLiteral);
+                    if (tspan == null) {
+                        log.error("tstzspan_in returned null for: {}", tspanLiteral);
+                        return;
+                    }
+                    stbox = functions.stbox_make(true, false, true, 4326,
+                            xmin, xmax, ymin, ymax, 0, 0, tspan);
+                    if (stbox == null) {
+                        log.error("stbox_make returned null");
+                    } else {
+                        log.info("STBox built successfully: xmin={} xmax={} ymin={} ymax={} tspan={}",
+                                xmin, xmax, ymin, ymax, tspanLiteral);
+                    }
+                    log.info("MEOS initialized in RestrictedTrajectoryWindowFunctionV1.init()");
+
                 }
 
                 @Override
                 public void process(Record<Windowed<String>, Object> record) {
+                    if (stbox == null) return; // STBox failed to parse in open()
+
                     String mmsi = record.key().key();
                     long windowStart = record.key().window().start();
                     long windowEnd = record.key().window().end();
 
                     String[] rows = record.value().toString().split(";");
 
-                    // Step 1: collect and sort by timestamp.
-                    // MEOS tgeogpoint_in requires instants in strictly increasing temporal order;
-                    // Flink does not guarantee arrival order within a window.
-                    List<AISData> sorted = new ArrayList<>();
-                    for (String r : rows) sorted.add(AISData.fromCsv(r));
-                    sorted.sort(Comparator.comparingLong(AISData::getTimestamp));
+                    // Collect events that pass the STBox filter, sorted by timestamp.
+                    List<AISData> surviving = new ArrayList<>();
 
-                    if (sorted.isEmpty()) return;
+                    for (String aisData : rows ) {
 
-                    // Step 2 & 3: build the sequence literal: {POINT(lon lat)@ts, ...}
-                    // This is the WKT representation of a tgeogpoint TSequence
+                        AISData event = AISData.fromCsv(aisData);
+                        String ts = millisToTimestamp(event.getTimestamp());
+
+                        // Build the tgeogpoint instant for this event.
+                        String tpointWkt = String.format(
+                                "POINT(%f %f)@%s", event.getLon(), event.getLat(), ts);
+
+                        Pointer tpoint = functions.tgeogpoint_in(tpointWkt);
+                        if (tpoint == null) {
+                            log.error("tgeogpoint_in returned null for WKT: {}", tpointWkt);
+                            continue;
+                        }
+
+                        // Paper Line 2: tgeo_at_stbox(lon, lat, ts, stbox)
+                        // Returns null  → point is outside the STBox → skip.
+                        // Returns non-null → point is inside the STBox → keep.
+                        // border_inc=true means the box boundaries are inclusive ([xmin,xmax],
+                        // [ymin,ymax], [tsmin,tsmax]), matching the paper's closed-interval notation.
+                        Pointer restricted = functions.tgeo_at_stbox(tpoint, stbox, true);
+                        if (restricted == null) {
+                            log.debug("MMSI={} skipped: point outside STBox at ts={}", mmsi, ts);
+                            continue;
+                        }
+
+                        surviving.add(event);
+                    }
+
+                    if (surviving.isEmpty()) return; // no event survived the STBox filter
+
+                    // Sort by timestamp: required by tgeogpoint_in for sequence construction.
+                    surviving.sort(Comparator.comparingLong(AISData::getTimestamp));
+
+                    // Paper Line 4: temporal_sequence(lon, lat, ts).
                     StringBuilder seq = new StringBuilder("{");
-                    for (int i = 0; i < sorted.size(); i++) {
-                        AISData event = sorted.get(i);
+                    for (int i = 0; i < surviving.size(); i++) {
+                        AISData event = surviving.get(i);
                         String ts = millisToTimestamp(event.getTimestamp());
                         if (i > 0) seq.append(",");
                         seq.append(String.format("POINT(%f %f)@%s", event.getLon(), event.getLat(), ts));
                     }
                     seq.append("}");
 
-                    // Step 4: parse the sequence into a native MEOS tgeogpoint pointer.
-                    // tgeogpoint_in accepts both single instants ("POINT(lon lat)@ts") and sequences
-                    // ("{POINT(...)@ts,...}"). Here we always pass a sequence.
                     Pointer trajectory = functions.tgeogpoint_in(seq.toString());
                     if (trajectory == null) {
                         log.error("tgeogpoint_in returned null for sequence: {}", seq);
                         return;
                     }
 
-                    // Step 5: serialise the MEOS pointer back to a human-readable WKT string.
-                    // tspatial_as_ewkt(pointer, maxdd) converts any temporal spatial type to EWKT
-                    // (WKT with SRID prefix), producing human-readable "POINT(lon lat)@ts" output.
-                    // maxdd=6 gives 6 decimal places.
-                    String trajectoryWkt = functions.tspatial_as_ewkt(trajectory, 6);
-
-                    String output = String.format(
-                            "[TRAJ][Q3] MMSI=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
-                            mmsi,
-                            sorted.size(),
-                            millisToTimestamp(windowStart), millisToTimestamp(windowEnd),
-                            trajectoryWkt);
-
-                    log.info(output);
-                    context.forward(new Record<>(mmsi, output, record.timestamp()));
-
-                }
-
-                @Override
-                public void close() {
-                    Processor.super.close();
-                    functions.meos_finalize();
-                }
-
-                private String millisToTimestamp(long millis) {
-                    Instant instant = Instant.ofEpochMilli(millis);
-                    OffsetDateTime dt = instant.atOffset(ZoneOffset.UTC);
-                    return dt.format(TIMESTAMP_FMT);
-                }
-            };
-        }
-    }
-
-    // =========================================================================
-    // V2: Expand: tgeogpoint_in (instant) → temporal_append_tinstant
-    // =========================================================================
-
-    /**
-     * Builds the sequence incrementally: the first instant seeds the sequence via
-     * {@code tsequence_make}, and subsequent instants are appended with
-     * {@code temporal_append_tinstant()}. MEOS handles capacity doubling internally.
-     */
-    public static class TrajectoryCreationWindowFunctionV2 implements ProcessorSupplier<Windowed<String>, Object, String, String> {
-
-        @Override
-        public Processor<Windowed<String>, Object, String, String> get() {
-            return new Processor<Windowed<String>, Object, String, String>() {
-
-                private ProcessorContext<String, String> context;
-
-                private final Logger log =
-                        LoggerFactory.getLogger(Query3_Main.TrajectoryCreationWindowFunctionV2.class);
-
-                private static final DateTimeFormatter TIMESTAMP_FMT =
-                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-                MeosErrorHandler errorHandler ;
-
-                @Override
-                public void init(ProcessorContext<String, String> context) {
-                    this.context = context;
-                    errorHandler = new MeosErrorHandler();
-                    functions.meos_initialize_timezone("UTC");
-                    functions.meos_initialize_error_handler(errorHandler);
-
-                    log.info("MEOS initialized in TrajectoryCreationWindowFunctionV2.init()");
-                }
-
-
-                @Override
-                public void process(Record<Windowed<String>, Object> record) {
-                    String mmsi = record.key().key();
-                    long windowStart = record.key().window().start();
-                    long windowEnd = record.key().window().end();
-
-                    String[] rows = record.value().toString().split(";");
-
-                    List<AISData> sorted = new ArrayList<>();
-                    for (String r : rows) sorted.add(AISData.fromCsv(r));
-                    sorted.sort(Comparator.comparingLong(AISData::getTimestamp));
-                    if (sorted.isEmpty()) return;
-
-                    Runtime runtime = Runtime.getSystemRuntime();
-                    Pointer trajectory = null;
-                    int count = 0;
-
-                    for (AISData aisData : sorted) {
-                        String wkt   = String.format("POINT(%f %f)@%s",
-                                aisData.getLon(), aisData.getLat(), millisToTimestamp(aisData.getTimestamp()));
-                        Pointer inst = functions.tgeogpoint_in(wkt);
-                        if (inst == null) {
-                            log.error("[V2] tgeogpoint_in returned null for DeviceID={} wkt={}", mmsi, wkt);
-                            continue;
-                        }
-
-                        if (trajectory == null) {
-                            // Seed the expandable sequence with the first instant.
-                            Pointer seedArray = Memory.allocate(runtime, Long.BYTES);
-                            seedArray.putPointer(0, inst);
-                            trajectory = functions.tsequence_make(
-                                    seedArray, 1, true, true, TInterpolation.LINEAR.getValue(), true);
-                            if (trajectory == null) {
-                                log.error("[V2] tsequence_make (seed) returned null for DeviceID={}", mmsi);
-                                return;
-                            }
-                        } else {
-                            // Append: MEOS expands capacity as needed.
-                            Pointer expanded = functions.temporal_append_tinstant(
-                                    trajectory, inst, TInterpolation.LINEAR.getValue(), 0.0, null, true);
-                            if (expanded == null) {
-                                log.error("[V2] temporal_append_tinstant returned null for DeviceID={} wkt={}", mmsi, wkt);
-                                continue;
-                            }
-                            trajectory = expanded;
-                        }
-                        count++;
-                    }
-                    if (trajectory == null || count == 0) return;
                     String trajectoryEwkt = functions.tspatial_as_ewkt(trajectory, 6);
 
                     String output = String.format(
-                            "[TRAJ][Q3] MMSI=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
+                            "[TRAJ][Q4] MMSI=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
                             mmsi,
-                            sorted.size(),
+                            surviving.size(),
                             millisToTimestamp(windowStart), millisToTimestamp(windowEnd),
                             trajectoryEwkt);
 
                     log.info(output);
                     context.forward(new Record<>(mmsi, output, record.timestamp()));
-
                 }
 
                 @Override
@@ -313,7 +274,141 @@ public class Query3_Main {
                 }
             };
         }
-
-
     }
+
+    private static class RestrictedTrajectoryWindowFunctionV2 implements ProcessorSupplier<Windowed<String>, Object, String, String>{
+
+        private final double xmin, xmax, ymin, ymax;
+        private final String tspanLiteral;
+
+        /**
+         * Parsed STBox pointer. Initialised once in init() via {@code stbox_make()}
+         * and reused across all window invocations since construction is expensive and the box
+         * never changes. Declared transient because JNR-FFI Pointer objects are not serialisable.
+         */
+        private Pointer stbox;
+
+        private RestrictedTrajectoryWindowFunctionV2(double xmin, double xmax, double ymin, double ymax, String tspanLiteral) {
+            this.xmin = xmin;
+            this.xmax = xmax;
+            this.ymin = ymin;
+            this.ymax = ymax;
+            this.tspanLiteral = tspanLiteral;
+        }
+
+        @Override
+        public Processor<Windowed<String>, Object, String, String> get() {
+            return new Processor<Windowed<String>, Object, String, String>() {
+
+                private ProcessorContext<String, String> context;
+
+                private final Logger log =
+                        LoggerFactory.getLogger(Query4_Main.RestrictedTrajectoryWindowFunctionV2.class);
+
+                private static final DateTimeFormatter TIMESTAMP_FMT =
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+                MeosErrorHandler errorHandler ;
+
+                @Override
+                public void init(ProcessorContext<String, String> context) {
+                    this.context = context;
+                    errorHandler = new MeosErrorHandler();
+                    functions.meos_initialize_timezone("UTC");
+                    functions.meos_initialize_error_handler(errorHandler);
+
+                    Pointer tspan = functions.tstzspan_in(tspanLiteral);
+                    if (tspan == null) { log.error("tstzspan_in returned null for: {}", tspanLiteral); return; }
+                    stbox = functions.stbox_make(true, false, true, 4326, xmin, xmax, ymin, ymax, 0, 0, tspan);
+                    if (stbox == null) log.error("stbox_make returned null");
+                    else log.info("[V2] STBox built: xmin={} xmax={} ymin={} ymax={} tspan={}",
+                            xmin, xmax, ymin, ymax, tspanLiteral);
+                    log.info("MEOS initialized in RestrictedTrajectoryWindowFunctionV1.init()");
+
+                }
+
+                @Override
+                public void process(Record<Windowed<String>, Object> record) {
+                    if (stbox == null) return;
+
+                    String mmsi = record.key().key();
+                    long windowStart = record.key().window().start();
+                    long windowEnd = record.key().window().end();
+
+                    String[] rows = record.value().toString().split(";");
+
+                    // Collect and sort first: MEOS requires strictly increasing timestamps.
+                    List<AISData> sorted = new ArrayList<>();
+                    for (String aisData : rows){
+                        AISData event = AISData.fromCsv(aisData);
+                        sorted.add(event);
+                    }
+                    sorted.sort(Comparator.comparingLong(AISData::getTimestamp));
+                    if (sorted.isEmpty()) return;
+
+                    jnr.ffi.Runtime runtime = jnr.ffi.Runtime.getSystemRuntime();
+                    Pointer trajectory = null;
+                    int count = 0;
+
+                    for (AISData event : sorted) {
+                        String wkt   = String.format("POINT(%f %f)@%s",
+                                event.getLon(), event.getLat(), millisToTimestamp(event.getTimestamp()));
+                        Pointer inst = functions.tgeogpoint_in(wkt);
+                        if (inst == null) {
+                            log.error("[V2] tgeogpoint_in returned null for DeviceID={} wkt={}", mmsi, wkt);
+                            continue;
+                        }
+
+                        // STBox filter: reuse the already-parsed instant pointer.
+                        if (functions.tgeo_at_stbox(inst, stbox, true) == null) continue;
+
+                        if (trajectory == null) {
+                            Pointer seedArray = Memory.allocate(runtime, Long.BYTES);
+                            seedArray.putPointer(0, inst);
+                            trajectory = functions.tsequence_make(
+                                    seedArray, 1, true, true, TInterpolation.LINEAR.getValue(), true);
+                            if (trajectory == null) {
+                                log.error("[V2] tsequence_make (seed) returned null for DeviceID={}", mmsi);
+                                return;
+                            }
+                        } else {
+                            Pointer expanded = functions.temporal_append_tinstant(
+                                    trajectory, inst, TInterpolation.LINEAR.getValue(), 0.0, null, true);
+                            if (expanded == null) {
+                                log.error("[V2] temporal_append_tinstant returned null for DeviceID={} wkt={}", mmsi, wkt);
+                                continue;
+                            }
+                            trajectory = expanded;
+                        }
+                        count++;
+                    }
+
+                    if (trajectory == null || count == 0) return;
+
+                    String trajectoryEwkt = functions.tspatial_as_ewkt(trajectory, 6);
+
+                    String output = String.format(
+                            "[TRAJ][Q4] MMSI=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
+                            mmsi,
+                            sorted.size(),
+                            millisToTimestamp(windowStart), millisToTimestamp(windowEnd),
+                            trajectoryEwkt);
+
+                    log.info(output);
+                    context.forward(new Record<>(mmsi, output, record.timestamp()));
+                }
+
+                @Override
+                public void close() {
+                    Processor.super.close();
+                    functions.meos_finalize();
+                }
+
+                private String millisToTimestamp(long millis) {
+                    return Instant.ofEpochMilli(millis).atOffset(ZoneOffset.UTC).format(TIMESTAMP_FMT);
+                }
+            };
+        }
+    }
+
 }
