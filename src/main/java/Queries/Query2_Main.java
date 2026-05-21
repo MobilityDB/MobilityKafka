@@ -27,7 +27,6 @@ import java.util.Properties;
 public class Query2_Main {
     private static final Logger logger = LoggerFactory.getLogger(Query2_Main.class);
 
-
     private static final double VAR_FA_THRESHOLD = 0.6;
 
     private static final double VAR_FF_THRESHOLD = 0.5;
@@ -73,8 +72,8 @@ public class Query2_Main {
                         return new KeyValue<>(mmsi, value); // set mmsi as key, keep full row as value
                     })
                     .groupByKey()
-                    //10 seconds tumbling window with a 10 seconds watermark :
-                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)))
+                    //10 seconds sliding (hopping) window with 10 ms steps and a 10 seconds watermark :
+                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)).advanceBy(Duration.ofMillis(10)))
                     .aggregate(
                             () -> "",  // 1. initializer: start with empty string
                             (key, value, aggregate) -> aggregate.isEmpty() ? value : aggregate + ";" + value, // 2. aggregator: append rows separated by ";"
