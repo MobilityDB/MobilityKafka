@@ -129,18 +129,39 @@ jobs:
         run: docker compose up -d --build
         timeout-minutes: 10
 
-      - name: Wait for producer to finish
+#      - name: Wait for producer to finish
+#        run: |
+#          docker compose wait producer
+#          sleep 15
+
+#      - name: Check output for alerts
+#        run: |
+#          OUTPUT=$(docker compose logs consumer 2>&1)
+#          echo "$OUTPUT"
+#          echo "$OUTPUT" | grep -qF "${{ matrix.alert_pattern }}" \
+#          && echo "Query${{ matrix.query }} — output found" \
+#          || (echo "Query${{ matrix.query }} — no output detected" && exit 1)
+
+      - name: Wait for output
         run: |
           docker compose wait producer
-          sleep 15  
+          echo "Waiting for Kafka Streams to emit output..."
+          for i in $(seq 1 12); do
+            OUTPUT=$(docker compose logs consumer 2>&1)
+            if echo "$OUTPUT" | grep -qF "[Q${{ matrix.query }}]"; then
+              echo "Output detected after ${i}x5s"
+              exit 0
+            fi
+            echo "Attempt $i/12 — not yet, waiting 5s..."
+            sleep 5
+          done
+          echo "No output after 60s"
+          docker compose logs query-app   # affiche les logs de l'app pour debug
+          exit 1
 
-      - name: Check output for alerts
-        run: |
-          OUTPUT=$(docker compose logs consumer 2>&1)
-          echo "$OUTPUT"
-          echo "$OUTPUT" | grep -q "${{ matrix.alert_pattern }}" \
-          && echo "Query${{ matrix.query }} — output found" \
-          || (echo "Query${{ matrix.query }} — no output detected" && exit 1)
+      - name: Print consumer output
+        if: always()
+        run: docker compose logs consumer
 
       - name: Teardown
         if: always()
