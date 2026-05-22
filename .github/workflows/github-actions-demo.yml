@@ -101,9 +101,9 @@ jobs:
           - query: 5
             alert_pattern: "[Q5]"
             csv: ais_instants.csv
-          # - query: 6
-          #   alert_pattern: "[Q6]"
-          #   csv: ais_instants.csv
+          - query: 6
+            alert_pattern: "[Q6]"
+            csv: ais_instants.csv
           # - query: 7
           #   alert_pattern: "[Q7]"
           #   csv: ais_instants.csv
