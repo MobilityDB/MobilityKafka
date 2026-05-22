@@ -64,7 +64,7 @@ public class Query4_Main {
             functions.meos_initialize_error_handler(new MeosErrorHandler());
 
             Properties props = new Properties();
-            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query2_AIS");
+            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query4_AIS");
             props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());

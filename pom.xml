@@ -75,7 +75,7 @@
                             <archive>
                                 <manifest>
                                     <!--Modify with the name of the Example class you want to run-->
-                                    <mainClass>Queries.Query4_Main</mainClass>
+                                    <mainClass>Queries.Query5_Main</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

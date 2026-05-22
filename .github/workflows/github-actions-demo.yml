@@ -98,10 +98,9 @@ jobs:
           - query: 4
             alert_pattern: "[Q4]"
             csv: ais_instants.csv
-          # Queries 5-9 : décommenter au fur et à mesure de leur implémentation
-          # - query: 5
-          #   alert_pattern: "[Q5]"
-          #   csv: ais_instants.csv
+          - query: 5
+            alert_pattern: "[Q5]"
+            csv: ais_instants.csv
           # - query: 6
           #   alert_pattern: "[Q6]"
           #   csv: ais_instants.csv
