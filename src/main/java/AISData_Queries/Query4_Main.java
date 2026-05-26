@@ -1,4 +1,4 @@
-package Queries;
+package AISData_Queries;
 
 import functions.functions;
 import functions.MeosErrorHandler;

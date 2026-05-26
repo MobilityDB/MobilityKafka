@@ -1,4 +1,4 @@
-package Queries;
+package AISData_Queries;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;

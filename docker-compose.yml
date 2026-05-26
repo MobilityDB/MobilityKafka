@@ -48,13 +48,11 @@ services:
       kafka-setup:
         condition: service_completed_successfully
     volumes:
-      - ./ais_instants.csv:/ais_instants.csv                        # mount your CSV file
-      #- ./input_sncb.csv:/input_sncb.csv
+      #- ./ais_instants.csv:/ais_instants.csv                        # mount your CSV file
+      - ./input_sncb.csv:/input_sncb.csv
     entrypoint: [ "/bin/sh", "-c" ]
-    command: [ "cat /ais_instants.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #AISData versiom
-    #command: [ "cat /input_sncb.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #SNCB Data version
-
-
+    #command: [ "cat /ais_instants.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #AISData versiom
+    command: [ "cat /input_sncb.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #SNCB Data version
 
   consumer:
     image: confluentinc/cp-kafka:latest

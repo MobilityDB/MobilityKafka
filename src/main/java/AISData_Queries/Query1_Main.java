@@ -1,4 +1,4 @@
-package Queries;
+package AISData_Queries;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
