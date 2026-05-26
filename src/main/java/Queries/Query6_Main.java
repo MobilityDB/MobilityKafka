@@ -71,7 +71,6 @@ public class Query6_Main {
                             JoinWindows.ofTimeDifferenceWithNoGrace(Duration.ofSeconds(10)),
                             StreamJoined.with(Serdes.String(), Serdes.String(), Serdes.String())
                     );
-            //join.to("query-output", Produced.with(Serdes.String(), Serdes.String()));
 
             join.process(new Query6_Main.NearestApproachJoinFunction())
                     .to("query-output");
