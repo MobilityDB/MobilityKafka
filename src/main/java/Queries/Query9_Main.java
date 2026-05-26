@@ -24,10 +24,11 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class Query7_Main {
-    private static final Logger logger = LoggerFactory.getLogger(Query7_Main.class);
+public class Query9_Main {
+    private static final Logger logger = LoggerFactory.getLogger(Query9_Main.class);
 
-    private static final int TOP_K = 10;
+    /** Number of nearest neighbours to retain per device: the {@code k} in knn_agg. */
+    private static final int K = 3;
 
     public static void main(String[] args) throws Exception {
         logger.info("Java library path: {}", System.getProperty("java.library.path"));
@@ -38,7 +39,7 @@ public class Query7_Main {
             functions.meos_initialize_error_handler(new MeosErrorHandler());
 
             Properties props = new Properties();
-            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query7_AIS");
+            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query9_AIS");
             props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
@@ -77,7 +78,7 @@ public class Query7_Main {
                     .toStream()
                     .map((windowedKey, value) -> new KeyValue<>(windowedKey.key(), value));
 
-            result.process(new Query7_Main.ClosestPairsCoGroupFunction(TOP_K))
+            result.process(new Query9_Main.KnnCoGroupFunction(K))
                     .to("query-output");
 
             KafkaStreams streams = new KafkaStreams(builder.build(), props);
@@ -101,18 +102,19 @@ public class Query7_Main {
             }
         }
     }
-    // Internal class for the join process
-    public static class ClosestPairsCoGroupFunction implements ProcessorSupplier<String, Object, String, String> {
 
-        private final int topK;
+    public static class KnnCoGroupFunction implements ProcessorSupplier<String, Object, String, String> {
 
-        public ClosestPairsCoGroupFunction(int topK) {
-            this.topK = topK;
+        private final int k;
+
+        public KnnCoGroupFunction(int k) {
+            this.k = k;
         }
 
         @Override
         public Processor<String, Object, String, String> get() {
             return new Processor<String, Object, String, String>() {
+
 
                 private ProcessorContext<String, String> context;
 
@@ -124,6 +126,7 @@ public class Query7_Main {
 
                 MeosErrorHandler errorHandler;
 
+
                 @Override
                 public void init(ProcessorContext<String, String> context) {
                     this.context = context;
@@ -134,7 +137,6 @@ public class Query7_Main {
 
                 @Override
                 public void process(Record<String, Object> record) {
-
                     String[] rows = record.value().toString().split(";");
 
                     List<AISData> lefts  = new ArrayList<>();
@@ -152,6 +154,7 @@ public class Query7_Main {
 
                     if (lefts.isEmpty() || rights.isEmpty()) return;
 
+                    // Same precalculation logic as in Query 7
                     List<Pointer> geoLefts  = new ArrayList<>(lefts.size());
                     for (AISData left : lefts) {
                         String ts = millisToTimestamp(left.getTimestamp());
@@ -170,8 +173,14 @@ public class Query7_Main {
                         geoRights.add(geo);
                     }
 
-                    //Hashmap to delete duplicates
-                    Map<String, double[]> pairMap = new HashMap<>();
+                    // Step 1: cross-product with mmsi1 != mmsi2, keeping min dist per (mmsi1, mmsi2).
+                    //
+                    // Unlike Query 7 (mmsi1 < mmsi2), here we keep BOTH (A,B) and (B,A) because
+                    // A's kNN list and B's kNN list are computed independently.
+                    // The deduplication map ensures we keep the minimum distance over all timestamp
+                    // combinations for each directed pair.
+                    Map<String, double[]> minDistMap = new HashMap<>();
+                    // value: [mmsi1, mmsi2, dist, lon1, lat1, lon2, lat2]
 
                     for (int i = 0; i < lefts.size(); i++) {
                         AISData left    = lefts.get(i);
@@ -183,44 +192,55 @@ public class Query7_Main {
                             Pointer geoRight = geoRights.get(j);
                             if (geoRight == null) continue;
 
-                            // Paper Line 2: device_id < device_id2
-                            if (left.getMmsi() >= right.getMmsi()) continue;
+                            // Paper Line 2: device_id != device_id2
+                            if (left.getMmsi() == right.getMmsi()) continue;
 
                             double dist = functions.geog_distance(geoLeft, geoRight);
 
-                            // Keep only the minimum distance per unique (mmsi1, mmsi2) pair.
-                            String key = left.getMmsi() + ":" + right.getMmsi();
-                            if (!pairMap.containsKey(key) || dist < pairMap.get(key)[2]) {
-                                pairMap.put(key, new double[]{
+                            // Key: directed pair "mmsi1→mmsi2"
+                            String key = left.getMmsi() + "->" + right.getMmsi();
+                            if (!minDistMap.containsKey(key) || dist < minDistMap.get(key)[2]) {
+                                minDistMap.put(key, new double[]{
                                         left.getMmsi(), right.getMmsi(), dist,
                                         left.getLon(), left.getLat(),
                                         right.getLon(), right.getLat()});
                             }
                         }
                     }
+                    if (minDistMap.isEmpty()) return;
 
-                    if (pairMap.isEmpty()) return;
+                    // Step 2: groupBy device_id (paper Line 5):
+                    // Build a per-mmsi1 list of (mmsi2, dist) entries.
+                    Map<Integer, List<double[]>> byDevice = new HashMap<>();
+                    for (double[] entry : minDistMap.values()) {
+                        int mmsi1 = (int) entry[0];
+                        byDevice.computeIfAbsent(mmsi1, x -> new ArrayList<>()).add(entry);
+                    }
 
-                    //Keep the top K smallest pairs
-                    List<double[]> pairs = new ArrayList<>(pairMap.values());
-                    pairs.sort(Comparator.comparingDouble(e -> e[2]));
+                    // Step 3: knn_agg(mindist, device_id2, k) (paper Line 6):
+                    // For each device, sort by dist ascending and keep the k nearest neighbours.
+                    for (Map.Entry<Integer, List<double[]>> deviceEntry : byDevice.entrySet()) {
+                        int          mmsi1     = deviceEntry.getKey();
+                        List<double[]> neighbours = deviceEntry.getValue();
 
-                    int emitCount = Math.min(topK, pairs.size());
-                    for (int rank = 0; rank < emitCount; rank++) {
-                        double[] p = pairs.get(rank);
+                        neighbours.sort(Comparator.comparingDouble(e -> e[2]));
 
-                        String result = String.format(
-                                "[TOPK][Q7] rank=%2d/%d | MMSI1=%-12d (lon=%9.5f lat=%8.5f)"
-                                        + " | MMSI2=%-12d (lon=%9.5f lat=%8.5f)"
-                                        + " | mindist=%10.3f m",
-                                rank + 1, emitCount,
-                                (long) p[0], p[3], p[4],
-                                (long) p[1], p[5], p[6],
-                                p[2]);
+                        int emitCount = Math.min(k, neighbours.size());
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(String.format("[KNN][Q9] MMSI=%-12d | k=%d/%d neighbours:%n",
+                                mmsi1, emitCount, neighbours.size()));
 
-                        String mmsis = String.valueOf(p[0])+String.valueOf(p[1]);
+                        for (int rank = 0; rank < emitCount; rank++) {
+                            double[] nb = neighbours.get(rank);
+                            sb.append(String.format(
+                                    "           rank=%d | neighbour=%-12d"
+                                            + " (lon=%9.5f lat=%8.5f) | mindist=%10.3f m%n",
+                                    rank + 1, (long) nb[1], nb[5], nb[6], nb[2]));
+                        }
+
+                        String result = sb.toString().stripTrailing();
                         log.info(result);
-                        context.forward(new Record<>(mmsis, result, record.timestamp()));
+                        context.forward(new Record<>(String.valueOf(mmsi1), result, record.timestamp()));
                     }
 
                 }
