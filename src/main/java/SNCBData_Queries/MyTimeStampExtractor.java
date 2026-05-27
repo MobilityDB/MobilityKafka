@@ -16,7 +16,7 @@ public class MyTimeStampExtractor implements TimestampExtractor {
         if (value != null && !value.trim().isEmpty()) {
             try {
                 String[] cols = value.split(",");
-                return Long.parseLong(cols[0].trim());
+                return Long.parseLong(cols[0].trim())*1000L;
             } catch (Exception e) {
                 // header row or malformed line
             }

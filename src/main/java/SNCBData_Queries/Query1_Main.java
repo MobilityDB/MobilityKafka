@@ -108,7 +108,6 @@ public class Query1_Main {
     }
 
     // Internal class for the zone window
-
     public static class HighRiskZoneWindowFunction implements ProcessorSupplier<Windowed<String>, Object, String, String> {
 
         private final String[] zoneWkt;

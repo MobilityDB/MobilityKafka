@@ -2,7 +2,7 @@ package SNCBData_Queries;
 
 public class SNCBData {
     // Core fields used by all queries
-    private long   timestamp;   // col 0: time_utc in milliseconds
+    private long   timestamp;   // col 0: time_utc in seconds
     private int    deviceId;    // col 1: device_id (train identifier)
     private double lat;         // col 12: gps_lat
     private double lon;         // col 13: gps_lon
@@ -95,7 +95,7 @@ public class SNCBData {
     public static SNCBData fromCsv(String row) {
         String[] cols = row.split(",");
         SNCBData data = new SNCBData();
-        data.setTimestamp(Long.parseLong(cols[0].trim()));
+        data.setTimestamp(Long.parseLong(cols[0].trim())*1000L);
         data.setDeviceId(Integer.parseInt(cols[1].trim()));
         data.setLat(Double.parseDouble(cols[12].trim()));
         data.setLon(Double.parseDouble(cols[13].trim()));
