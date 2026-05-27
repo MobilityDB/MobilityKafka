@@ -46,5 +46,5 @@ ENV LD_LIBRARY_PATH=/usr/local/lib
 CMD ["java", "--add-opens", "java.base/java.lang=ALL-UNNAMED", \
      "-Djava.library.path=/usr/local/lib", \
      "-cp", "target/MobilityKafka-1.0-SNAPSHOT-jar-with-dependencies.jar:/tmp/JMEOS.jar", \
-     "SNCBData_Queries.Query1_Main"]
+     "SNCBData_Queries.Query2_Main"]
      #"AISData_Queries.Query9_Main"]

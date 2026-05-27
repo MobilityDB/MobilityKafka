@@ -213,7 +213,7 @@ public class Query2_Main {
 
                     }
 
-                    if (faValues.isEmpty()) return; // no surviving events in this window
+                    if (faValues.isEmpty() || ffValues.isEmpty()) return; // no surviving events in this window
 
                     // Paper Line 4: variation(FA) and variation(FF): statistical variance
                     double varFA = variance(faValues);
