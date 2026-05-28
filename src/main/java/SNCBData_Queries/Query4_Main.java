@@ -1,4 +1,4 @@
-package AISData_Queries;
+package SNCBData_Queries;
 
 import functions.functions;
 import functions.MeosErrorHandler;
@@ -31,31 +31,15 @@ import java.util.Properties;
 public class Query4_Main {
     private static final Logger logger = LoggerFactory.getLogger(Query4_Main.class);
 
-    // Spatial bounds of the restricted zone (WGS-84 degrees).
-    // Covers the Esbjerg / North Sea area where MMSI 566948000 operates.
-    private static final double STBOX_XMIN = 4.48;
-    private static final double STBOX_XMAX = 4.64;
-    private static final double STBOX_YMIN = 55.55;
-    private static final double STBOX_YMAX = 55.66;
+    // STBox: Brussels-South where device 3 operates (lon 4.35-4.40, lat 50.63-50.66)
+    private static final double STBOX_XMIN = 4.35;
+    private static final double STBOX_XMAX = 4.40;
+    private static final double STBOX_YMIN = 50.63;
+    private static final double STBOX_YMAX = 50.66;
+    // Full day of the SNCB dataset
+    private static final String STBOX_TSPAN = "[2024-08-01 00:00:00+00, 2024-08-02 00:00:00+00]";
 
-    /**
-     * Temporal bounds of the restricted zone as a MobilityDB tstzspan literal.
-     * Covers the full day of the AIS dataset (2021-01-08).
-     * Parsed by {@code tstzspan_in()} and passed to {@code stbox_make()}.
-     *
-     * The limits of the STBOX should let only the 566948000 MMSI ship pass and only its coordinates will be
-     *      used to build the trajectory
-     *
-     * The 3 other ones should never appear since they don't fulfill the STBOX filter
-     *          265513270
-     *          219027804
-     *          219001559
-     */
-    private static final String STBOX_TSPAN = "[2021-01-08 00:00:00+00, 2021-01-09 00:00:00+00]";
-
-
-    public static void main(String[] args) throws InterruptedException {
-
+    public static void main(String[] args) throws Exception {
         logger.info("Java library path: {}", System.getProperty("java.library.path"));
 
         try {
@@ -64,7 +48,7 @@ public class Query4_Main {
             functions.meos_initialize_error_handler(new MeosErrorHandler());
 
             Properties props = new Properties();
-            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query4_AIS");
+            props.put(StreamsConfig.APPLICATION_ID_CONFIG, "query4_SNCB");
             props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
@@ -80,8 +64,8 @@ public class Query4_Main {
                     .filter((key, value) -> value != null && !value.startsWith("t,")) // skip header
                     .map((key, value) -> {
                         String[] cols = value.split(",");
-                        String mmsi = cols[1].trim(); // mmsi is the key
-                        return new KeyValue<>(mmsi, value); // set mmsi as key, keep full row as value
+                        String device_id = cols[1].trim(); // device_id is the key
+                        return new KeyValue<>(device_id, value); // set device_id as key, keep full row as value
                     })
                     .groupByKey()
                     //10 seconds sliding (hopping) window with 10 ms steps and a 10 seconds watermark :
@@ -93,8 +77,8 @@ public class Query4_Main {
                     )
                     .toStream()
                     // Switch here to compare the 2 different implementations:
-                    //.process(new Query4_Main.RestrictedTrajectoryWindowFunctionV1(STBOX_XMIN, STBOX_XMAX, STBOX_YMIN, STBOX_YMAX, STBOX_TSPAN))
-                    .process(new Query4_Main.RestrictedTrajectoryWindowFunctionV2(STBOX_XMIN, STBOX_XMAX, STBOX_YMIN, STBOX_YMAX, STBOX_TSPAN))
+                    .process(new Query4_Main.RestrictedTrajectoryWindowFunctionV1(STBOX_XMIN, STBOX_XMAX, STBOX_YMIN, STBOX_YMAX, STBOX_TSPAN))
+                    //.process(new Query4_Main.RestrictedTrajectoryWindowFunctionV2(STBOX_XMIN, STBOX_XMAX, STBOX_YMIN, STBOX_YMAX, STBOX_TSPAN))
                     .to("query-output") ;
 
             KafkaStreams streams = new KafkaStreams(builder.build(), props);
@@ -119,7 +103,8 @@ public class Query4_Main {
         }
     }
 
-    private static class RestrictedTrajectoryWindowFunctionV1 implements ProcessorSupplier<Windowed<String>, Object, String, String>{
+
+    private static class RestrictedTrajectoryWindowFunctionV1 implements ProcessorSupplier<Windowed<String>, Object, String, String> {
 
         private final double xmin, xmax, ymin, ymax;
         private final String tspanLiteral;
@@ -186,21 +171,21 @@ public class Query4_Main {
                 }
 
                 @Override
-                public void process(Record<Windowed<String>, Object> record) {
+                public void process(org.apache.kafka.streams.processor.api.Record<Windowed<String>, Object> record) {
                     if (stbox == null) return; // STBox failed to parse in open()
 
-                    String mmsi = record.key().key();
+                    String device_id = record.key().key();
                     long windowStart = record.key().window().start();
                     long windowEnd = record.key().window().end();
 
                     String[] rows = record.value().toString().split(";");
 
                     // Collect events that pass the STBox filter, sorted by timestamp.
-                    List<AISData> surviving = new ArrayList<>();
+                    List<SNCBData> surviving = new ArrayList<>();
 
-                    for (String aisData : rows ) {
+                    for (String sncbData : rows ) {
 
-                        AISData event = AISData.fromCsv(aisData);
+                        SNCBData event = SNCBData.fromCsv(sncbData);
                         String ts = millisToTimestamp(event.getTimestamp());
 
                         // Build the tgeogpoint instant for this event.
@@ -220,7 +205,7 @@ public class Query4_Main {
                         // [ymin,ymax], [tsmin,tsmax]), matching the paper's closed-interval notation.
                         Pointer restricted = functions.tgeo_at_stbox(tpoint, stbox, true);
                         if (restricted == null) {
-                            log.debug("MMSI={} skipped: point outside STBox at ts={}", mmsi, ts);
+                            log.debug("DeviceID={} skipped: point outside STBox at ts={}", device_id, ts);
                             continue;
                         }
 
@@ -230,12 +215,12 @@ public class Query4_Main {
                     if (surviving.isEmpty()) return; // no event survived the STBox filter
 
                     // Sort by timestamp: required by tgeogpoint_in for sequence construction.
-                    surviving.sort(Comparator.comparingLong(AISData::getTimestamp));
+                    surviving.sort(Comparator.comparingLong(SNCBData::getTimestamp));
 
                     // Paper Line 4: temporal_sequence(lon, lat, ts).
                     StringBuilder seq = new StringBuilder("{");
                     for (int i = 0; i < surviving.size(); i++) {
-                        AISData event = surviving.get(i);
+                        SNCBData event = surviving.get(i);
                         String ts = millisToTimestamp(event.getTimestamp());
                         if (i > 0) seq.append(",");
                         seq.append(String.format("POINT(%f %f)@%s", event.getLon(), event.getLat(), ts));
@@ -251,14 +236,14 @@ public class Query4_Main {
                     String trajectoryEwkt = functions.tspatial_as_ewkt(trajectory, 6);
 
                     String output = String.format(
-                            "[TRAJ][Q4] MMSI=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
-                            mmsi,
+                            "[TRAJ][Q4] DeviceID=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
+                            device_id,
                             surviving.size(),
                             millisToTimestamp(windowStart), millisToTimestamp(windowEnd),
                             trajectoryEwkt);
 
                     log.info(output);
-                    context.forward(new Record<>(mmsi, output, record.timestamp()));
+                    context.forward(new org.apache.kafka.streams.processor.api.Record<>(device_id, output, record.timestamp()));
                 }
 
                 @Override
@@ -326,34 +311,34 @@ public class Query4_Main {
                 }
 
                 @Override
-                public void process(Record<Windowed<String>, Object> record) {
+                public void process(org.apache.kafka.streams.processor.api.Record<Windowed<String>, Object> record) {
                     if (stbox == null) return;
 
-                    String mmsi = record.key().key();
+                    String device_id = record.key().key();
                     long windowStart = record.key().window().start();
                     long windowEnd = record.key().window().end();
 
                     String[] rows = record.value().toString().split(";");
 
                     // Collect and sort first: MEOS requires strictly increasing timestamps.
-                    List<AISData> sorted = new ArrayList<>();
-                    for (String aisData : rows){
-                        AISData event = AISData.fromCsv(aisData);
+                    List<SNCBData> sorted = new ArrayList<>();
+                    for (String sncbData : rows){
+                        SNCBData event = SNCBData.fromCsv(sncbData);
                         sorted.add(event);
                     }
-                    sorted.sort(Comparator.comparingLong(AISData::getTimestamp));
+                    sorted.sort(Comparator.comparingLong(SNCBData::getTimestamp));
                     if (sorted.isEmpty()) return;
 
                     jnr.ffi.Runtime runtime = jnr.ffi.Runtime.getSystemRuntime();
                     Pointer trajectory = null;
                     int count = 0;
 
-                    for (AISData event : sorted) {
+                    for (SNCBData event : sorted) {
                         String wkt   = String.format("POINT(%f %f)@%s",
                                 event.getLon(), event.getLat(), millisToTimestamp(event.getTimestamp()));
                         Pointer inst = functions.tgeogpoint_in(wkt);
                         if (inst == null) {
-                            log.error("[V2] tgeogpoint_in returned null for DeviceID={} wkt={}", mmsi, wkt);
+                            log.error("[V2] tgeogpoint_in returned null for DeviceID={} wkt={}", device_id, wkt);
                             continue;
                         }
 
@@ -366,14 +351,14 @@ public class Query4_Main {
                             trajectory = functions.tsequence_make(
                                     seedArray, 1, true, true, TInterpolation.LINEAR.getValue(), true);
                             if (trajectory == null) {
-                                log.error("[V2] tsequence_make (seed) returned null for DeviceID={}", mmsi);
+                                log.error("[V2] tsequence_make (seed) returned null for DeviceID={}", device_id);
                                 return;
                             }
                         } else {
                             Pointer expanded = functions.temporal_append_tinstant(
                                     trajectory, inst, TInterpolation.LINEAR.getValue(), 0.0, null, true);
                             if (expanded == null) {
-                                log.error("[V2] temporal_append_tinstant returned null for DeviceID={} wkt={}", mmsi, wkt);
+                                log.error("[V2] temporal_append_tinstant returned null for DeviceID={} wkt={}", device_id, wkt);
                                 continue;
                             }
                             trajectory = expanded;
@@ -386,14 +371,14 @@ public class Query4_Main {
                     String trajectoryEwkt = functions.tspatial_as_ewkt(trajectory, 6);
 
                     String output = String.format(
-                            "[TRAJ][Q4] MMSI=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
-                            mmsi,
+                            "[TRAJ][Q4] DeviceID=%-12s | points=%3d | window [%s - %s]%n | trajectory: %s",
+                            device_id,
                             sorted.size(),
                             millisToTimestamp(windowStart), millisToTimestamp(windowEnd),
                             trajectoryEwkt);
 
                     log.info(output);
-                    context.forward(new Record<>(mmsi, output, record.timestamp()));
+                    context.forward(new Record<>(device_id, output, record.timestamp()));
                 }
 
                 @Override
@@ -408,5 +393,4 @@ public class Query4_Main {
             };
         }
     }
-
 }
