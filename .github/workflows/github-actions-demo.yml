@@ -88,25 +88,25 @@ jobs:
         include:
           - query: 1
             alert_pattern: "[Q1]"
-            csv: ais_instants.csv
+            csv: input_sncb.csv
           - query: 2
             alert_pattern: "[Q2]"
-            csv: ais_instants.csv
+            csv: input_sncb.csv
           - query: 3
             alert_pattern: "[Q3]"
-            csv: ais_instants.csv
+            csv: input_sncb.csv
           - query: 4
             alert_pattern: "[Q4]"
-            csv: ais_instants.csv
+            csv: input_sncb.csv
           - query: 5
             alert_pattern: "[Q5]"
-            csv: ais_instants.csv
+            csv: input_sncb.csv
           - query: 6
             alert_pattern: "[Q6]"
-            csv: ais_instants.csv
-          # - query: 7
-          #   alert_pattern: "[Q7]"
-          #   csv: ais_instants.csv
+            csv: input_sncb.csv
+          - query: 7
+            alert_pattern: "[Q7]"
+            csv: input_sncb.csv
           # - query: 8
           #   alert_pattern: "[Q8]"
           #   csv: ais_instants.csv
