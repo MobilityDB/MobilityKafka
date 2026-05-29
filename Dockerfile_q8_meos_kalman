@@ -86,5 +86,5 @@ WORKDIR /app
 ENTRYPOINT ["java", "--add-opens", "java.base/java.lang=ALL-UNNAMED", \
                 "-Djava.library.path=/usr/local/lib", \
                 "-cp", "/app/kafka2postgres.jar:/usr/local/jar/JMEOS.jar", \
-                "AISData_Queries.Query8_Main"]
-                #"SNCBData_Queries.Query8_Main"]
+                "SNCBData_Queries.Query8_Main"]
+                #"AISData_Queries.Query8_Main"]
