@@ -116,165 +116,184 @@ public final class BerlinMODTopology {
 
     private BerlinMODTopology() {}
 
-    public static Topology build() {
+    public static Topology build() { return build(defaultParams()); }
+    public static Topology build(BerlinMODCorpus.Params p) { return buildInternal(p, null); }
+    public static Topology buildCell(BerlinMODCorpus.Params p, String cell) { return buildInternal(p, cell); }
+
+    private static BerlinMODCorpus.Params defaultParams() {
+        return new BerlinMODCorpus.Params(Q3_P_LON, Q3_P_LAT, Q3_RADIUS_METRES, Q5_D_MEET_METRES,
+                Q4_XMIN, Q4_YMIN, Q4_XMAX, Q4_YMAX, Q8_S1_LON, Q8_S1_LAT, Q8_S2_LON, Q8_S2_LAT,
+                Q7_POIS, Q2_TARGET_VEHICLE_ID, Q9_X_VEHICLE_ID, Q9_Y_VEHICLE_ID,
+                WINDOW_SIZE_MILLIS / 1000L, SNAPSHOT_TICK_MILLIS);
+    }
+
+    private static Topology buildInternal(BerlinMODCorpus.Params p, String only) {
         StreamsBuilder builder = new StreamsBuilder();
+        final long WIN_MS = p.windowSeconds * 1000L;
         BerlinMODTripSerde tripSerde = new BerlinMODTripSerde();
-
-        // ---- continuous-form state stores ----
-        addStore(builder, Q1_SEEN_STORE, Serdes.Integer(), Serdes.Boolean());
-        addStore(builder, Q4_WAS_INSIDE_STORE, Serdes.Integer(), Serdes.Boolean());
-        addStore(builder, Q5_LAST_POS_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q6_STATE_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q7_FIRST_PASSED_STORE, Serdes.Integer(), Serdes.Long());
-        addStore(builder, Q9_STATE_STORE, Serdes.Integer(), Serdes.String());
-
-        // ---- windowed-form state stores ----
-        addStore(builder, Q1_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q2_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q3_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q4_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q5_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q6_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q7_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q8_WIN_STORE, Serdes.Long(), Serdes.String());
-        addStore(builder, Q9_WIN_STORE, Serdes.Long(), Serdes.String());
-
-        // ---- snapshot-form state stores (separate to avoid co-write conflicts with continuous) ----
-        addStore(builder, Q1_SNAP_STORE, Serdes.Integer(), Serdes.Long());
-        addStore(builder, Q2_SNAP_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q3_SNAP_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q4_SNAP_WAS_INSIDE_STORE, Serdes.Integer(), Serdes.Boolean());
-        addStore(builder, Q4_SNAP_ENTRIES_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q5_SNAP_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q6_SNAP_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q7_SNAP_STORE, Serdes.Integer(), Serdes.Long());
-        addStore(builder, Q8_SNAP_STORE, Serdes.Integer(), Serdes.String());
-        addStore(builder, Q9_SNAP_STORE, Serdes.Integer(), Serdes.String());
-
-        // ---- streams ----
         KStream<Integer, BerlinMODTrip> trips =
                 builder.stream(INPUT_TOPIC, Consumed.with(Serdes.Integer(), tripSerde));
-
-        // Re-keyed by constant for the shared-state snapshot/multi-vehicle processors
         KStream<Integer, BerlinMODTrip> tripsK0 = trips.selectKey((k, v) -> 0);
 
-        // ====== continuous form ======
-        trips.process(() -> new Q1ContinuousProcessor(Q1_SEEN_STORE), Q1_SEEN_STORE)
-             .to(Q1_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Long()));
+        if (only == null || only.equals("Q1-continuous")) {
+            addStore(builder, Q1_SEEN_STORE, Serdes.Integer(), Serdes.Boolean());
+            trips.process(() -> new Q1ContinuousProcessor(Q1_SEEN_STORE), Q1_SEEN_STORE)
+                 .to(Q1_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Long()));
+        }
 
-        trips.process(() -> new Q2ContinuousProcessor(Q2_TARGET_VEHICLE_ID))
-             .to(Q2_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), tripSerde));
+        if (only == null || only.equals("Q2-continuous")) {
+            trips.process(() -> new Q2ContinuousProcessor(p.targetId))
+                 .to(Q2_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), tripSerde));
+        }
 
-        trips.process(() -> new Q3ContinuousProcessor(Q3_P_LON, Q3_P_LAT, Q3_RADIUS_METRES))
-             .to(Q3_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Boolean()));
+        if (only == null || only.equals("Q3-continuous")) {
+            trips.process(() -> new Q3ContinuousProcessor(p.pLon, p.pLat, p.radiusMetres))
+                 .to(Q3_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Boolean()));
+        }
 
-        trips.process(() -> new Q4ContinuousProcessor(Q4_WAS_INSIDE_STORE, Q4_XMIN, Q4_YMIN, Q4_XMAX, Q4_YMAX),
-                      Q4_WAS_INSIDE_STORE)
-             .to(Q4_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Long()));
+        if (only == null || only.equals("Q4-continuous")) {
+            addStore(builder, Q4_WAS_INSIDE_STORE, Serdes.Integer(), Serdes.Boolean());
+            trips.process(() -> new Q4ContinuousProcessor(Q4_WAS_INSIDE_STORE, p.xmin, p.ymin, p.xmax, p.ymax), Q4_WAS_INSIDE_STORE)
+                 .to(Q4_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Long()));
+        }
 
-        tripsK0.process(() -> new Q5ContinuousProcessor(Q5_LAST_POS_STORE,
-                                                         Q5_P_LON, Q5_P_LAT, Q5_D_P_METRES, Q5_D_MEET_METRES),
-                        Q5_LAST_POS_STORE)
-               .to(Q5_CONTINUOUS_OUTPUT, Produced.with(Serdes.String(), Serdes.Double()));
+        if (only == null || only.equals("Q5-continuous")) {
+            addStore(builder, Q5_LAST_POS_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q5ContinuousProcessor(Q5_LAST_POS_STORE, p.pLon, p.pLat, p.radiusMetres, p.dMeetMetres), Q5_LAST_POS_STORE)
+                 .to(Q5_CONTINUOUS_OUTPUT, Produced.with(Serdes.String(), Serdes.Double()));
+        }
 
-        trips.process(() -> new Q6ContinuousProcessor(Q6_STATE_STORE), Q6_STATE_STORE)
-             .to(Q6_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Double()));
+        if (only == null || only.equals("Q6-continuous")) {
+            addStore(builder, Q6_STATE_STORE, Serdes.Integer(), Serdes.String());
+            trips.process(() -> new Q6ContinuousProcessor(Q6_STATE_STORE), Q6_STATE_STORE)
+                 .to(Q6_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Double()));
+        }
 
-        trips.process(() -> new Q7ContinuousProcessor(Q7_FIRST_PASSED_STORE, Q7_POIS),
-                      Q7_FIRST_PASSED_STORE)
-             .to(Q7_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Long()));
+        if (only == null || only.equals("Q7-continuous")) {
+            addStore(builder, Q7_FIRST_PASSED_STORE, Serdes.Integer(), Serdes.Long());
+            trips.process(() -> new Q7ContinuousProcessor(Q7_FIRST_PASSED_STORE, p.pois), Q7_FIRST_PASSED_STORE)
+                 .to(Q7_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Long()));
+        }
 
-        trips.process(() -> new Q8ContinuousProcessor(Q8_S1_LON, Q8_S1_LAT, Q8_S2_LON, Q8_S2_LAT, Q8_RADIUS_METRES))
-             .to(Q8_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Boolean()));
+        if (only == null || only.equals("Q8-continuous")) {
+            trips.process(() -> new Q8ContinuousProcessor(p.s1Lon, p.s1Lat, p.s2Lon, p.s2Lat, p.radiusMetres))
+                 .to(Q8_CONTINUOUS_OUTPUT, Produced.with(Serdes.Integer(), Serdes.Boolean()));
+        }
 
-        tripsK0.process(() -> new Q9ContinuousProcessor(Q9_STATE_STORE, Q9_X_VEHICLE_ID, Q9_Y_VEHICLE_ID),
-                        Q9_STATE_STORE)
-               .to(Q9_CONTINUOUS_OUTPUT, Produced.with(Serdes.Long(), Serdes.Double()));
+        if (only == null || only.equals("Q9-continuous")) {
+            addStore(builder, Q9_STATE_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q9ContinuousProcessor(Q9_STATE_STORE, p.xId, p.yId), Q9_STATE_STORE)
+                 .to(Q9_CONTINUOUS_OUTPUT, Produced.with(Serdes.Long(), Serdes.Double()));
+        }
 
-        // ====== windowed form (distinct-count per tumbling window for Q1/Q3/Q8) ======
-        tripsK0.process(() -> new Q1WindowedProcessor(Q1_WIN_STORE, WINDOW_SIZE_MILLIS), Q1_WIN_STORE)
-               .to(Q1_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Long()));
+        if (only == null || only.equals("Q1-windowed")) {
+            addStore(builder, Q1_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q1WindowedProcessor(Q1_WIN_STORE, WIN_MS), Q1_WIN_STORE)
+                 .to(Q1_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Long()));
+        }
 
-        tripsK0.process(() -> new Q3WindowedProcessor(Q3_WIN_STORE,
-                                                       Q3_P_LON, Q3_P_LAT, Q3_RADIUS_METRES,
-                                                       WINDOW_SIZE_MILLIS),
-                        Q3_WIN_STORE)
-               .to(Q3_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Long()));
+        if (only == null || only.equals("Q2-windowed")) {
+            addStore(builder, Q2_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q2WindowedProcessor(Q2_WIN_STORE, p.targetId, WIN_MS), Q2_WIN_STORE)
+                 .to(Q2_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q8WindowedProcessor(Q8_WIN_STORE,
-                                                       Q8_S1_LON, Q8_S1_LAT, Q8_S2_LON, Q8_S2_LAT,
-                                                       Q8_RADIUS_METRES, WINDOW_SIZE_MILLIS),
-                        Q8_WIN_STORE)
-               .to(Q8_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Long()));
+        if (only == null || only.equals("Q3-windowed")) {
+            addStore(builder, Q3_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q3WindowedProcessor(Q3_WIN_STORE, p.pLon, p.pLat, p.radiusMetres, WIN_MS), Q3_WIN_STORE)
+                 .to(Q3_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Long()));
+        }
 
-        tripsK0.process(() -> new Q2WindowedProcessor(Q2_WIN_STORE, Q2_TARGET_VEHICLE_ID, WINDOW_SIZE_MILLIS),
-                        Q2_WIN_STORE)
-               .to(Q2_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q4-windowed")) {
+            addStore(builder, Q4_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q4WindowedProcessor(Q4_WIN_STORE, p.xmin, p.ymin, p.xmax, p.ymax, WIN_MS), Q4_WIN_STORE)
+                 .to(Q4_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q4WindowedProcessor(Q4_WIN_STORE,
-                                                       Q4_XMIN, Q4_YMIN, Q4_XMAX, Q4_YMAX,
-                                                       WINDOW_SIZE_MILLIS),
-                        Q4_WIN_STORE)
-               .to(Q4_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q5-windowed")) {
+            addStore(builder, Q5_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q5WindowedProcessor(Q5_WIN_STORE, p.pLon, p.pLat, p.radiusMetres, p.dMeetMetres, WIN_MS), Q5_WIN_STORE)
+                 .to(Q5_WINDOWED_OUTPUT, Produced.with(Serdes.String(), Serdes.Double()));
+        }
 
-        tripsK0.process(() -> new Q5WindowedProcessor(Q5_WIN_STORE,
-                                                       Q5_P_LON, Q5_P_LAT, Q5_D_P_METRES, Q5_D_MEET_METRES,
-                                                       WINDOW_SIZE_MILLIS),
-                        Q5_WIN_STORE)
-               .to(Q5_WINDOWED_OUTPUT, Produced.with(Serdes.String(), Serdes.Double()));
+        if (only == null || only.equals("Q6-windowed")) {
+            addStore(builder, Q6_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q6WindowedProcessor(Q6_WIN_STORE, WIN_MS), Q6_WIN_STORE)
+                 .to(Q6_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q6WindowedProcessor(Q6_WIN_STORE, WINDOW_SIZE_MILLIS), Q6_WIN_STORE)
-               .to(Q6_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q7-windowed")) {
+            addStore(builder, Q7_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q7WindowedProcessor(Q7_WIN_STORE, p.pois, WIN_MS), Q7_WIN_STORE)
+                 .to(Q7_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q7WindowedProcessor(Q7_WIN_STORE, Q7_POIS, WINDOW_SIZE_MILLIS), Q7_WIN_STORE)
-               .to(Q7_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q8-windowed")) {
+            addStore(builder, Q8_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q8WindowedProcessor(Q8_WIN_STORE, p.s1Lon, p.s1Lat, p.s2Lon, p.s2Lat, p.radiusMetres, WIN_MS), Q8_WIN_STORE)
+                 .to(Q8_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Long()));
+        }
 
-        tripsK0.process(() -> new Q9WindowedProcessor(Q9_WIN_STORE,
-                                                       Q9_X_VEHICLE_ID, Q9_Y_VEHICLE_ID,
-                                                       WINDOW_SIZE_MILLIS),
-                        Q9_WIN_STORE)
-               .to(Q9_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Double()));
+        if (only == null || only.equals("Q9-windowed")) {
+            addStore(builder, Q9_WIN_STORE, Serdes.Long(), Serdes.String());
+            tripsK0.process(() -> new Q9WindowedProcessor(Q9_WIN_STORE, p.xId, p.yId, WIN_MS), Q9_WIN_STORE)
+                 .to(Q9_WINDOWED_OUTPUT, Produced.with(Serdes.Long(), Serdes.Double()));
+        }
 
-        // ====== snapshot form (all via constant key, with STREAM_TIME punctuators) ======
-        tripsK0.process(() -> new Q1SnapshotProcessor(Q1_SNAP_STORE, SNAPSHOT_TICK_MILLIS), Q1_SNAP_STORE)
-               .to(Q1_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Integer()));
+        if (only == null || only.equals("Q1-snapshot")) {
+            addStore(builder, Q1_SNAP_STORE, Serdes.Integer(), Serdes.Long());
+            tripsK0.process(() -> new Q1SnapshotProcessor(Q1_SNAP_STORE, p.snapshotTickMillis), Q1_SNAP_STORE)
+                 .to(Q1_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Integer()));
+        }
 
-        tripsK0.process(() -> new Q2SnapshotProcessor(Q2_SNAP_STORE, Q2_TARGET_VEHICLE_ID, SNAPSHOT_TICK_MILLIS),
-                        Q2_SNAP_STORE)
-               .to(Q2_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q2-snapshot")) {
+            addStore(builder, Q2_SNAP_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q2SnapshotProcessor(Q2_SNAP_STORE, p.targetId, p.snapshotTickMillis), Q2_SNAP_STORE)
+                 .to(Q2_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q3SnapshotProcessor(Q3_SNAP_STORE,
-                                                      Q3_P_LON, Q3_P_LAT, Q3_RADIUS_METRES, SNAPSHOT_TICK_MILLIS),
-                        Q3_SNAP_STORE)
-               .to(Q3_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Integer()));
+        if (only == null || only.equals("Q3-snapshot")) {
+            addStore(builder, Q3_SNAP_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q3SnapshotProcessor(Q3_SNAP_STORE, p.pLon, p.pLat, p.radiusMetres, p.snapshotTickMillis), Q3_SNAP_STORE)
+                 .to(Q3_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Integer()));
+        }
 
-        tripsK0.process(() -> new Q4SnapshotProcessor(Q4_SNAP_WAS_INSIDE_STORE, Q4_SNAP_ENTRIES_STORE,
-                                                       Q4_XMIN, Q4_YMIN, Q4_XMAX, Q4_YMAX, SNAPSHOT_TICK_MILLIS),
-                        Q4_SNAP_WAS_INSIDE_STORE, Q4_SNAP_ENTRIES_STORE)
-               .to(Q4_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q4-snapshot")) {
+            addStore(builder, Q4_SNAP_WAS_INSIDE_STORE, Serdes.Integer(), Serdes.Boolean());
+            addStore(builder, Q4_SNAP_ENTRIES_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q4SnapshotProcessor(Q4_SNAP_WAS_INSIDE_STORE, Q4_SNAP_ENTRIES_STORE, p.xmin, p.ymin, p.xmax, p.ymax, p.snapshotTickMillis), Q4_SNAP_WAS_INSIDE_STORE, Q4_SNAP_ENTRIES_STORE)
+                 .to(Q4_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q5SnapshotProcessor(Q5_SNAP_STORE,
-                                                       Q5_P_LON, Q5_P_LAT, Q5_D_P_METRES, Q5_D_MEET_METRES,
-                                                       SNAPSHOT_TICK_MILLIS),
-                        Q5_SNAP_STORE)
-               .to(Q5_SNAPSHOT_OUTPUT, Produced.with(Serdes.String(), Serdes.Double()));
+        if (only == null || only.equals("Q5-snapshot")) {
+            addStore(builder, Q5_SNAP_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q5SnapshotProcessor(Q5_SNAP_STORE, p.pLon, p.pLat, p.radiusMetres, p.dMeetMetres, p.snapshotTickMillis), Q5_SNAP_STORE)
+                 .to(Q5_SNAPSHOT_OUTPUT, Produced.with(Serdes.String(), Serdes.Double()));
+        }
 
-        tripsK0.process(() -> new Q6SnapshotProcessor(Q6_SNAP_STORE, SNAPSHOT_TICK_MILLIS), Q6_SNAP_STORE)
-               .to(Q6_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q6-snapshot")) {
+            addStore(builder, Q6_SNAP_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q6SnapshotProcessor(Q6_SNAP_STORE, p.snapshotTickMillis), Q6_SNAP_STORE)
+                 .to(Q6_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q7SnapshotProcessor(Q7_SNAP_STORE, Q7_POIS, SNAPSHOT_TICK_MILLIS), Q7_SNAP_STORE)
-               .to(Q7_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        if (only == null || only.equals("Q7-snapshot")) {
+            addStore(builder, Q7_SNAP_STORE, Serdes.Integer(), Serdes.Long());
+            tripsK0.process(() -> new Q7SnapshotProcessor(Q7_SNAP_STORE, p.pois, p.snapshotTickMillis), Q7_SNAP_STORE)
+                 .to(Q7_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.String()));
+        }
 
-        tripsK0.process(() -> new Q8SnapshotProcessor(Q8_SNAP_STORE,
-                                                       Q8_S1_LON, Q8_S1_LAT, Q8_S2_LON, Q8_S2_LAT,
-                                                       Q8_RADIUS_METRES, SNAPSHOT_TICK_MILLIS),
-                        Q8_SNAP_STORE)
-               .to(Q8_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Integer()));
+        if (only == null || only.equals("Q8-snapshot")) {
+            addStore(builder, Q8_SNAP_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q8SnapshotProcessor(Q8_SNAP_STORE, p.s1Lon, p.s1Lat, p.s2Lon, p.s2Lat, p.radiusMetres, p.snapshotTickMillis), Q8_SNAP_STORE)
+                 .to(Q8_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Integer()));
+        }
 
-        tripsK0.process(() -> new Q9SnapshotProcessor(Q9_SNAP_STORE,
-                                                       Q9_X_VEHICLE_ID, Q9_Y_VEHICLE_ID, SNAPSHOT_TICK_MILLIS),
-                        Q9_SNAP_STORE)
-               .to(Q9_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Double()));
+        if (only == null || only.equals("Q9-snapshot")) {
+            addStore(builder, Q9_SNAP_STORE, Serdes.Integer(), Serdes.String());
+            tripsK0.process(() -> new Q9SnapshotProcessor(Q9_SNAP_STORE, p.xId, p.yId, p.snapshotTickMillis), Q9_SNAP_STORE)
+                 .to(Q9_SNAPSHOT_OUTPUT, Produced.with(Serdes.Long(), Serdes.Double()));
+        }
 
         return builder.build();
     }
