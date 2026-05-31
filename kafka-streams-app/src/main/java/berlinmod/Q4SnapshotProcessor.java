@@ -62,8 +62,7 @@ public class Q4SnapshotProcessor implements Processor<Integer, BerlinMODTrip, Lo
     public void process(Record<Integer, BerlinMODTrip> record) {
         BerlinMODTrip trip = record.value();
         if (trip == null || trip.getVehicleId() == -1) return;
-        boolean curr = trip.getLon() >= xmin && trip.getLon() <= xmax
-                    && trip.getLat() >= ymin && trip.getLat() <= ymax;
+        boolean curr = MEOSBridge.intersectsBox(trip.getLon(), trip.getLat(), xmin, ymin, xmax, ymax);
         Boolean prev = wasInside.get(trip.getVehicleId());
         boolean prevInside = prev != null && prev;
         if (curr && !prevInside) {

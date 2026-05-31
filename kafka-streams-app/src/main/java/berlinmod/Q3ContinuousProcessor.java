@@ -13,9 +13,7 @@ import org.apache.kafka.streams.processor.api.Record;
  * eventTime, near)} per incoming GPS event. Same predicate semantics
  * as MobilityFlink's {@code Q3ContinuousFunction}.
  *
- * <p>Predicate: {@link MEOSBridge#dwithinMetres} — MEOS {@code geog_dwithin}
- * over WGS84 geographies when libmeos is loadable, {@link Haversine}
- * fallback otherwise.
+ * <p>Predicate: {@link MEOS {@code edwithin_tgeo_geo} over WGS84 geographies.
  */
 public class Q3ContinuousProcessor implements Processor<Integer, BerlinMODTrip, Integer, Boolean> {
 

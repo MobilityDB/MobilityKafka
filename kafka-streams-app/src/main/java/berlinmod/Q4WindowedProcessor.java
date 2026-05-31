@@ -57,8 +57,7 @@ public class Q4WindowedProcessor implements Processor<Integer, BerlinMODTrip, Lo
         BerlinMODTrip trip = record.value();
         if (trip == null || trip.getVehicleId() == -1) return;
         long winStart = (trip.getTimestamp() / windowSizeMs) * windowSizeMs;
-        boolean curr = trip.getLon() >= xmin && trip.getLon() <= xmax
-                    && trip.getLat() >= ymin && trip.getLat() <= ymax;
+        boolean curr = MEOSBridge.intersectsBox(trip.getLon(), trip.getLat(), xmin, ymin, xmax, ymax);
         String s = winState.get(winStart);
         // Parse per-vehicle records separated by '|'
         StringBuilder rebuilt = new StringBuilder();

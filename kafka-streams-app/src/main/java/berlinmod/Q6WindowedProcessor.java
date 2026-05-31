@@ -20,7 +20,7 @@ import java.util.List;
  * during the window."</i>
  *
  * <p>State encodes per-window per-vehicle {@code "vid:lastLon,lastLat,total|..."}.
- * On each event, accumulate Haversine delta from the previous in-window
+ * On each event, accumulate the MEOS geog_distance delta from the previous in-window
  * position. On punctuator: emit per-vehicle totals for closed windows.
  */
 public class Q6WindowedProcessor implements Processor<Integer, BerlinMODTrip, Long, String> {

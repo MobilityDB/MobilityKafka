@@ -11,7 +11,7 @@ import org.apache.kafka.streams.state.KeyValueStore;
  * <p><i>"What is each vehicle's cumulative distance travelled so far?"</i>
  *
  * <p>Keyed by vehicleId. Per-vehicle state holds the last-known (lon, lat)
- * and the running total in metres. On each event, accumulate the Haversine
+ * and the running total in metres. On each event, accumulate the MEOS geog_distance
  * delta and emit the cumulative total.
  *
  * <p>State value uses a small string encoding "lon,lat,total" since the

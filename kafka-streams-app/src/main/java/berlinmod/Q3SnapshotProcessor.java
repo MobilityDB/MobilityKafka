@@ -22,7 +22,7 @@ import java.util.List;
  * <p>Caller keys the input by a constant so the shared cross-vehicle
  * last-known store lives in one subtask. Per event: update last-known.
  * Per STREAM_TIME punctuator fire: iterate last-known, evaluate the
- * Haversine radius predicate, forward {@code (currentTick, vehicleId)}
+ * MEOS edwithin_tgeo_geo radius predicate, forward {@code (currentTick, vehicleId)}
  * for every near vehicle (sorted by vehicleId).
  */
 public class Q3SnapshotProcessor implements Processor<Integer, BerlinMODTrip, Long, Integer> {

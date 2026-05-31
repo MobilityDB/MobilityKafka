@@ -54,6 +54,6 @@ public class Q4ContinuousProcessor implements Processor<Integer, BerlinMODTrip, 
     }
 
     private boolean inBox(double lon, double lat) {
-        return lon >= xmin && lon <= xmax && lat >= ymin && lat <= ymax;
+        return MEOSBridge.intersectsBox(lon, lat, xmin, ymin, xmax, ymax);
     }
 }

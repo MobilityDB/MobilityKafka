@@ -20,7 +20,7 @@ import java.util.List;
  * up to T?"</i>
  *
  * <p>Caller keys the input by a constant. State value "lon,lat,total"
- * per vehicleId. Per event: accumulate Haversine delta. Per STREAM_TIME
+ * per vehicleId. Per event: accumulate the MEOS geog_distance delta. Per STREAM_TIME
  * punctuator fire: emit {@code (currentTick, vehicleId, total)} for
  * every vehicle (sorted by vehicleId), encoded as "vid:total".
  */
