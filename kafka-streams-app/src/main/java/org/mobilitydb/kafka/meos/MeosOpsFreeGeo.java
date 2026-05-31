@@ -22,10 +22,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int above_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean above_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "above_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "above_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.above_stbox_stbox(arg0, arg1);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int above_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean above_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "above_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "above_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.above_stbox_tspatial(arg0, arg1);
     }
@@ -48,10 +48,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int adjacent_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean adjacent_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adjacent_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adjacent_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adjacent_stbox_stbox(arg0, arg1);
     }
@@ -61,10 +61,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int adjacent_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean adjacent_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adjacent_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adjacent_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adjacent_stbox_tspatial(arg0, arg1);
     }
@@ -74,10 +74,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int after_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean after_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "after_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "after_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.after_stbox_stbox(arg0, arg1);
     }
@@ -87,10 +87,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int after_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean after_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "after_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "after_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.after_stbox_tspatial(arg0, arg1);
     }
@@ -100,10 +100,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int back_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean back_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "back_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "back_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.back_stbox_stbox(arg0, arg1);
     }
@@ -113,10 +113,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int back_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean back_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "back_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "back_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.back_stbox_tspatial(arg0, arg1);
     }
@@ -126,12 +126,12 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: scalar in/out (default-stateless catch-all)</p>
      */
-    public static int bearing_point_point(Pointer arg0, Pointer arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer bearing_point_point(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "bearing_point_point requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "bearing_point_point requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.bearing_point_point(arg0, arg1, arg2);
+        return GeneratedFunctions.bearing_point_point(arg0, arg1);
     }
 
     /**
@@ -139,10 +139,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int before_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean before_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "before_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "before_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.before_stbox_stbox(arg0, arg1);
     }
@@ -152,10 +152,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int before_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean before_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "before_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "before_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.before_stbox_tspatial(arg0, arg1);
     }
@@ -165,10 +165,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int below_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean below_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "below_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "below_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.below_stbox_stbox(arg0, arg1);
     }
@@ -178,10 +178,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int below_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean below_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "below_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "below_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.below_stbox_tspatial(arg0, arg1);
     }
@@ -191,10 +191,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: make/from_base of instant/scalar</p>
      */
-    public static Pointer box3d_make(double arg0, double arg1, double arg2, double arg3, double arg4, double arg5, int arg6) {
+    public static jnr.ffi.Pointer box3d_make(double arg0, double arg1, double arg2, double arg3, double arg4, double arg5, int arg6) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "box3d_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "box3d_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.box3d_make(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
     }
@@ -204,10 +204,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer box3d_to_stbox(Pointer arg0) {
+    public static jnr.ffi.Pointer box3d_to_stbox(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "box3d_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "box3d_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.box3d_to_stbox(arg0);
     }
@@ -217,10 +217,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int contained_geo_set(Pointer arg0, Pointer arg1) {
+    public static boolean contained_geo_set(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contained_geo_set requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contained_geo_set requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contained_geo_set(arg0, arg1);
     }
@@ -230,10 +230,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int contained_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean contained_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contained_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contained_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contained_stbox_stbox(arg0, arg1);
     }
@@ -243,10 +243,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int contained_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean contained_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contained_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contained_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contained_stbox_tspatial(arg0, arg1);
     }
@@ -256,10 +256,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int contains_set_geo(Pointer arg0, Pointer arg1) {
+    public static boolean contains_set_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contains_set_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contains_set_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contains_set_geo(arg0, arg1);
     }
@@ -269,10 +269,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int contains_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean contains_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contains_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contains_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contains_stbox_stbox(arg0, arg1);
     }
@@ -282,10 +282,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int contains_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean contains_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contains_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contains_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contains_stbox_tspatial(arg0, arg1);
     }
@@ -295,10 +295,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int front_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean front_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "front_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "front_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.front_stbox_stbox(arg0, arg1);
     }
@@ -308,10 +308,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int front_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean front_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "front_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "front_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.front_stbox_tspatial(arg0, arg1);
     }
@@ -321,10 +321,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: make/from_base of instant/scalar</p>
      */
-    public static Pointer gbox_make(int arg0, double arg1, double arg2, double arg3, double arg4, double arg5, double arg6) {
+    public static jnr.ffi.Pointer gbox_make(boolean arg0, double arg1, double arg2, double arg3, double arg4, double arg5, double arg6) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "gbox_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "gbox_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.gbox_make(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
     }
@@ -334,10 +334,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer gbox_to_stbox(Pointer arg0) {
+    public static jnr.ffi.Pointer gbox_to_stbox(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "gbox_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "gbox_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.gbox_to_stbox(arg0);
     }
@@ -347,10 +347,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_cluster_dbscan(Pointer arg0, int arg1, double arg2, int arg3, Pointer arg4) {
+    public static jnr.ffi.Pointer geo_cluster_dbscan(jnr.ffi.Pointer arg0, int arg1, double arg2, int arg3, jnr.ffi.Pointer arg4) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_cluster_dbscan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_cluster_dbscan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_cluster_dbscan(arg0, arg1, arg2, arg3, arg4);
     }
@@ -360,10 +360,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_cluster_intersecting(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer geo_cluster_intersecting(jnr.ffi.Pointer arg0, int arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_cluster_intersecting requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_cluster_intersecting requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_cluster_intersecting(arg0, arg1, arg2);
     }
@@ -373,10 +373,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_cluster_kmeans(Pointer arg0, int arg1, int arg2) {
+    public static jnr.ffi.Pointer geo_cluster_kmeans(jnr.ffi.Pointer arg0, int arg1, int arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_cluster_kmeans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_cluster_kmeans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_cluster_kmeans(arg0, arg1, arg2);
     }
@@ -386,10 +386,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_cluster_within(Pointer arg0, int arg1, double arg2, Pointer arg3) {
+    public static jnr.ffi.Pointer geo_cluster_within(jnr.ffi.Pointer arg0, int arg1, double arg2, jnr.ffi.Pointer arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_cluster_within requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_cluster_within requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_cluster_within(arg0, arg1, arg2, arg3);
     }
@@ -399,10 +399,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_collect_garray(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_collect_garray(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_collect_garray requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_collect_garray requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_collect_garray(arg0, arg1);
     }
@@ -412,10 +412,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_copy(Pointer arg0) {
+    public static jnr.ffi.Pointer geo_copy(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_copy requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_copy requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_copy(arg0);
     }
@@ -425,10 +425,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: scalar comparison/hash</p>
      */
-    public static int geo_equals(Pointer arg0, Pointer arg1) {
+    public static int geo_equals(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_equals requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_equals requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_equals(arg0, arg1);
     }
@@ -438,10 +438,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: scalar comparison/hash</p>
      */
-    public static Pointer geo_geo_n(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_geo_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_geo_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_geo_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_geo_n(arg0, arg1);
     }
@@ -451,10 +451,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geo_is_empty(Pointer arg0) {
+    public static boolean geo_is_empty(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_is_empty requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_is_empty requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_is_empty(arg0);
     }
@@ -464,10 +464,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geo_is_unitary(Pointer arg0) {
+    public static boolean geo_is_unitary(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_is_unitary requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_is_unitary requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_is_unitary(arg0);
     }
@@ -477,10 +477,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: make/from_base of instant/scalar</p>
      */
-    public static Pointer geo_makeline_garray(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_makeline_garray(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_makeline_garray requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_makeline_garray requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_makeline_garray(arg0, arg1);
     }
@@ -490,10 +490,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geo_num_geos(Pointer arg0) {
+    public static int geo_num_geos(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_num_geos requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_num_geos requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_num_geos(arg0);
     }
@@ -503,10 +503,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geo_num_points(Pointer arg0) {
+    public static int geo_num_points(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_num_points requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_num_points requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_num_points(arg0);
     }
@@ -516,10 +516,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_pointarr(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geo_pointarr(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_pointarr requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_pointarr requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_pointarr(arg0, arg1);
     }
@@ -529,10 +529,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_points(Pointer arg0) {
+    public static jnr.ffi.Pointer geo_points(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_points requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_points requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_points(arg0);
     }
@@ -542,10 +542,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_reverse(Pointer arg0) {
+    public static jnr.ffi.Pointer geo_reverse(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_reverse requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_reverse requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_reverse(arg0);
     }
@@ -555,10 +555,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: transform/normalize (pure)</p>
      */
-    public static Pointer geo_round(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_round(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_round requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_round requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_round(arg0, arg1);
     }
@@ -568,10 +568,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geo_same(Pointer arg0, Pointer arg1) {
+    public static boolean geo_same(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_same requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_same requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_same(arg0, arg1);
     }
@@ -581,10 +581,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_set_srid(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_set_srid(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_set_srid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_set_srid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_set_srid(arg0, arg1);
     }
@@ -594,10 +594,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_split_each_n_stboxes(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer geo_split_each_n_stboxes(jnr.ffi.Pointer arg0, int arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_split_each_n_stboxes requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_split_each_n_stboxes requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_split_each_n_stboxes(arg0, arg1, arg2);
     }
@@ -607,10 +607,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_split_n_stboxes(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer geo_split_n_stboxes(jnr.ffi.Pointer arg0, int arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_split_n_stboxes requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_split_n_stboxes requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_split_n_stboxes(arg0, arg1, arg2);
     }
@@ -620,10 +620,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geo_srid(Pointer arg0) {
+    public static int geo_srid(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_srid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_srid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_srid(arg0);
     }
@@ -633,10 +633,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_stboxes(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geo_stboxes(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_stboxes requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_stboxes requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_stboxes(arg0, arg1);
     }
@@ -646,10 +646,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer geo_timestamptz_to_stbox(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_timestamptz_to_stbox(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_timestamptz_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_timestamptz_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_timestamptz_to_stbox(arg0, arg1);
     }
@@ -659,10 +659,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer geo_to_set(Pointer arg0) {
+    public static jnr.ffi.Pointer geo_to_set(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_to_set requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_to_set requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_to_set(arg0);
     }
@@ -672,10 +672,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer geo_to_stbox(Pointer arg0) {
+    public static jnr.ffi.Pointer geo_to_stbox(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_to_stbox(arg0);
     }
@@ -685,10 +685,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_transform(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_transform(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_transform requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_transform requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_transform(arg0, arg1);
     }
@@ -698,10 +698,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_transform_pipeline(Pointer arg0, String arg1, int arg2, int arg3) {
+    public static jnr.ffi.Pointer geo_transform_pipeline(jnr.ffi.Pointer arg0, java.lang.String arg1, int arg2, boolean arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_transform_pipeline requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_transform_pipeline requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_transform_pipeline(arg0, arg1, arg2, arg3);
     }
@@ -711,10 +711,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer geo_tstzspan_to_stbox(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geo_tstzspan_to_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_tstzspan_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_tstzspan_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_tstzspan_to_stbox(arg0, arg1);
     }
@@ -724,10 +724,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static String geo_typename(int arg0) {
+    public static java.lang.String geo_typename(int arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_typename requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_typename requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_typename(arg0);
     }
@@ -737,10 +737,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geo_union_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geo_union_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_union_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_union_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_union_transfn(arg0, arg1);
     }
@@ -750,10 +750,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static double geog_area(Pointer arg0, int arg1) {
+    public static double geog_area(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_area requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_area requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_area(arg0, arg1);
     }
@@ -763,10 +763,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geog_centroid(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geog_centroid(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_centroid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_centroid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_centroid(arg0, arg1);
     }
@@ -776,10 +776,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static double geog_distance(Pointer arg0, Pointer arg1) {
+    public static double geog_distance(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_distance requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_distance requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_distance(arg0, arg1);
     }
@@ -789,10 +789,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geog_dwithin(Pointer arg0, Pointer arg1, double arg2, int arg3) {
+    public static boolean geog_dwithin(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2, boolean arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_dwithin requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_dwithin requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_dwithin(arg0, arg1, arg2, arg3);
     }
@@ -802,10 +802,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geog_from_binary(String arg0) {
+    public static jnr.ffi.Pointer geog_from_binary(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_from_binary requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_from_binary requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_from_binary(arg0);
     }
@@ -815,10 +815,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geog_intersects(Pointer arg0, Pointer arg1, int arg2) {
+    public static boolean geog_intersects(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_intersects requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_intersects requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_intersects(arg0, arg1, arg2);
     }
@@ -828,10 +828,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: scalar comparison/hash</p>
      */
-    public static double geog_length(Pointer arg0, int arg1) {
+    public static double geog_length(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_length requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_length requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_length(arg0, arg1);
     }
@@ -841,10 +841,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static double geog_perimeter(Pointer arg0, int arg1) {
+    public static double geog_perimeter(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_perimeter requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_perimeter requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_perimeter(arg0, arg1);
     }
@@ -854,10 +854,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer geog_to_geom(Pointer arg0) {
+    public static jnr.ffi.Pointer geog_to_geom(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_to_geom requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_to_geom requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_to_geom(arg0);
     }
@@ -867,10 +867,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_array_union(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geom_array_union(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_array_union requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_array_union requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_array_union(arg0, arg1);
     }
@@ -880,12 +880,12 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_azimuth(Pointer arg0, Pointer arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer geom_azimuth(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_azimuth requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_azimuth requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.geom_azimuth(arg0, arg1, arg2);
+        return GeneratedFunctions.geom_azimuth(arg0, arg1);
     }
 
     /**
@@ -893,10 +893,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_boundary(Pointer arg0) {
+    public static jnr.ffi.Pointer geom_boundary(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_boundary requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_boundary requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_boundary(arg0);
     }
@@ -906,10 +906,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_buffer(Pointer arg0, double arg1, String arg2) {
+    public static jnr.ffi.Pointer geom_buffer(jnr.ffi.Pointer arg0, double arg1, java.lang.String arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_buffer requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_buffer requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_buffer(arg0, arg1, arg2);
     }
@@ -919,10 +919,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_centroid(Pointer arg0) {
+    public static jnr.ffi.Pointer geom_centroid(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_centroid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_centroid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_centroid(arg0);
     }
@@ -932,10 +932,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_contains(Pointer arg0, Pointer arg1) {
+    public static boolean geom_contains(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_contains requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_contains requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_contains(arg0, arg1);
     }
@@ -945,10 +945,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_convex_hull(Pointer arg0) {
+    public static jnr.ffi.Pointer geom_convex_hull(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_convex_hull requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_convex_hull requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_convex_hull(arg0);
     }
@@ -958,10 +958,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_covers(Pointer arg0, Pointer arg1) {
+    public static boolean geom_covers(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_covers requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_covers requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_covers(arg0, arg1);
     }
@@ -971,10 +971,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_difference2d(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geom_difference2d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_difference2d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_difference2d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_difference2d(arg0, arg1);
     }
@@ -984,10 +984,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_disjoint2d(Pointer arg0, Pointer arg1) {
+    public static boolean geom_disjoint2d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_disjoint2d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_disjoint2d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_disjoint2d(arg0, arg1);
     }
@@ -997,10 +997,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static double geom_distance2d(Pointer arg0, Pointer arg1) {
+    public static double geom_distance2d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_distance2d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_distance2d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_distance2d(arg0, arg1);
     }
@@ -1010,10 +1010,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static double geom_distance3d(Pointer arg0, Pointer arg1) {
+    public static double geom_distance3d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_distance3d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_distance3d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_distance3d(arg0, arg1);
     }
@@ -1023,10 +1023,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_dwithin2d(Pointer arg0, Pointer arg1, double arg2) {
+    public static boolean geom_dwithin2d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_dwithin2d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_dwithin2d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_dwithin2d(arg0, arg1, arg2);
     }
@@ -1036,10 +1036,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_dwithin3d(Pointer arg0, Pointer arg1, double arg2) {
+    public static boolean geom_dwithin3d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_dwithin3d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_dwithin3d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_dwithin3d(arg0, arg1, arg2);
     }
@@ -1049,10 +1049,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_intersection2d(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geom_intersection2d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_intersection2d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_intersection2d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_intersection2d(arg0, arg1);
     }
@@ -1062,10 +1062,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_intersection2d_coll(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geom_intersection2d_coll(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_intersection2d_coll requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_intersection2d_coll requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_intersection2d_coll(arg0, arg1);
     }
@@ -1075,10 +1075,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_intersects2d(Pointer arg0, Pointer arg1) {
+    public static boolean geom_intersects2d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_intersects2d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_intersects2d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_intersects2d(arg0, arg1);
     }
@@ -1088,10 +1088,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_intersects3d(Pointer arg0, Pointer arg1) {
+    public static boolean geom_intersects3d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_intersects3d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_intersects3d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_intersects3d(arg0, arg1);
     }
@@ -1101,10 +1101,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: scalar comparison/hash</p>
      */
-    public static double geom_length(Pointer arg0) {
+    public static double geom_length(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_length requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_length requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_length(arg0);
     }
@@ -1114,10 +1114,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_min_bounding_radius(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geom_min_bounding_radius(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_min_bounding_radius requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_min_bounding_radius requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_min_bounding_radius(arg0, arg1);
     }
@@ -1127,10 +1127,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static double geom_perimeter(Pointer arg0) {
+    public static double geom_perimeter(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_perimeter requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_perimeter requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_perimeter(arg0);
     }
@@ -1140,10 +1140,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_relate_pattern(Pointer arg0, Pointer arg1, String arg2) {
+    public static boolean geom_relate_pattern(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, java.lang.String arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_relate_pattern requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_relate_pattern requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_relate_pattern(arg0, arg1, arg2);
     }
@@ -1153,10 +1153,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_shortestline2d(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geom_shortestline2d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_shortestline2d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_shortestline2d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_shortestline2d(arg0, arg1);
     }
@@ -1166,10 +1166,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_shortestline3d(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer geom_shortestline3d(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_shortestline3d requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_shortestline3d requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_shortestline3d(arg0, arg1);
     }
@@ -1179,10 +1179,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer geom_to_geog(Pointer arg0) {
+    public static jnr.ffi.Pointer geom_to_geog(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_to_geog requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_to_geog requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_to_geog(arg0);
     }
@@ -1192,10 +1192,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static int geom_touches(Pointer arg0, Pointer arg1) {
+    public static boolean geom_touches(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_touches requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_touches requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_touches(arg0, arg1);
     }
@@ -1205,10 +1205,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: base-type fn, default pure</p>
      */
-    public static Pointer geom_unary_union(Pointer arg0, double arg1) {
+    public static jnr.ffi.Pointer geom_unary_union(jnr.ffi.Pointer arg0, double arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_unary_union requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_unary_union requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_unary_union(arg0, arg1);
     }
@@ -1218,10 +1218,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static Pointer intersection_geo_set(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer intersection_geo_set(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intersection_geo_set requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intersection_geo_set requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intersection_geo_set(arg0, arg1);
     }
@@ -1231,10 +1231,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static Pointer intersection_set_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer intersection_set_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intersection_set_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intersection_set_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intersection_set_geo(arg0, arg1);
     }
@@ -1244,10 +1244,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static Pointer intersection_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer intersection_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intersection_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intersection_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intersection_stbox_stbox(arg0, arg1);
     }
@@ -1257,10 +1257,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int left_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean left_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "left_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "left_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.left_stbox_stbox(arg0, arg1);
     }
@@ -1270,10 +1270,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int left_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean left_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "left_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "left_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.left_stbox_tspatial(arg0, arg1);
     }
@@ -1283,10 +1283,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: scalar in/out (default-stateless catch-all)</p>
      */
-    public static int line_numpoints(Pointer arg0) {
+    public static int line_numpoints(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "line_numpoints requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "line_numpoints requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.line_numpoints(arg0);
     }
@@ -1296,10 +1296,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overabove_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overabove_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overabove_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overabove_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overabove_stbox_stbox(arg0, arg1);
     }
@@ -1309,10 +1309,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overabove_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overabove_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overabove_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overabove_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overabove_stbox_tspatial(arg0, arg1);
     }
@@ -1322,10 +1322,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overafter_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overafter_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overafter_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overafter_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overafter_stbox_stbox(arg0, arg1);
     }
@@ -1335,10 +1335,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overafter_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overafter_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overafter_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overafter_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overafter_stbox_tspatial(arg0, arg1);
     }
@@ -1348,10 +1348,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overback_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overback_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overback_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overback_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overback_stbox_stbox(arg0, arg1);
     }
@@ -1361,10 +1361,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overback_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overback_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overback_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overback_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overback_stbox_tspatial(arg0, arg1);
     }
@@ -1374,10 +1374,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overbefore_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overbefore_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbefore_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbefore_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbefore_stbox_stbox(arg0, arg1);
     }
@@ -1387,10 +1387,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overbefore_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overbefore_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbefore_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbefore_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbefore_stbox_tspatial(arg0, arg1);
     }
@@ -1400,10 +1400,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overbelow_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overbelow_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbelow_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbelow_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbelow_stbox_stbox(arg0, arg1);
     }
@@ -1413,10 +1413,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overbelow_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overbelow_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbelow_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbelow_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbelow_stbox_tspatial(arg0, arg1);
     }
@@ -1426,10 +1426,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overfront_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overfront_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overfront_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overfront_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overfront_stbox_stbox(arg0, arg1);
     }
@@ -1439,10 +1439,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overfront_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overfront_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overfront_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overfront_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overfront_stbox_tspatial(arg0, arg1);
     }
@@ -1452,10 +1452,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overlaps_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overlaps_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overlaps_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overlaps_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overlaps_stbox_stbox(arg0, arg1);
     }
@@ -1465,10 +1465,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overlaps_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overlaps_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overlaps_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overlaps_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overlaps_stbox_tspatial(arg0, arg1);
     }
@@ -1478,10 +1478,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overleft_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overleft_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overleft_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overleft_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overleft_stbox_stbox(arg0, arg1);
     }
@@ -1491,10 +1491,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overleft_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overleft_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overleft_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overleft_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overleft_stbox_tspatial(arg0, arg1);
     }
@@ -1504,10 +1504,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overright_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overright_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overright_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overright_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overright_stbox_stbox(arg0, arg1);
     }
@@ -1517,10 +1517,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int overright_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overright_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overright_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overright_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overright_stbox_tspatial(arg0, arg1);
     }
@@ -1530,10 +1530,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int right_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean right_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "right_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "right_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.right_stbox_stbox(arg0, arg1);
     }
@@ -1543,10 +1543,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static int right_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean right_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "right_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "right_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.right_stbox_tspatial(arg0, arg1);
     }
@@ -1556,10 +1556,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: same predicate (pure box equality)</p>
      */
-    public static int same_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean same_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "same_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "same_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.same_stbox_stbox(arg0, arg1);
     }
@@ -1569,10 +1569,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: same predicate (pure box equality)</p>
      */
-    public static int same_stbox_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean same_stbox_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "same_stbox_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "same_stbox_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.same_stbox_tspatial(arg0, arg1);
     }
@@ -1582,10 +1582,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: same predicate (pure box equality)</p>
      */
-    public static int same_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean same_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "same_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "same_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.same_tspatial_stbox(arg0, arg1);
     }
@@ -1595,10 +1595,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: scalar in/out (default-stateless catch-all)</p>
      */
-    public static int spatialset_srid(Pointer arg0) {
+    public static int spatialset_srid(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spatialset_srid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spatialset_srid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spatialset_srid(arg0);
     }
@@ -1608,10 +1608,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer spatialset_to_stbox(Pointer arg0) {
+    public static jnr.ffi.Pointer spatialset_to_stbox(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spatialset_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spatialset_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spatialset_to_stbox(arg0);
     }
@@ -1621,10 +1621,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: transform/normalize (pure)</p>
      */
-    public static Pointer stboxarr_round(Pointer arg0, int arg1, int arg2) {
+    public static jnr.ffi.Pointer stboxarr_round(jnr.ffi.Pointer arg0, int arg1, int arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "stboxarr_round requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "stboxarr_round requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.stboxarr_round(arg0, arg1, arg2);
     }
@@ -1634,10 +1634,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: temporal comparison (per-instant)</p>
      */
-    public static Pointer teq_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer teq_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "teq_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "teq_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.teq_geo_tgeo(arg0, arg1);
     }
@@ -1647,10 +1647,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: temporal comparison (per-instant)</p>
      */
-    public static Pointer teq_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer teq_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "teq_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "teq_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.teq_tgeo_geo(arg0, arg1);
     }
@@ -1660,10 +1660,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: make/from_base of instant/scalar</p>
      */
-    public static Pointer tgeoinst_make(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer tgeoinst_make(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tgeoinst_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tgeoinst_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tgeoinst_make(arg0, arg1);
     }
@@ -1673,10 +1673,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: name pattern is _to_<type></p>
      */
-    public static Pointer timestamptz_to_stbox(int arg0) {
+    public static jnr.ffi.Pointer timestamptz_to_stbox(java.time.OffsetDateTime arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "timestamptz_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "timestamptz_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.timestamptz_to_stbox(arg0);
     }
@@ -1686,10 +1686,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: temporal comparison (per-instant)</p>
      */
-    public static Pointer tne_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tne_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tne_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tne_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tne_geo_tgeo(arg0, arg1);
     }
@@ -1699,10 +1699,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: temporal comparison (per-instant)</p>
      */
-    public static Pointer tne_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tne_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tne_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tne_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tne_tgeo_geo(arg0, arg1);
     }
@@ -1712,10 +1712,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: make/from_base of instant/scalar</p>
      */
-    public static Pointer tpointinst_make(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer tpointinst_make(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tpointinst_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tpointinst_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tpointinst_make(arg0, arg1);
     }
@@ -1725,10 +1725,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static Pointer union_geo_set(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer union_geo_set(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "union_geo_set requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "union_geo_set requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.union_geo_set(arg0, arg1);
     }
@@ -1738,10 +1738,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static Pointer union_set_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer union_set_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "union_set_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "union_set_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.union_set_geo(arg0, arg1);
     }
@@ -1751,10 +1751,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pure per-event; safe in any Flink scalar position.</p>
      * <p>Free function (not class-classified). Classification rule: set/span/box algebra (pure)</p>
      */
-    public static Pointer union_stbox_stbox(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer union_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "union_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "union_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.union_stbox_stbox(arg0, arg1, arg2);
     }
@@ -1764,10 +1764,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int above_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean above_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "above_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "above_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.above_tspatial_stbox(arg0, arg1);
     }
@@ -1777,10 +1777,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int acontains_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int acontains_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "acontains_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "acontains_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.acontains_geo_tgeo(arg0, arg1);
     }
@@ -1790,10 +1790,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int acontains_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int acontains_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "acontains_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "acontains_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.acontains_tgeo_geo(arg0, arg1);
     }
@@ -1803,10 +1803,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int adisjoint_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int adisjoint_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adisjoint_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adisjoint_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adisjoint_tgeo_geo(arg0, arg1);
     }
@@ -1816,10 +1816,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int adjacent_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean adjacent_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adjacent_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adjacent_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adjacent_tspatial_stbox(arg0, arg1);
     }
@@ -1829,10 +1829,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int adwithin_tgeo_geo(Pointer arg0, Pointer arg1, double arg2) {
+    public static int adwithin_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adwithin_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adwithin_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adwithin_tgeo_geo(arg0, arg1, arg2);
     }
@@ -1842,10 +1842,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int after_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean after_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "after_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "after_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.after_tspatial_stbox(arg0, arg1);
     }
@@ -1855,10 +1855,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int aintersects_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int aintersects_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "aintersects_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "aintersects_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.aintersects_tgeo_geo(arg0, arg1);
     }
@@ -1868,10 +1868,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int atouches_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int atouches_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "atouches_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "atouches_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.atouches_tgeo_geo(arg0, arg1);
     }
@@ -1881,10 +1881,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int atouches_tpoint_geo(Pointer arg0, Pointer arg1) {
+    public static int atouches_tpoint_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "atouches_tpoint_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "atouches_tpoint_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.atouches_tpoint_geo(arg0, arg1);
     }
@@ -1894,10 +1894,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int back_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean back_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "back_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "back_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.back_tspatial_stbox(arg0, arg1);
     }
@@ -1907,10 +1907,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int before_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean before_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "before_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "before_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.before_tspatial_stbox(arg0, arg1);
     }
@@ -1920,10 +1920,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int below_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean below_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "below_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "below_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.below_tspatial_stbox(arg0, arg1);
     }
@@ -1933,10 +1933,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int contained_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean contained_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contained_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contained_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contained_tspatial_stbox(arg0, arg1);
     }
@@ -1946,10 +1946,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int contains_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean contains_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contains_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contains_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contains_tspatial_stbox(arg0, arg1);
     }
@@ -1959,10 +1959,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int econtains_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int econtains_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "econtains_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "econtains_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.econtains_geo_tgeo(arg0, arg1);
     }
@@ -1972,10 +1972,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int econtains_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int econtains_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "econtains_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "econtains_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.econtains_tgeo_geo(arg0, arg1);
     }
@@ -1985,10 +1985,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int ecovers_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int ecovers_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ecovers_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ecovers_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ecovers_geo_tgeo(arg0, arg1);
     }
@@ -1998,10 +1998,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int ecovers_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int ecovers_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ecovers_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ecovers_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ecovers_tgeo_geo(arg0, arg1);
     }
@@ -2011,10 +2011,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int edisjoint_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int edisjoint_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "edisjoint_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "edisjoint_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.edisjoint_tgeo_geo(arg0, arg1);
     }
@@ -2024,10 +2024,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int edwithin_tgeo_geo(Pointer arg0, Pointer arg1, double arg2) {
+    public static int edwithin_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "edwithin_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "edwithin_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.edwithin_tgeo_geo(arg0, arg1, arg2);
     }
@@ -2037,10 +2037,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int eintersects_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int eintersects_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "eintersects_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "eintersects_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.eintersects_tgeo_geo(arg0, arg1);
     }
@@ -2050,10 +2050,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int etouches_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int etouches_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "etouches_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "etouches_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.etouches_tgeo_geo(arg0, arg1);
     }
@@ -2063,10 +2063,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 1 temporal</p>
      */
-    public static int etouches_tpoint_geo(Pointer arg0, Pointer arg1) {
+    public static int etouches_tpoint_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "etouches_tpoint_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "etouches_tpoint_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.etouches_tpoint_geo(arg0, arg1);
     }
@@ -2076,10 +2076,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int front_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean front_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "front_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "front_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.front_tspatial_stbox(arg0, arg1);
     }
@@ -2089,10 +2089,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int left_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean left_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "left_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "left_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.left_tspatial_stbox(arg0, arg1);
     }
@@ -2102,10 +2102,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: restriction name pattern</p>
      */
-    public static Pointer minus_geo_set(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer minus_geo_set(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "minus_geo_set requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "minus_geo_set requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.minus_geo_set(arg0, arg1);
     }
@@ -2115,10 +2115,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: restriction name pattern</p>
      */
-    public static Pointer minus_set_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer minus_set_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "minus_set_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "minus_set_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.minus_set_geo(arg0, arg1);
     }
@@ -2128,10 +2128,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: distance op</p>
      */
-    public static double nad_stbox_geo(Pointer arg0, Pointer arg1) {
+    public static double nad_stbox_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "nad_stbox_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "nad_stbox_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.nad_stbox_geo(arg0, arg1);
     }
@@ -2141,10 +2141,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: distance op</p>
      */
-    public static double nad_stbox_stbox(Pointer arg0, Pointer arg1) {
+    public static double nad_stbox_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "nad_stbox_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "nad_stbox_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.nad_stbox_stbox(arg0, arg1);
     }
@@ -2154,10 +2154,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: distance op</p>
      */
-    public static double nad_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static double nad_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "nad_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "nad_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.nad_tgeo_geo(arg0, arg1);
     }
@@ -2167,10 +2167,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: distance op</p>
      */
-    public static double nad_tgeo_stbox(Pointer arg0, Pointer arg1) {
+    public static double nad_tgeo_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "nad_tgeo_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "nad_tgeo_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.nad_tgeo_stbox(arg0, arg1);
     }
@@ -2180,10 +2180,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: distance op</p>
      */
-    public static Pointer nai_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer nai_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "nai_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "nai_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.nai_tgeo_geo(arg0, arg1);
     }
@@ -2193,10 +2193,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overabove_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overabove_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overabove_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overabove_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overabove_tspatial_stbox(arg0, arg1);
     }
@@ -2206,10 +2206,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overafter_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overafter_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overafter_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overafter_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overafter_tspatial_stbox(arg0, arg1);
     }
@@ -2219,10 +2219,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overback_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overback_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overback_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overback_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overback_tspatial_stbox(arg0, arg1);
     }
@@ -2232,10 +2232,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overbefore_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overbefore_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbefore_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbefore_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbefore_tspatial_stbox(arg0, arg1);
     }
@@ -2245,10 +2245,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overbelow_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overbelow_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbelow_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbelow_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbelow_tspatial_stbox(arg0, arg1);
     }
@@ -2258,10 +2258,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overfront_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overfront_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overfront_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overfront_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overfront_tspatial_stbox(arg0, arg1);
     }
@@ -2271,10 +2271,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overlaps_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overlaps_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overlaps_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overlaps_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overlaps_tspatial_stbox(arg0, arg1);
     }
@@ -2284,10 +2284,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overleft_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overleft_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overleft_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overleft_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overleft_tspatial_stbox(arg0, arg1);
     }
@@ -2297,10 +2297,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int overright_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean overright_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overright_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overright_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overright_tspatial_stbox(arg0, arg1);
     }
@@ -2310,10 +2310,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 1 temporal + scalar</p>
      */
-    public static int right_tspatial_stbox(Pointer arg0, Pointer arg1) {
+    public static boolean right_tspatial_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "right_tspatial_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "right_tspatial_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.right_tspatial_stbox(arg0, arg1);
     }
@@ -2323,10 +2323,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: distance op</p>
      */
-    public static Pointer shortestline_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer shortestline_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "shortestline_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "shortestline_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.shortestline_tgeo_geo(arg0, arg1);
     }
@@ -2336,10 +2336,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tcontains_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tcontains_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tcontains_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tcontains_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tcontains_geo_tgeo(arg0, arg1);
     }
@@ -2349,10 +2349,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tcontains_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tcontains_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tcontains_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tcontains_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tcontains_tgeo_geo(arg0, arg1);
     }
@@ -2362,10 +2362,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tcovers_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tcovers_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tcovers_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tcovers_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tcovers_geo_tgeo(arg0, arg1);
     }
@@ -2375,10 +2375,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tcovers_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tcovers_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tcovers_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tcovers_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tcovers_tgeo_geo(arg0, arg1);
     }
@@ -2388,10 +2388,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tdisjoint_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tdisjoint_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdisjoint_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdisjoint_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdisjoint_geo_tgeo(arg0, arg1);
     }
@@ -2401,10 +2401,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tdisjoint_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tdisjoint_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdisjoint_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdisjoint_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdisjoint_tgeo_geo(arg0, arg1);
     }
@@ -2414,10 +2414,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: distance op</p>
      */
-    public static Pointer tdistance_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tdistance_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdistance_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdistance_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdistance_tgeo_geo(arg0, arg1);
     }
@@ -2427,10 +2427,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tdwithin_geo_tgeo(Pointer arg0, Pointer arg1, double arg2) {
+    public static jnr.ffi.Pointer tdwithin_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdwithin_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdwithin_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdwithin_geo_tgeo(arg0, arg1, arg2);
     }
@@ -2440,10 +2440,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tdwithin_tgeo_geo(Pointer arg0, Pointer arg1, double arg2) {
+    public static jnr.ffi.Pointer tdwithin_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdwithin_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdwithin_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdwithin_tgeo_geo(arg0, arg1, arg2);
     }
@@ -2453,10 +2453,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tintersects_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tintersects_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tintersects_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tintersects_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tintersects_geo_tgeo(arg0, arg1);
     }
@@ -2466,10 +2466,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer tintersects_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tintersects_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tintersects_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tintersects_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tintersects_tgeo_geo(arg0, arg1);
     }
@@ -2479,10 +2479,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer ttouches_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer ttouches_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ttouches_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ttouches_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ttouches_geo_tgeo(arg0, arg1);
     }
@@ -2492,10 +2492,10 @@ public final class MeosOpsFreeGeo {
      * <p>Per-event with bounded per-key state (MEOS handle).</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 1 temporal</p>
      */
-    public static Pointer ttouches_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer ttouches_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ttouches_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ttouches_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ttouches_tgeo_geo(arg0, arg1);
     }
@@ -2505,10 +2505,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int always_eq_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int always_eq_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "always_eq_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "always_eq_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.always_eq_geo_tgeo(arg0, arg1);
     }
@@ -2518,10 +2518,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int always_eq_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int always_eq_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "always_eq_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "always_eq_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.always_eq_tgeo_geo(arg0, arg1);
     }
@@ -2531,10 +2531,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int always_ne_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int always_ne_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "always_ne_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "always_ne_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.always_ne_geo_tgeo(arg0, arg1);
     }
@@ -2544,10 +2544,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int always_ne_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int always_ne_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "always_ne_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "always_ne_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.always_ne_tgeo_geo(arg0, arg1);
     }
@@ -2557,10 +2557,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int ever_eq_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int ever_eq_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ever_eq_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ever_eq_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ever_eq_geo_tgeo(arg0, arg1);
     }
@@ -2570,10 +2570,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int ever_eq_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int ever_eq_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ever_eq_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ever_eq_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ever_eq_tgeo_geo(arg0, arg1);
     }
@@ -2583,10 +2583,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int ever_ne_geo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int ever_ne_geo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ever_ne_geo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ever_ne_geo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ever_ne_geo_tgeo(arg0, arg1);
     }
@@ -2596,10 +2596,10 @@ public final class MeosOpsFreeGeo {
      * <p>Requires window operator — caller wraps in AggregateFunction.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 1 temporal</p>
      */
-    public static int ever_ne_tgeo_geo(Pointer arg0, Pointer arg1) {
+    public static int ever_ne_tgeo_geo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ever_ne_tgeo_geo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ever_ne_tgeo_geo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ever_ne_tgeo_geo(arg0, arg1);
     }
@@ -2609,10 +2609,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int above_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean above_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "above_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "above_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.above_tspatial_tspatial(arg0, arg1);
     }
@@ -2622,10 +2622,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int acontains_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int acontains_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "acontains_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "acontains_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.acontains_tgeo_tgeo(arg0, arg1);
     }
@@ -2635,10 +2635,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int adisjoint_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int adisjoint_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adisjoint_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adisjoint_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adisjoint_tgeo_tgeo(arg0, arg1);
     }
@@ -2648,10 +2648,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int adjacent_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean adjacent_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adjacent_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adjacent_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adjacent_tspatial_tspatial(arg0, arg1);
     }
@@ -2661,10 +2661,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int adwithin_tgeo_tgeo(Pointer arg0, Pointer arg1, double arg2) {
+    public static int adwithin_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "adwithin_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "adwithin_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.adwithin_tgeo_tgeo(arg0, arg1, arg2);
     }
@@ -2674,10 +2674,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int after_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean after_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "after_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "after_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.after_tspatial_tspatial(arg0, arg1);
     }
@@ -2687,10 +2687,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int aintersects_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int aintersects_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "aintersects_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "aintersects_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.aintersects_tgeo_tgeo(arg0, arg1);
     }
@@ -2700,10 +2700,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 2 temporals</p>
      */
-    public static int always_eq_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int always_eq_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "always_eq_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "always_eq_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.always_eq_tgeo_tgeo(arg0, arg1);
     }
@@ -2713,10 +2713,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 2 temporals</p>
      */
-    public static int always_ne_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int always_ne_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "always_ne_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "always_ne_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.always_ne_tgeo_tgeo(arg0, arg1);
     }
@@ -2726,10 +2726,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int atouches_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int atouches_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "atouches_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "atouches_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.atouches_tgeo_tgeo(arg0, arg1);
     }
@@ -2739,10 +2739,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int back_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean back_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "back_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "back_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.back_tspatial_tspatial(arg0, arg1);
     }
@@ -2752,10 +2752,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int before_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean before_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "before_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "before_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.before_tspatial_tspatial(arg0, arg1);
     }
@@ -2765,10 +2765,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int below_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean below_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "below_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "below_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.below_tspatial_tspatial(arg0, arg1);
     }
@@ -2778,10 +2778,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int contained_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean contained_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contained_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contained_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contained_tspatial_tspatial(arg0, arg1);
     }
@@ -2791,10 +2791,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int contains_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean contains_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "contains_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "contains_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.contains_tspatial_tspatial(arg0, arg1);
     }
@@ -2804,10 +2804,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int econtains_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int econtains_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "econtains_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "econtains_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.econtains_tgeo_tgeo(arg0, arg1);
     }
@@ -2817,10 +2817,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int ecovers_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int ecovers_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ecovers_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ecovers_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ecovers_tgeo_tgeo(arg0, arg1);
     }
@@ -2830,10 +2830,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int edisjoint_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int edisjoint_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "edisjoint_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "edisjoint_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.edisjoint_tgeo_tgeo(arg0, arg1);
     }
@@ -2843,10 +2843,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int edwithin_tgeo_tgeo(Pointer arg0, Pointer arg1, double arg2) {
+    public static int edwithin_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "edwithin_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "edwithin_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.edwithin_tgeo_tgeo(arg0, arg1, arg2);
     }
@@ -2856,10 +2856,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int eintersects_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int eintersects_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "eintersects_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "eintersects_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.eintersects_tgeo_tgeo(arg0, arg1);
     }
@@ -2869,10 +2869,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always spatial-rel on 2 temporals</p>
      */
-    public static int etouches_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int etouches_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "etouches_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "etouches_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.etouches_tgeo_tgeo(arg0, arg1);
     }
@@ -2882,10 +2882,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 2 temporals</p>
      */
-    public static int ever_eq_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int ever_eq_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ever_eq_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ever_eq_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ever_eq_tgeo_tgeo(arg0, arg1);
     }
@@ -2895,10 +2895,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: ever/always over 2 temporals</p>
      */
-    public static int ever_ne_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static int ever_ne_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ever_ne_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ever_ne_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ever_ne_tgeo_tgeo(arg0, arg1);
     }
@@ -2908,10 +2908,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int front_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean front_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "front_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "front_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.front_tspatial_tspatial(arg0, arg1);
     }
@@ -2921,10 +2921,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int left_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean left_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "left_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "left_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.left_tspatial_tspatial(arg0, arg1);
     }
@@ -2934,10 +2934,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: distance on 2 temporals</p>
      */
-    public static double nad_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static double nad_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "nad_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "nad_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.nad_tgeo_tgeo(arg0, arg1);
     }
@@ -2947,10 +2947,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: distance on 2 temporals</p>
      */
-    public static Pointer nai_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer nai_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "nai_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "nai_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.nai_tgeo_tgeo(arg0, arg1);
     }
@@ -2960,10 +2960,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overabove_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overabove_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overabove_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overabove_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overabove_tspatial_tspatial(arg0, arg1);
     }
@@ -2973,10 +2973,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overafter_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overafter_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overafter_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overafter_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overafter_tspatial_tspatial(arg0, arg1);
     }
@@ -2986,10 +2986,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overback_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overback_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overback_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overback_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overback_tspatial_tspatial(arg0, arg1);
     }
@@ -2999,10 +2999,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overbefore_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overbefore_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbefore_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbefore_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbefore_tspatial_tspatial(arg0, arg1);
     }
@@ -3012,10 +3012,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overbelow_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overbelow_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overbelow_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overbelow_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overbelow_tspatial_tspatial(arg0, arg1);
     }
@@ -3025,10 +3025,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overfront_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overfront_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overfront_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overfront_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overfront_tspatial_tspatial(arg0, arg1);
     }
@@ -3038,10 +3038,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overlaps_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overlaps_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overlaps_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overlaps_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overlaps_tspatial_tspatial(arg0, arg1);
     }
@@ -3051,10 +3051,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overleft_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overleft_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overleft_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overleft_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overleft_tspatial_tspatial(arg0, arg1);
     }
@@ -3064,10 +3064,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int overright_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean overright_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "overright_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "overright_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.overright_tspatial_tspatial(arg0, arg1);
     }
@@ -3077,10 +3077,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: topology/position rel on 2 temporals</p>
      */
-    public static int right_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean right_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "right_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "right_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.right_tspatial_tspatial(arg0, arg1);
     }
@@ -3090,10 +3090,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: same predicate on 2 temporals</p>
      */
-    public static int same_tspatial_tspatial(Pointer arg0, Pointer arg1) {
+    public static boolean same_tspatial_tspatial(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "same_tspatial_tspatial requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "same_tspatial_tspatial requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.same_tspatial_tspatial(arg0, arg1);
     }
@@ -3103,10 +3103,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: distance on 2 temporals</p>
      */
-    public static Pointer shortestline_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer shortestline_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "shortestline_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "shortestline_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.shortestline_tgeo_tgeo(arg0, arg1);
     }
@@ -3116,10 +3116,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 2 temporals</p>
      */
-    public static Pointer tcontains_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tcontains_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tcontains_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tcontains_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tcontains_tgeo_tgeo(arg0, arg1);
     }
@@ -3129,10 +3129,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 2 temporals</p>
      */
-    public static Pointer tcovers_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tcovers_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tcovers_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tcovers_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tcovers_tgeo_tgeo(arg0, arg1);
     }
@@ -3142,10 +3142,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 2 temporals</p>
      */
-    public static Pointer tdisjoint_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tdisjoint_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdisjoint_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdisjoint_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdisjoint_tgeo_tgeo(arg0, arg1);
     }
@@ -3155,10 +3155,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: distance on 2 temporals</p>
      */
-    public static Pointer tdistance_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tdistance_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdistance_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdistance_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdistance_tgeo_tgeo(arg0, arg1);
     }
@@ -3168,10 +3168,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 2 temporals</p>
      */
-    public static Pointer tdwithin_tgeo_tgeo(Pointer arg0, Pointer arg1, double arg2) {
+    public static jnr.ffi.Pointer tdwithin_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, double arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tdwithin_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tdwithin_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tdwithin_tgeo_tgeo(arg0, arg1, arg2);
     }
@@ -3181,10 +3181,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 2 temporals</p>
      */
-    public static Pointer tintersects_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tintersects_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tintersects_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tintersects_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tintersects_tgeo_tgeo(arg0, arg1);
     }
@@ -3194,10 +3194,10 @@ public final class MeosOpsFreeGeo {
      * <p>Pairwise across streams — caller wraps in a join.</p>
      * <p>Free function (not class-classified). Classification rule: temporal spatial-rel lift on 2 temporals</p>
      */
-    public static Pointer ttouches_tgeo_tgeo(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer ttouches_tgeo_tgeo(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "ttouches_tgeo_tgeo requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "ttouches_tgeo_tgeo requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.ttouches_tgeo_tgeo(arg0, arg1);
     }
@@ -3207,10 +3207,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String box3d_out(Pointer arg0, int arg1) {
+    public static java.lang.String box3d_out(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "box3d_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "box3d_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.box3d_out(arg0, arg1);
     }
@@ -3220,10 +3220,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String gbox_out(Pointer arg0, int arg1) {
+    public static java.lang.String gbox_out(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "gbox_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "gbox_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.gbox_out(arg0, arg1);
     }
@@ -3233,10 +3233,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: name has IO token</p>
      */
-    public static Pointer geo_as_ewkb(Pointer arg0, String arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer geo_as_ewkb(jnr.ffi.Pointer arg0, java.lang.String arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_as_ewkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_as_ewkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_as_ewkb(arg0, arg1, arg2);
     }
@@ -3246,10 +3246,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String geo_as_ewkt(Pointer arg0, int arg1) {
+    public static java.lang.String geo_as_ewkt(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_as_ewkt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_as_ewkt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_as_ewkt(arg0, arg1);
     }
@@ -3259,10 +3259,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String geo_as_geojson(Pointer arg0, int arg1, int arg2, String arg3) {
+    public static java.lang.String geo_as_geojson(jnr.ffi.Pointer arg0, int arg1, int arg2, java.lang.String arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_as_geojson requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_as_geojson requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_as_geojson(arg0, arg1, arg2, arg3);
     }
@@ -3272,10 +3272,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: name has IO token</p>
      */
-    public static String geo_as_hexewkb(Pointer arg0, String arg1) {
+    public static java.lang.String geo_as_hexewkb(jnr.ffi.Pointer arg0, java.lang.String arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_as_hexewkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_as_hexewkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_as_hexewkb(arg0, arg1);
     }
@@ -3285,10 +3285,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String geo_as_text(Pointer arg0, int arg1) {
+    public static java.lang.String geo_as_text(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_as_text requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_as_text requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_as_text(arg0, arg1);
     }
@@ -3298,10 +3298,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: name has IO token</p>
      */
-    public static Pointer geo_from_ewkb(Pointer arg0, long arg1, int arg2) {
+    public static jnr.ffi.Pointer geo_from_ewkb(jnr.ffi.Pointer arg0, long arg1, int arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_from_ewkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_from_ewkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_from_ewkb(arg0, arg1, arg2);
     }
@@ -3311,10 +3311,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static Pointer geo_from_geojson(String arg0) {
+    public static jnr.ffi.Pointer geo_from_geojson(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_from_geojson requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_from_geojson requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_from_geojson(arg0);
     }
@@ -3324,10 +3324,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static Pointer geo_from_text(String arg0, int arg1) {
+    public static jnr.ffi.Pointer geo_from_text(java.lang.String arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_from_text requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_from_text requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_from_text(arg0, arg1);
     }
@@ -3337,10 +3337,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String geo_out(Pointer arg0) {
+    public static java.lang.String geo_out(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geo_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geo_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geo_out(arg0);
     }
@@ -3350,10 +3350,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: name has IO token</p>
      */
-    public static Pointer geog_from_hexewkb(String arg0) {
+    public static jnr.ffi.Pointer geog_from_hexewkb(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_from_hexewkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_from_hexewkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_from_hexewkb(arg0);
     }
@@ -3363,10 +3363,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static Pointer geog_in(String arg0, int arg1) {
+    public static jnr.ffi.Pointer geog_in(java.lang.String arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geog_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geog_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geog_in(arg0, arg1);
     }
@@ -3376,10 +3376,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: name has IO token</p>
      */
-    public static Pointer geom_from_hexewkb(String arg0) {
+    public static jnr.ffi.Pointer geom_from_hexewkb(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_from_hexewkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_from_hexewkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_from_hexewkb(arg0);
     }
@@ -3389,10 +3389,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static Pointer geom_in(String arg0, int arg1) {
+    public static jnr.ffi.Pointer geom_in(java.lang.String arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geom_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geom_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geom_in(arg0, arg1);
     }
@@ -3402,10 +3402,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String spatialset_as_ewkt(Pointer arg0, int arg1) {
+    public static java.lang.String spatialset_as_ewkt(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spatialset_as_ewkt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spatialset_as_ewkt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spatialset_as_ewkt(arg0, arg1);
     }
@@ -3415,10 +3415,10 @@ public final class MeosOpsFreeGeo {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Free function (not class-classified). Classification rule: IO/serialization</p>
      */
-    public static String spatialset_as_text(Pointer arg0, int arg1) {
+    public static java.lang.String spatialset_as_text(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spatialset_as_text requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spatialset_as_text requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spatialset_as_text(arg0, arg1);
     }

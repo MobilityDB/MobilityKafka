@@ -21,10 +21,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer tstzset_make(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer tstzset_make(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_make(arg0, arg1);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tstzset_to_dateset(Pointer arg0) {
+    public static jnr.ffi.Pointer tstzset_to_dateset(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_to_dateset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_to_dateset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_to_dateset(arg0);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tstzset_to_stbox(Pointer arg0) {
+    public static jnr.ffi.Pointer tstzset_to_stbox(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_to_stbox(arg0);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tstzset_end_value(Pointer arg0) {
+    public static java.time.OffsetDateTime tstzset_end_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_end_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_end_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_end_value(arg0);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tstzset_shift_scale(Pointer arg0, Pointer arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer tstzset_shift_scale(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_shift_scale requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_shift_scale requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_shift_scale(arg0, arg1, arg2);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tstzset_start_value(Pointer arg0) {
+    public static java.time.OffsetDateTime tstzset_start_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_start_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_start_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_start_value(arg0);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tstzset_tprecision(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer tstzset_tprecision(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, java.time.OffsetDateTime arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_tprecision requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_tprecision requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_tprecision(arg0, arg1, arg2);
     }
@@ -119,12 +119,12 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tstzset_value_n(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer tstzset_value_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_value_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_value_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tstzset_value_n(arg0, arg1, arg2);
+        return GeneratedFunctions.tstzset_value_n(arg0, arg1);
     }
 
     /**
@@ -133,10 +133,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tstzset_values(Pointer arg0) {
+    public static jnr.ffi.Pointer tstzset_values(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_values requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_values requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_values(arg0);
     }
@@ -147,10 +147,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer tstzset_tcount_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tstzset_tcount_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_tcount_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_tcount_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_tcount_transfn(arg0, arg1);
     }
@@ -161,10 +161,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tstzset_in(String arg0) {
+    public static jnr.ffi.Pointer tstzset_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_in(arg0);
     }
@@ -175,10 +175,10 @@ public final class MeosOpsTstzSet {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tstzset_out(Pointer arg0) {
+    public static java.lang.String tstzset_out(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tstzset_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tstzset_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tstzset_out(arg0);
     }

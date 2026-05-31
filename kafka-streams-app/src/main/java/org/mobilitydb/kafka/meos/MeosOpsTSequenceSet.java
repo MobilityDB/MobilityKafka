@@ -21,10 +21,10 @@ public final class MeosOpsTSequenceSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tsequenceset_make_gaps(Pointer arg0, int arg1, int arg2, Pointer arg3, double arg4) {
+    public static jnr.ffi.Pointer tsequenceset_make_gaps(jnr.ffi.Pointer arg0, int arg1, int arg2, jnr.ffi.Pointer arg3, double arg4) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tsequenceset_make_gaps requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tsequenceset_make_gaps requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tsequenceset_make_gaps(arg0, arg1, arg2, arg3, arg4);
     }

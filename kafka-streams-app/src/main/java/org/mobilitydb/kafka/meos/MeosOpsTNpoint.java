@@ -21,10 +21,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tnpoint_to_tgeompoint(Pointer arg0) {
+    public static jnr.ffi.Pointer tnpoint_to_tgeompoint(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_to_tgeompoint requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_to_tgeompoint requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_to_tgeompoint(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_at_geom(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_at_geom(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_at_geom requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_at_geom requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_at_geom(arg0, arg1);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_at_npoint(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_at_npoint(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_at_npoint requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_at_npoint requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_at_npoint(arg0, arg1);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_at_npointset(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_at_npointset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_at_npointset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_at_npointset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_at_npointset(arg0, arg1);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_at_stbox(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer tnpoint_at_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_at_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_at_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_at_stbox(arg0, arg1, arg2);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tnpoint_cumulative_length(Pointer arg0) {
+    public static jnr.ffi.Pointer tnpoint_cumulative_length(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_cumulative_length requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_cumulative_length requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_cumulative_length(arg0);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static double tnpoint_length(Pointer arg0) {
+    public static double tnpoint_length(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_length requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_length requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_length(arg0);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_minus_geom(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_minus_geom(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_minus_geom requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_minus_geom requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_minus_geom(arg0, arg1);
     }
@@ -133,10 +133,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_minus_npoint(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_minus_npoint(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_minus_npoint requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_minus_npoint requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_minus_npoint(arg0, arg1);
     }
@@ -147,10 +147,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_minus_npointset(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_minus_npointset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_minus_npointset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_minus_npointset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_minus_npointset(arg0, arg1);
     }
@@ -161,10 +161,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer tnpoint_minus_stbox(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer tnpoint_minus_stbox(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_minus_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_minus_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_minus_stbox(arg0, arg1, arg2);
     }
@@ -175,10 +175,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tnpoint_positions(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_positions(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_positions requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_positions requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_positions(arg0, arg1);
     }
@@ -189,10 +189,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tnpoint_route(Pointer arg0) {
+    public static long tnpoint_route(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_route requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_route requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_route(arg0);
     }
@@ -203,10 +203,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tnpoint_routes(Pointer arg0) {
+    public static jnr.ffi.Pointer tnpoint_routes(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_routes requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_routes requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_routes(arg0);
     }
@@ -217,10 +217,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tnpoint_speed(Pointer arg0) {
+    public static jnr.ffi.Pointer tnpoint_speed(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_speed requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_speed requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_speed(arg0);
     }
@@ -231,10 +231,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tnpoint_trajectory(Pointer arg0) {
+    public static jnr.ffi.Pointer tnpoint_trajectory(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_trajectory requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_trajectory requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_trajectory(arg0);
     }
@@ -245,10 +245,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tnpoint_twcentroid(Pointer arg0) {
+    public static jnr.ffi.Pointer tnpoint_twcentroid(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_twcentroid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_twcentroid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_twcentroid(arg0);
     }
@@ -259,10 +259,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer tnpoint_tcentroid_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tnpoint_tcentroid_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_tcentroid_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_tcentroid_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_tcentroid_transfn(arg0, arg1);
     }
@@ -273,10 +273,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tnpoint_from_mfjson(String arg0) {
+    public static jnr.ffi.Pointer tnpoint_from_mfjson(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_from_mfjson requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_from_mfjson requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_from_mfjson(arg0);
     }
@@ -287,10 +287,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tnpoint_in(String arg0) {
+    public static jnr.ffi.Pointer tnpoint_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_in(arg0);
     }
@@ -301,10 +301,10 @@ public final class MeosOpsTNpoint {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tnpoint_out(Pointer arg0, int arg1) {
+    public static java.lang.String tnpoint_out(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tnpoint_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tnpoint_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tnpoint_out(arg0, arg1);
     }

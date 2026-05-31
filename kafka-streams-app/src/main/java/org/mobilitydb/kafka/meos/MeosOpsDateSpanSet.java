@@ -21,10 +21,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer datespanset_to_tstzspanset(Pointer arg0) {
+    public static jnr.ffi.Pointer datespanset_to_tstzspanset(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_to_tstzspanset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_to_tstzspanset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_to_tstzspanset(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer datespanset_bins(Pointer arg0, Pointer arg1, int arg2, Pointer arg3) {
+    public static jnr.ffi.Pointer datespanset_bins(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, int arg2, jnr.ffi.Pointer arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_bins requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_bins requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_bins(arg0, arg1, arg2, arg3);
     }
@@ -49,12 +49,12 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int datespanset_date_n(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer datespanset_date_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_date_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_date_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.datespanset_date_n(arg0, arg1, arg2);
+        return GeneratedFunctions.datespanset_date_n(arg0, arg1);
     }
 
     /**
@@ -63,10 +63,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer datespanset_dates(Pointer arg0) {
+    public static jnr.ffi.Pointer datespanset_dates(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_dates requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_dates requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_dates(arg0);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer datespanset_duration(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer datespanset_duration(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_duration requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_duration requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_duration(arg0, arg1);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int datespanset_end_date(Pointer arg0) {
+    public static int datespanset_end_date(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_end_date requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_end_date requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_end_date(arg0);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int datespanset_num_dates(Pointer arg0) {
+    public static int datespanset_num_dates(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_num_dates requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_num_dates requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_num_dates(arg0);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer datespanset_shift_scale(Pointer arg0, int arg1, int arg2, int arg3, int arg4) {
+    public static jnr.ffi.Pointer datespanset_shift_scale(jnr.ffi.Pointer arg0, int arg1, int arg2, boolean arg3, boolean arg4) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_shift_scale requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_shift_scale requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_shift_scale(arg0, arg1, arg2, arg3, arg4);
     }
@@ -133,10 +133,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int datespanset_start_date(Pointer arg0) {
+    public static int datespanset_start_date(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_start_date requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_start_date requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_start_date(arg0);
     }
@@ -147,10 +147,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer datespanset_in(String arg0) {
+    public static jnr.ffi.Pointer datespanset_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_in(arg0);
     }
@@ -161,10 +161,10 @@ public final class MeosOpsDateSpanSet {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String datespanset_out(Pointer arg0) {
+    public static java.lang.String datespanset_out(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "datespanset_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "datespanset_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.datespanset_out(arg0);
     }

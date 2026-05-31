@@ -21,10 +21,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tspatial_to_stbox(Pointer arg0) {
+    public static jnr.ffi.Pointer tspatial_to_stbox(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_to_stbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_to_stbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_to_stbox(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tspatial_set_srid(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer tspatial_set_srid(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_set_srid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_set_srid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_set_srid(arg0, arg1);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tspatial_srid(Pointer arg0) {
+    public static int tspatial_srid(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_srid requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_srid requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_srid(arg0);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tspatial_transform(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer tspatial_transform(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_transform requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_transform requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_transform(arg0, arg1);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tspatial_transform_pipeline(Pointer arg0, String arg1, int arg2, int arg3) {
+    public static jnr.ffi.Pointer tspatial_transform_pipeline(jnr.ffi.Pointer arg0, java.lang.String arg1, int arg2, boolean arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_transform_pipeline requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_transform_pipeline requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_transform_pipeline(arg0, arg1, arg2, arg3);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer tspatial_extent_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tspatial_extent_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_extent_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_extent_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_extent_transfn(arg0, arg1);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tspatial_as_ewkt(Pointer arg0, int arg1) {
+    public static java.lang.String tspatial_as_ewkt(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_as_ewkt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_as_ewkt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_as_ewkt(arg0, arg1);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tspatial_as_text(Pointer arg0, int arg1) {
+    public static java.lang.String tspatial_as_text(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_as_text requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_as_text requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_as_text(arg0, arg1);
     }
@@ -133,10 +133,10 @@ public final class MeosOpsTSpatial {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tspatial_out(Pointer arg0, int arg1) {
+    public static java.lang.String tspatial_out(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tspatial_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tspatial_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tspatial_out(arg0, arg1);
     }

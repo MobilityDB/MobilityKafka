@@ -21,10 +21,10 @@ public final class MeosOpsGeomSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer geoset_make(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer geoset_make(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geoset_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geoset_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geoset_make(arg0, arg1);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsGeomSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer geoset_end_value(Pointer arg0) {
+    public static jnr.ffi.Pointer geoset_end_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geoset_end_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geoset_end_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geoset_end_value(arg0);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsGeomSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer geoset_start_value(Pointer arg0) {
+    public static jnr.ffi.Pointer geoset_start_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geoset_start_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geoset_start_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geoset_start_value(arg0);
     }
@@ -63,12 +63,12 @@ public final class MeosOpsGeomSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int geoset_value_n(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer geoset_value_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geoset_value_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geoset_value_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.geoset_value_n(arg0, arg1, arg2);
+        return GeneratedFunctions.geoset_value_n(arg0, arg1);
     }
 
     /**
@@ -77,10 +77,10 @@ public final class MeosOpsGeomSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer geoset_values(Pointer arg0) {
+    public static jnr.ffi.Pointer geoset_values(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geoset_values requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geoset_values requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geoset_values(arg0);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsGeomSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer geomset_in(String arg0) {
+    public static jnr.ffi.Pointer geomset_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "geomset_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "geomset_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.geomset_in(arg0);
     }

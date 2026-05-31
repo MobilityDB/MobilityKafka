@@ -12,7 +12,7 @@ final class MeosOpsRuntime {
 
     static {
         boolean enabled = Boolean.parseBoolean(
-                System.getProperty("mobilityflink.meos.enabled", "true"));
+                System.getProperty("mobilitykafka.meos.enabled", "true"));
         boolean ok = false;
         if (enabled) {
             try {

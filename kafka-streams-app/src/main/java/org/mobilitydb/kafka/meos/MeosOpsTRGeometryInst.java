@@ -21,10 +21,10 @@ public final class MeosOpsTRGeometryInst {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer trgeoinst_make(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer trgeoinst_make(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, java.time.OffsetDateTime arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "trgeoinst_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "trgeoinst_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.trgeoinst_make(arg0, arg1, arg2);
     }

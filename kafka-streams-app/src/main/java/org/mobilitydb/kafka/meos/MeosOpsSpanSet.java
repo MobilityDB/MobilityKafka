@@ -21,10 +21,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer spanset_copy(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_copy(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_copy requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_copy requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_copy(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer spanset_make(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer spanset_make(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_make(arg0, arg1);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer spanset_to_tbox(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_to_tbox(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_to_tbox requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_to_tbox requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_to_tbox(arg0);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int spanset_cmp(Pointer arg0, Pointer arg1) {
+    public static int spanset_cmp(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_cmp requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_cmp requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_cmp(arg0, arg1);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_end_span(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_end_span(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_end_span requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_end_span requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_end_span(arg0);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int spanset_eq(Pointer arg0, Pointer arg1) {
+    public static boolean spanset_eq(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_eq requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_eq requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_eq(arg0, arg1);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int spanset_ge(Pointer arg0, Pointer arg1) {
+    public static boolean spanset_ge(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_ge requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_ge requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_ge(arg0, arg1);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int spanset_gt(Pointer arg0, Pointer arg1) {
+    public static boolean spanset_gt(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_gt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_gt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_gt(arg0, arg1);
     }
@@ -133,10 +133,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int spanset_hash(Pointer arg0) {
+    public static int spanset_hash(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_hash requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_hash requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_hash(arg0);
     }
@@ -147,10 +147,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int spanset_hash_extended(Pointer arg0, int arg1) {
+    public static long spanset_hash_extended(jnr.ffi.Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_hash_extended requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_hash_extended(arg0, arg1);
     }
@@ -161,10 +161,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int spanset_le(Pointer arg0, Pointer arg1) {
+    public static boolean spanset_le(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_le requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_le requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_le(arg0, arg1);
     }
@@ -175,10 +175,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int spanset_lower_inc(Pointer arg0) {
+    public static boolean spanset_lower_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_lower_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_lower_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_lower_inc(arg0);
     }
@@ -189,10 +189,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int spanset_lt(Pointer arg0, Pointer arg1) {
+    public static boolean spanset_lt(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_lt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_lt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_lt(arg0, arg1);
     }
@@ -203,10 +203,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int spanset_ne(Pointer arg0, Pointer arg1) {
+    public static boolean spanset_ne(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_ne requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_ne requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_ne(arg0, arg1);
     }
@@ -217,10 +217,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int spanset_num_spans(Pointer arg0) {
+    public static int spanset_num_spans(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_num_spans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_num_spans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_num_spans(arg0);
     }
@@ -231,10 +231,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_span(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_span(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_span requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_span requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_span(arg0);
     }
@@ -245,10 +245,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_span_n(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer spanset_span_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_span_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_span_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_span_n(arg0, arg1);
     }
@@ -259,10 +259,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_spanarr(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_spanarr(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_spanarr requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_spanarr requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_spanarr(arg0);
     }
@@ -273,10 +273,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_spans(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_spans(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_spans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_spans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_spans(arg0);
     }
@@ -287,10 +287,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_split_each_n_spans(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer spanset_split_each_n_spans(jnr.ffi.Pointer arg0, int arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_split_each_n_spans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_split_each_n_spans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_split_each_n_spans(arg0, arg1, arg2);
     }
@@ -301,10 +301,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_split_n_spans(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer spanset_split_n_spans(jnr.ffi.Pointer arg0, int arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_split_n_spans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_split_n_spans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_split_n_spans(arg0, arg1, arg2);
     }
@@ -315,10 +315,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer spanset_start_span(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_start_span(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_start_span requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_start_span requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_start_span(arg0);
     }
@@ -329,10 +329,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int spanset_upper_inc(Pointer arg0) {
+    public static boolean spanset_upper_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_upper_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_upper_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_upper_inc(arg0);
     }
@@ -343,10 +343,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer spanset_extent_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer spanset_extent_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_extent_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_extent_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_extent_transfn(arg0, arg1);
     }
@@ -357,10 +357,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer spanset_union_finalfn(Pointer arg0) {
+    public static jnr.ffi.Pointer spanset_union_finalfn(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_union_finalfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_union_finalfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_union_finalfn(arg0);
     }
@@ -371,10 +371,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer spanset_union_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer spanset_union_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_union_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_union_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_union_transfn(arg0, arg1);
     }
@@ -385,10 +385,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String spanset_as_hexwkb(Pointer arg0, byte arg1) {
+    public static java.lang.String spanset_as_hexwkb(jnr.ffi.Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_as_hexwkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_as_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_as_hexwkb(arg0, arg1);
     }
@@ -399,10 +399,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer spanset_as_wkb(Pointer arg0, byte arg1) {
+    public static jnr.ffi.Pointer spanset_as_wkb(jnr.ffi.Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_as_wkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_as_wkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_as_wkb(arg0, arg1);
     }
@@ -413,10 +413,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer spanset_from_hexwkb(String arg0) {
+    public static jnr.ffi.Pointer spanset_from_hexwkb(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_from_hexwkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_from_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_from_hexwkb(arg0);
     }
@@ -427,10 +427,10 @@ public final class MeosOpsSpanSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer spanset_from_wkb(Pointer arg0, long arg1) {
+    public static jnr.ffi.Pointer spanset_from_wkb(jnr.ffi.Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "spanset_from_wkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "spanset_from_wkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.spanset_from_wkb(arg0, arg1);
     }

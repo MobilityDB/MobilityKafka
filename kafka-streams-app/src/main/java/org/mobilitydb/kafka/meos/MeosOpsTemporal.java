@@ -21,10 +21,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer temporal_copy(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_copy(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_copy requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_copy requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_copy(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer temporal_to_tinstant(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_to_tinstant(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_to_tinstant requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_to_tinstant requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_to_tinstant(arg0);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer temporal_to_tsequence(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_to_tsequence(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_to_tsequence requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_to_tsequence requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_to_tsequence(arg0, arg1);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer temporal_to_tsequenceset(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_to_tsequenceset(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_to_tsequenceset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_to_tsequenceset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_to_tsequenceset(arg0, arg1);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer temporal_to_tstzspan(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_to_tstzspan(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_to_tstzspan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_to_tstzspan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_to_tstzspan(arg0);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_after_timestamptz(Pointer arg0, int arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_after_timestamptz(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_after_timestamptz requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_after_timestamptz requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_after_timestamptz(arg0, arg1, arg2);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_append_tinstant(Pointer arg0, Pointer arg1, int arg2, double arg3, Pointer arg4, int arg5) {
+    public static jnr.ffi.Pointer temporal_append_tinstant(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, int arg2, double arg3, jnr.ffi.Pointer arg4, boolean arg5) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_append_tinstant requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_append_tinstant requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_append_tinstant(arg0, arg1, arg2, arg3, arg4, arg5);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_append_tsequence(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_append_tsequence(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_append_tsequence requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_append_tsequence requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_append_tsequence(arg0, arg1, arg2);
     }
@@ -133,10 +133,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_at_max(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_at_max(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_at_max requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_at_max requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_at_max(arg0);
     }
@@ -147,10 +147,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_at_min(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_at_min(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_at_min requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_at_min requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_at_min(arg0);
     }
@@ -161,10 +161,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_at_timestamptz(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_at_timestamptz(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_at_timestamptz requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_at_timestamptz requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_at_timestamptz(arg0, arg1);
     }
@@ -175,10 +175,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_at_tstzset(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_at_tstzset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_at_tstzset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_at_tstzset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_at_tstzset(arg0, arg1);
     }
@@ -189,10 +189,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_at_tstzspan(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_at_tstzspan(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_at_tstzspan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_at_tstzspan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_at_tstzspan(arg0, arg1);
     }
@@ -203,10 +203,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_at_tstzspanset(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_at_tstzspanset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_at_tstzspanset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_at_tstzspanset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_at_tstzspanset(arg0, arg1);
     }
@@ -217,10 +217,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_at_values(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_at_values(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_at_values requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_at_values requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_at_values(arg0, arg1);
     }
@@ -231,10 +231,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_before_timestamptz(Pointer arg0, int arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_before_timestamptz(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_before_timestamptz requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_before_timestamptz requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_before_timestamptz(arg0, arg1, arg2);
     }
@@ -245,10 +245,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_delete_timestamptz(Pointer arg0, int arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_delete_timestamptz(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_delete_timestamptz requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_delete_timestamptz requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_delete_timestamptz(arg0, arg1, arg2);
     }
@@ -259,10 +259,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_delete_tstzset(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_delete_tstzset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_delete_tstzset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_delete_tstzset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_delete_tstzset(arg0, arg1, arg2);
     }
@@ -273,10 +273,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_delete_tstzspan(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_delete_tstzspan(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_delete_tstzspan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_delete_tstzspan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_delete_tstzspan(arg0, arg1, arg2);
     }
@@ -287,10 +287,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_delete_tstzspanset(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_delete_tstzspanset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_delete_tstzspanset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_delete_tstzspanset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_delete_tstzspanset(arg0, arg1, arg2);
     }
@@ -301,10 +301,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_derivative(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_derivative(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_derivative requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_derivative requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_derivative(arg0);
     }
@@ -315,10 +315,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_duration(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_duration(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_duration requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_duration requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_duration(arg0, arg1);
     }
@@ -329,10 +329,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static double temporal_dyntimewarp_distance(Pointer arg0, Pointer arg1) {
+    public static double temporal_dyntimewarp_distance(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_dyntimewarp_distance requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_dyntimewarp_distance requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_dyntimewarp_distance(arg0, arg1);
     }
@@ -343,10 +343,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_dyntimewarp_path(Pointer arg0, Pointer arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer temporal_dyntimewarp_path(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_dyntimewarp_path requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_dyntimewarp_path requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_dyntimewarp_path(arg0, arg1, arg2);
     }
@@ -357,10 +357,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_end_instant(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_end_instant(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_end_instant requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_end_instant requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_end_instant(arg0);
     }
@@ -371,10 +371,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_end_sequence(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_end_sequence(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_end_sequence requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_end_sequence requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_end_sequence(arg0);
     }
@@ -385,10 +385,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_end_timestamptz(Pointer arg0) {
+    public static java.time.OffsetDateTime temporal_end_timestamptz(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_end_timestamptz requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_end_timestamptz requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_end_timestamptz(arg0);
     }
@@ -399,10 +399,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static double temporal_frechet_distance(Pointer arg0, Pointer arg1) {
+    public static double temporal_frechet_distance(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_frechet_distance requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_frechet_distance requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_frechet_distance(arg0, arg1);
     }
@@ -413,10 +413,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_frechet_path(Pointer arg0, Pointer arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer temporal_frechet_path(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_frechet_path requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_frechet_path requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_frechet_path(arg0, arg1, arg2);
     }
@@ -427,10 +427,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_hash(Pointer arg0) {
+    public static int temporal_hash(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_hash requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_hash requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_hash(arg0);
     }
@@ -441,10 +441,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static double temporal_hausdorff_distance(Pointer arg0, Pointer arg1) {
+    public static double temporal_hausdorff_distance(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_hausdorff_distance requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_hausdorff_distance requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_hausdorff_distance(arg0, arg1);
     }
@@ -455,10 +455,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_insert(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_insert(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_insert requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_insert requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_insert(arg0, arg1, arg2);
     }
@@ -469,10 +469,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_instant_n(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_instant_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_instant_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_instant_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_instant_n(arg0, arg1);
     }
@@ -483,10 +483,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_instants(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_instants(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_instants requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_instants requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_instants(arg0, arg1);
     }
@@ -497,10 +497,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static String temporal_interp(Pointer arg0) {
+    public static java.lang.String temporal_interp(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_interp requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_interp requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_interp(arg0);
     }
@@ -511,10 +511,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_lower_inc(Pointer arg0) {
+    public static boolean temporal_lower_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_lower_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_lower_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_lower_inc(arg0);
     }
@@ -525,10 +525,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_max_instant(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_max_instant(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_max_instant requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_max_instant requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_max_instant(arg0);
     }
@@ -539,10 +539,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_merge(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_merge(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_merge requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_merge requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_merge(arg0, arg1);
     }
@@ -553,10 +553,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_merge_array(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_merge_array(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_merge_array requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_merge_array requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_merge_array(arg0, arg1);
     }
@@ -567,10 +567,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_min_instant(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_min_instant(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_min_instant requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_min_instant requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_min_instant(arg0);
     }
@@ -581,10 +581,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_minus_max(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_minus_max(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_minus_max requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_minus_max requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_minus_max(arg0);
     }
@@ -595,10 +595,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_minus_min(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_minus_min(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_minus_min requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_minus_min requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_minus_min(arg0);
     }
@@ -609,10 +609,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_minus_timestamptz(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_minus_timestamptz(jnr.ffi.Pointer arg0, java.time.OffsetDateTime arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_minus_timestamptz requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_minus_timestamptz requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_minus_timestamptz(arg0, arg1);
     }
@@ -623,10 +623,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_minus_tstzset(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_minus_tstzset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_minus_tstzset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_minus_tstzset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_minus_tstzset(arg0, arg1);
     }
@@ -637,10 +637,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_minus_tstzspan(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_minus_tstzspan(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_minus_tstzspan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_minus_tstzspan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_minus_tstzspan(arg0, arg1);
     }
@@ -651,10 +651,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_minus_tstzspanset(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_minus_tstzspanset(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_minus_tstzspanset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_minus_tstzspanset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_minus_tstzspanset(arg0, arg1);
     }
@@ -665,10 +665,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code restriction}.</p>
      * <p>Classification: role=restriction</p>
      */
-    public static Pointer temporal_minus_values(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_minus_values(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_minus_values requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_minus_values requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_minus_values(arg0, arg1);
     }
@@ -679,10 +679,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_num_instants(Pointer arg0) {
+    public static int temporal_num_instants(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_num_instants requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_num_instants requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_num_instants(arg0);
     }
@@ -693,10 +693,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_num_sequences(Pointer arg0) {
+    public static int temporal_num_sequences(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_num_sequences requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_num_sequences requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_num_sequences(arg0);
     }
@@ -707,10 +707,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_num_timestamps(Pointer arg0) {
+    public static int temporal_num_timestamps(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_num_timestamps requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_num_timestamps requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_num_timestamps(arg0);
     }
@@ -721,10 +721,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_round(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_round(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_round requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_round requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_round(arg0, arg1);
     }
@@ -735,10 +735,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_scale_time(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_scale_time(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_scale_time requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_scale_time requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_scale_time(arg0, arg1);
     }
@@ -749,10 +749,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_segm_duration(Pointer arg0, Pointer arg1, int arg2, int arg3) {
+    public static jnr.ffi.Pointer temporal_segm_duration(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2, boolean arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_segm_duration requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_segm_duration requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_segm_duration(arg0, arg1, arg2, arg3);
     }
@@ -763,10 +763,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_segments(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_segments(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_segments requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_segments requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_segments(arg0, arg1);
     }
@@ -777,10 +777,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_sequence_n(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_sequence_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_sequence_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_sequence_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_sequence_n(arg0, arg1);
     }
@@ -791,10 +791,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_sequences(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_sequences(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_sequences requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_sequences requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_sequences(arg0, arg1);
     }
@@ -805,10 +805,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_set_interp(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer temporal_set_interp(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_set_interp requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_set_interp requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_set_interp(arg0, arg1);
     }
@@ -819,10 +819,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_shift_scale_time(Pointer arg0, Pointer arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer temporal_shift_scale_time(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_shift_scale_time requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_shift_scale_time requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_shift_scale_time(arg0, arg1, arg2);
     }
@@ -833,10 +833,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_shift_time(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_shift_time(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_shift_time requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_shift_time requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_shift_time(arg0, arg1);
     }
@@ -847,10 +847,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_simplify_dp(Pointer arg0, double arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_simplify_dp(jnr.ffi.Pointer arg0, double arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_simplify_dp requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_simplify_dp requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_simplify_dp(arg0, arg1, arg2);
     }
@@ -861,10 +861,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_simplify_max_dist(Pointer arg0, double arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_simplify_max_dist(jnr.ffi.Pointer arg0, double arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_simplify_max_dist requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_simplify_max_dist requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_simplify_max_dist(arg0, arg1, arg2);
     }
@@ -875,10 +875,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_simplify_min_dist(Pointer arg0, double arg1) {
+    public static jnr.ffi.Pointer temporal_simplify_min_dist(jnr.ffi.Pointer arg0, double arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_simplify_min_dist requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_simplify_min_dist requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_simplify_min_dist(arg0, arg1);
     }
@@ -889,10 +889,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_simplify_min_tdelta(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_simplify_min_tdelta(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_simplify_min_tdelta requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_simplify_min_tdelta requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_simplify_min_tdelta(arg0, arg1);
     }
@@ -903,10 +903,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_spans(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_spans(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_spans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_spans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_spans(arg0, arg1);
     }
@@ -917,10 +917,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_split_each_n_spans(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer temporal_split_each_n_spans(jnr.ffi.Pointer arg0, int arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_split_each_n_spans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_split_each_n_spans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_split_each_n_spans(arg0, arg1, arg2);
     }
@@ -931,10 +931,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_split_n_spans(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer temporal_split_n_spans(jnr.ffi.Pointer arg0, int arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_split_n_spans requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_split_n_spans requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_split_n_spans(arg0, arg1, arg2);
     }
@@ -945,10 +945,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_start_instant(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_start_instant(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_start_instant requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_start_instant requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_start_instant(arg0);
     }
@@ -959,10 +959,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_start_sequence(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_start_sequence(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_start_sequence requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_start_sequence requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_start_sequence(arg0);
     }
@@ -973,10 +973,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_start_timestamptz(Pointer arg0) {
+    public static java.time.OffsetDateTime temporal_start_timestamptz(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_start_timestamptz requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_start_timestamptz requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_start_timestamptz(arg0);
     }
@@ -987,10 +987,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_stops(Pointer arg0, double arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer temporal_stops(jnr.ffi.Pointer arg0, double arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_stops requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_stops requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_stops(arg0, arg1, arg2);
     }
@@ -1001,10 +1001,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static String temporal_subtype(Pointer arg0) {
+    public static java.lang.String temporal_subtype(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_subtype requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_subtype requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_subtype(arg0);
     }
@@ -1015,10 +1015,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_time(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_time(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_time requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_time requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_time(arg0);
     }
@@ -1029,10 +1029,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_time_bins(Pointer arg0, Pointer arg1, int arg2, Pointer arg3) {
+    public static jnr.ffi.Pointer temporal_time_bins(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, java.time.OffsetDateTime arg2, jnr.ffi.Pointer arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_time_bins requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_time_bins requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_time_bins(arg0, arg1, arg2, arg3);
     }
@@ -1043,10 +1043,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_time_split(Pointer arg0, Pointer arg1, int arg2, Pointer arg3, Pointer arg4) {
+    public static jnr.ffi.Pointer temporal_time_split(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, java.time.OffsetDateTime arg2, jnr.ffi.Pointer arg3, jnr.ffi.Pointer arg4) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_time_split requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_time_split requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_time_split(arg0, arg1, arg2, arg3, arg4);
     }
@@ -1057,10 +1057,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_timestamps(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_timestamps(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_timestamps requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_timestamps requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_timestamps(arg0, arg1);
     }
@@ -1071,12 +1071,12 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_timestamptz_n(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer temporal_timestamptz_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_timestamptz_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_timestamptz_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.temporal_timestamptz_n(arg0, arg1, arg2);
+        return GeneratedFunctions.temporal_timestamptz_n(arg0, arg1);
     }
 
     /**
@@ -1085,10 +1085,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_tprecision(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_tprecision(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, java.time.OffsetDateTime arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_tprecision requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_tprecision requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_tprecision(arg0, arg1, arg2);
     }
@@ -1099,10 +1099,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_tsample(Pointer arg0, Pointer arg1, int arg2, int arg3) {
+    public static jnr.ffi.Pointer temporal_tsample(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, java.time.OffsetDateTime arg2, int arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_tsample requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_tsample requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_tsample(arg0, arg1, arg2, arg3);
     }
@@ -1113,10 +1113,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer temporal_update(Pointer arg0, Pointer arg1, int arg2) {
+    public static jnr.ffi.Pointer temporal_update(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, boolean arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_update requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_update requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_update(arg0, arg1, arg2);
     }
@@ -1127,10 +1127,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int temporal_upper_inc(Pointer arg0) {
+    public static boolean temporal_upper_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_upper_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_upper_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_upper_inc(arg0);
     }
@@ -1141,10 +1141,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer temporal_extent_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_extent_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_extent_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_extent_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_extent_transfn(arg0, arg1);
     }
@@ -1155,10 +1155,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer temporal_merge_combinefn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_merge_combinefn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_merge_combinefn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_merge_combinefn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_merge_combinefn(arg0, arg1);
     }
@@ -1169,10 +1169,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer temporal_merge_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_merge_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_merge_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_merge_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_merge_transfn(arg0, arg1);
     }
@@ -1183,10 +1183,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer temporal_tagg_finalfn(Pointer arg0) {
+    public static jnr.ffi.Pointer temporal_tagg_finalfn(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_tagg_finalfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_tagg_finalfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_tagg_finalfn(arg0);
     }
@@ -1197,10 +1197,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code aggregate}.</p>
      * <p>Classification: role=aggregate</p>
      */
-    public static Pointer temporal_tcount_transfn(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer temporal_tcount_transfn(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_tcount_transfn requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_tcount_transfn requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_tcount_transfn(arg0, arg1);
     }
@@ -1211,10 +1211,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 2 temporals</p>
      */
-    public static int temporal_cmp(Pointer arg0, Pointer arg1) {
+    public static int temporal_cmp(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_cmp requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_cmp requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_cmp(arg0, arg1);
     }
@@ -1225,10 +1225,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 2 temporals</p>
      */
-    public static int temporal_eq(Pointer arg0, Pointer arg1) {
+    public static boolean temporal_eq(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_eq requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_eq requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_eq(arg0, arg1);
     }
@@ -1239,10 +1239,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 2 temporals</p>
      */
-    public static int temporal_ge(Pointer arg0, Pointer arg1) {
+    public static boolean temporal_ge(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_ge requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_ge requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_ge(arg0, arg1);
     }
@@ -1253,10 +1253,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 2 temporals</p>
      */
-    public static int temporal_gt(Pointer arg0, Pointer arg1) {
+    public static boolean temporal_gt(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_gt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_gt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_gt(arg0, arg1);
     }
@@ -1267,10 +1267,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 2 temporals</p>
      */
-    public static int temporal_le(Pointer arg0, Pointer arg1) {
+    public static boolean temporal_le(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_le requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_le requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_le(arg0, arg1);
     }
@@ -1281,10 +1281,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 2 temporals</p>
      */
-    public static int temporal_lt(Pointer arg0, Pointer arg1) {
+    public static boolean temporal_lt(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_lt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_lt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_lt(arg0, arg1);
     }
@@ -1295,10 +1295,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 2 temporals</p>
      */
-    public static int temporal_ne(Pointer arg0, Pointer arg1) {
+    public static boolean temporal_ne(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_ne requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_ne requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_ne(arg0, arg1);
     }
@@ -1309,10 +1309,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String temporal_as_hexwkb(Pointer arg0, byte arg1) {
+    public static java.lang.String temporal_as_hexwkb(jnr.ffi.Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_as_hexwkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_as_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_as_hexwkb(arg0, arg1);
     }
@@ -1323,10 +1323,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String temporal_as_mfjson(Pointer arg0, int arg1, int arg2, int arg3, String arg4) {
+    public static java.lang.String temporal_as_mfjson(jnr.ffi.Pointer arg0, boolean arg1, int arg2, int arg3, java.lang.String arg4) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_as_mfjson requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_as_mfjson requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_as_mfjson(arg0, arg1, arg2, arg3, arg4);
     }
@@ -1337,10 +1337,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer temporal_as_wkb(Pointer arg0, byte arg1) {
+    public static jnr.ffi.Pointer temporal_as_wkb(jnr.ffi.Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_as_wkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_as_wkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_as_wkb(arg0, arg1);
     }
@@ -1351,10 +1351,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer temporal_from_hexwkb(String arg0) {
+    public static jnr.ffi.Pointer temporal_from_hexwkb(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_from_hexwkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_from_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_from_hexwkb(arg0);
     }
@@ -1365,10 +1365,10 @@ public final class MeosOpsTemporal {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer temporal_from_wkb(Pointer arg0, long arg1) {
+    public static jnr.ffi.Pointer temporal_from_wkb(jnr.ffi.Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "temporal_from_wkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "temporal_from_wkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.temporal_from_wkb(arg0, arg1);
     }

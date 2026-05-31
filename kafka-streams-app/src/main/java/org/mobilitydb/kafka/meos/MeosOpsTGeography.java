@@ -21,10 +21,10 @@ public final class MeosOpsTGeography {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tgeography_to_tgeogpoint(Pointer arg0) {
+    public static jnr.ffi.Pointer tgeography_to_tgeogpoint(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tgeography_to_tgeogpoint requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tgeography_to_tgeogpoint requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tgeography_to_tgeogpoint(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsTGeography {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tgeography_to_tgeometry(Pointer arg0) {
+    public static jnr.ffi.Pointer tgeography_to_tgeometry(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tgeography_to_tgeometry requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tgeography_to_tgeometry requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tgeography_to_tgeometry(arg0);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsTGeography {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tgeography_from_mfjson(String arg0) {
+    public static jnr.ffi.Pointer tgeography_from_mfjson(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tgeography_from_mfjson requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tgeography_from_mfjson requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tgeography_from_mfjson(arg0);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsTGeography {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tgeography_in(String arg0) {
+    public static jnr.ffi.Pointer tgeography_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tgeography_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tgeography_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tgeography_in(arg0);
     }

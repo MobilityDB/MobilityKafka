@@ -21,10 +21,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer floatset_make(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer floatset_make(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_make(arg0, arg1);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer floatset_to_intset(Pointer arg0) {
+    public static jnr.ffi.Pointer floatset_to_intset(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_to_intset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_to_intset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_to_intset(arg0);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer floatset_ceil(Pointer arg0) {
+    public static jnr.ffi.Pointer floatset_ceil(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_ceil requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_ceil requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_ceil(arg0);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer floatset_degrees(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer floatset_degrees(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_degrees requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_degrees requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_degrees(arg0, arg1);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static double floatset_end_value(Pointer arg0) {
+    public static double floatset_end_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_end_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_end_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_end_value(arg0);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer floatset_floor(Pointer arg0) {
+    public static jnr.ffi.Pointer floatset_floor(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_floor requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_floor requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_floor(arg0);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer floatset_radians(Pointer arg0) {
+    public static jnr.ffi.Pointer floatset_radians(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_radians requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_radians requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_radians(arg0);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer floatset_shift_scale(Pointer arg0, double arg1, double arg2, int arg3, int arg4) {
+    public static jnr.ffi.Pointer floatset_shift_scale(jnr.ffi.Pointer arg0, double arg1, double arg2, boolean arg3, boolean arg4) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_shift_scale requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_shift_scale requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_shift_scale(arg0, arg1, arg2, arg3, arg4);
     }
@@ -133,10 +133,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static double floatset_start_value(Pointer arg0) {
+    public static double floatset_start_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_start_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_start_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_start_value(arg0);
     }
@@ -147,12 +147,12 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int floatset_value_n(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer floatset_value_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_value_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_value_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.floatset_value_n(arg0, arg1, arg2);
+        return GeneratedFunctions.floatset_value_n(arg0, arg1);
     }
 
     /**
@@ -161,10 +161,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer floatset_values(Pointer arg0) {
+    public static jnr.ffi.Pointer floatset_values(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_values requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_values requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_values(arg0);
     }
@@ -175,10 +175,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer floatset_in(String arg0) {
+    public static jnr.ffi.Pointer floatset_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_in(arg0);
     }
@@ -189,10 +189,10 @@ public final class MeosOpsFloatSet {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String floatset_out(Pointer arg0, int arg1) {
+    public static java.lang.String floatset_out(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "floatset_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "floatset_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.floatset_out(arg0, arg1);
     }

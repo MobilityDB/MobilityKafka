@@ -72,7 +72,7 @@ import java.util.Arrays;
  * <pre>{@code
  * mvn -q exec:java \
  *     -Dexec.mainClass=org.mobilitydb.kafka.meos.wirings.demo.MeosWiringsDemoTopology \
- *     -Dmobilityflink.meos.enabled=true
+ *     -Dmobilitykafka.meos.enabled=true
  * }</pre>
  */
 public final class MeosWiringsDemoTopology {
@@ -115,7 +115,7 @@ public final class MeosWiringsDemoTopology {
                             Pointer eventTbox = MeosOpsTBox.tbox_in(record.value());
                             Pointer newUnion = (prior == null)
                                     ? eventTbox
-                                    : MeosOpsFreeCore.union_tbox_tbox(prior, eventTbox, /*strict=*/0);
+                                    : MeosOpsFreeCore.union_tbox_tbox(prior, eventTbox, /*strict=*/false);
                             return new MeosBoundedStateProcessor.MeosStep<>(
                                     newUnion,
                                     record.withValue(MeosOpsTBox.tbox_out(newUnion, 6)));
@@ -144,7 +144,7 @@ public final class MeosWiringsDemoTopology {
                 MeosCrossStreamJoiner.joiner((vehAggWkt, queryWkt) -> {
                     Pointer aggTbox = MeosOpsTBox.tbox_in(vehAggWkt);
                     Pointer queryTbox = MeosOpsTBox.tbox_in(queryWkt);
-                    if (MeosOpsFreeCore.overlaps_tbox_tbox(aggTbox, queryTbox) != 0) {
+                    if (MeosOpsFreeCore.overlaps_tbox_tbox(aggTbox, queryTbox)) {
                         return "MATCH: agg=" + vehAggWkt + " query=" + queryWkt;
                     }
                     return null;
@@ -166,7 +166,7 @@ public final class MeosWiringsDemoTopology {
 
         if (!MeosOpsRuntime.MEOS_AVAILABLE) {
             LOG.warn("MEOS not available — topology built but not executed. "
-                    + "Set -Dmobilityflink.meos.enabled=true and ensure libmeos is loadable to run.");
+                    + "Set -Dmobilitykafka.meos.enabled=true and ensure libmeos is loadable to run.");
             return;
         }
 

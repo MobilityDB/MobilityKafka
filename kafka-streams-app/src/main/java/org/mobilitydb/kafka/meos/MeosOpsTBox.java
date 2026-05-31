@@ -21,10 +21,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer tbox_copy(Pointer arg0) {
+    public static jnr.ffi.Pointer tbox_copy(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_copy requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_copy requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_copy(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer tbox_make(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_make(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_make(arg0, arg1);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tbox_to_floatspan(Pointer arg0) {
+    public static jnr.ffi.Pointer tbox_to_floatspan(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_to_floatspan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_to_floatspan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_to_floatspan(arg0);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tbox_to_intspan(Pointer arg0) {
+    public static jnr.ffi.Pointer tbox_to_intspan(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_to_intspan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_to_intspan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_to_intspan(arg0);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer tbox_to_tstzspan(Pointer arg0) {
+    public static jnr.ffi.Pointer tbox_to_tstzspan(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_to_tstzspan requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_to_tstzspan requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_to_tstzspan(arg0);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int tbox_cmp(Pointer arg0, Pointer arg1) {
+    public static int tbox_cmp(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_cmp requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_cmp requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_cmp(arg0, arg1);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int tbox_eq(Pointer arg0, Pointer arg1) {
+    public static boolean tbox_eq(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_eq requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_eq requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_eq(arg0, arg1);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tbox_expand_time(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_expand_time(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_expand_time requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_expand_time requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_expand_time(arg0, arg1);
     }
@@ -133,10 +133,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int tbox_ge(Pointer arg0, Pointer arg1) {
+    public static boolean tbox_ge(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_ge requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_ge requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_ge(arg0, arg1);
     }
@@ -147,10 +147,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int tbox_gt(Pointer arg0, Pointer arg1) {
+    public static boolean tbox_gt(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_gt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_gt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_gt(arg0, arg1);
     }
@@ -161,10 +161,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_hash(Pointer arg0) {
+    public static int tbox_hash(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_hash requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_hash requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_hash(arg0);
     }
@@ -175,10 +175,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_hash_extended(Pointer arg0, int arg1) {
+    public static long tbox_hash_extended(jnr.ffi.Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_hash_extended requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_hash_extended(arg0, arg1);
     }
@@ -189,10 +189,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_hast(Pointer arg0) {
+    public static boolean tbox_hast(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_hast requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_hast requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_hast(arg0);
     }
@@ -203,10 +203,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_hasx(Pointer arg0) {
+    public static boolean tbox_hasx(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_hasx requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_hasx requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_hasx(arg0);
     }
@@ -217,10 +217,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int tbox_le(Pointer arg0, Pointer arg1) {
+    public static boolean tbox_le(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_le requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_le requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_le(arg0, arg1);
     }
@@ -231,10 +231,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int tbox_lt(Pointer arg0, Pointer arg1) {
+    public static boolean tbox_lt(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_lt requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_lt requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_lt(arg0, arg1);
     }
@@ -245,10 +245,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code predicate}.</p>
      * <p>Classification: predicate on 1 temporal</p>
      */
-    public static int tbox_ne(Pointer arg0, Pointer arg1) {
+    public static boolean tbox_ne(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_ne requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_ne requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_ne(arg0, arg1);
     }
@@ -259,10 +259,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tbox_round(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer tbox_round(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_round requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_round requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_round(arg0, arg1);
     }
@@ -273,10 +273,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer tbox_shift_scale_time(Pointer arg0, Pointer arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer tbox_shift_scale_time(jnr.ffi.Pointer arg0, jnr.ffi.Pointer arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_shift_scale_time requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_shift_scale_time requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_shift_scale_time(arg0, arg1, arg2);
     }
@@ -287,12 +287,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_tmax(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_tmax(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_tmax requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_tmax requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_tmax(arg0, arg1);
+        return GeneratedFunctions.tbox_tmax(arg0);
     }
 
     /**
@@ -301,12 +301,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_tmax_inc(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_tmax_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_tmax_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_tmax_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_tmax_inc(arg0, arg1);
+        return GeneratedFunctions.tbox_tmax_inc(arg0);
     }
 
     /**
@@ -315,12 +315,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_tmin(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_tmin(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_tmin requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_tmin requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_tmin(arg0, arg1);
+        return GeneratedFunctions.tbox_tmin(arg0);
     }
 
     /**
@@ -329,12 +329,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_tmin_inc(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_tmin_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_tmin_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_tmin_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_tmin_inc(arg0, arg1);
+        return GeneratedFunctions.tbox_tmin_inc(arg0);
     }
 
     /**
@@ -343,12 +343,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_xmax(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_xmax(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_xmax requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_xmax requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_xmax(arg0, arg1);
+        return GeneratedFunctions.tbox_xmax(arg0);
     }
 
     /**
@@ -357,12 +357,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_xmax_inc(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_xmax_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_xmax_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_xmax_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_xmax_inc(arg0, arg1);
+        return GeneratedFunctions.tbox_xmax_inc(arg0);
     }
 
     /**
@@ -371,12 +371,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_xmin(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_xmin(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_xmin requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_xmin requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_xmin(arg0, arg1);
+        return GeneratedFunctions.tbox_xmin(arg0);
     }
 
     /**
@@ -385,12 +385,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_xmin_inc(Pointer arg0, Pointer arg1) {
+    public static jnr.ffi.Pointer tbox_xmin_inc(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_xmin_inc requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_xmin_inc requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_xmin_inc(arg0, arg1);
+        return GeneratedFunctions.tbox_xmin_inc(arg0);
     }
 
     /**
@@ -399,10 +399,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tbox_as_hexwkb(Pointer arg0, byte arg1, Pointer arg2) {
+    public static java.lang.String tbox_as_hexwkb(jnr.ffi.Pointer arg0, byte arg1, jnr.ffi.Pointer arg2) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_as_hexwkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_as_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_as_hexwkb(arg0, arg1, arg2);
     }
@@ -413,10 +413,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tbox_as_wkb(Pointer arg0, byte arg1) {
+    public static jnr.ffi.Pointer tbox_as_wkb(jnr.ffi.Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_as_wkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_as_wkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_as_wkb(arg0, arg1);
     }
@@ -427,10 +427,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tbox_from_hexwkb(String arg0) {
+    public static jnr.ffi.Pointer tbox_from_hexwkb(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_from_hexwkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_from_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_from_hexwkb(arg0);
     }
@@ -441,10 +441,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tbox_from_wkb(Pointer arg0, long arg1) {
+    public static jnr.ffi.Pointer tbox_from_wkb(jnr.ffi.Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_from_wkb requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_from_wkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_from_wkb(arg0, arg1);
     }
@@ -455,10 +455,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer tbox_in(String arg0) {
+    public static jnr.ffi.Pointer tbox_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_in(arg0);
     }
@@ -469,10 +469,10 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tbox_out(Pointer arg0, int arg1) {
+    public static java.lang.String tbox_out(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "tbox_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "tbox_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.tbox_out(arg0, arg1);
     }

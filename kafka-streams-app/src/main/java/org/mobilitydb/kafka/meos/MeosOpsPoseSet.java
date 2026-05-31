@@ -21,10 +21,10 @@ public final class MeosOpsPoseSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: constructor of instant/scalar</p>
      */
-    public static Pointer poseset_make(Pointer arg0, int arg1) {
+    public static jnr.ffi.Pointer poseset_make(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "poseset_make requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "poseset_make requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.poseset_make(arg0, arg1);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsPoseSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer poseset_end_value(Pointer arg0) {
+    public static jnr.ffi.Pointer poseset_end_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "poseset_end_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "poseset_end_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.poseset_end_value(arg0);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsPoseSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer poseset_start_value(Pointer arg0) {
+    public static jnr.ffi.Pointer poseset_start_value(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "poseset_start_value requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "poseset_start_value requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.poseset_start_value(arg0);
     }
@@ -63,12 +63,12 @@ public final class MeosOpsPoseSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int poseset_value_n(Pointer arg0, int arg1, Pointer arg2) {
+    public static jnr.ffi.Pointer poseset_value_n(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "poseset_value_n requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "poseset_value_n requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.poseset_value_n(arg0, arg1, arg2);
+        return GeneratedFunctions.poseset_value_n(arg0, arg1);
     }
 
     /**
@@ -77,10 +77,10 @@ public final class MeosOpsPoseSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer poseset_values(Pointer arg0) {
+    public static jnr.ffi.Pointer poseset_values(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "poseset_values requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "poseset_values requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.poseset_values(arg0);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsPoseSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer poseset_in(String arg0) {
+    public static jnr.ffi.Pointer poseset_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "poseset_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "poseset_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.poseset_in(arg0);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsPoseSet {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String poseset_out(Pointer arg0, int arg1) {
+    public static java.lang.String poseset_out(jnr.ffi.Pointer arg0, int arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "poseset_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "poseset_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.poseset_out(arg0, arg1);
     }

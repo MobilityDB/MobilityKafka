@@ -21,10 +21,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code conversion}.</p>
      * <p>Classification: role=conversion</p>
      */
-    public static Pointer intspanset_to_floatspanset(Pointer arg0) {
+    public static jnr.ffi.Pointer intspanset_to_floatspanset(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_to_floatspanset requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_to_floatspanset requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_to_floatspanset(arg0);
     }
@@ -35,10 +35,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer intspanset_bins(Pointer arg0, int arg1, int arg2, Pointer arg3) {
+    public static jnr.ffi.Pointer intspanset_bins(jnr.ffi.Pointer arg0, int arg1, int arg2, jnr.ffi.Pointer arg3) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_bins requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_bins requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_bins(arg0, arg1, arg2, arg3);
     }
@@ -49,10 +49,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int intspanset_lower(Pointer arg0) {
+    public static int intspanset_lower(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_lower requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_lower requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_lower(arg0);
     }
@@ -63,10 +63,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static Pointer intspanset_shift_scale(Pointer arg0, int arg1, int arg2, int arg3, int arg4) {
+    public static jnr.ffi.Pointer intspanset_shift_scale(jnr.ffi.Pointer arg0, int arg1, int arg2, boolean arg3, boolean arg4) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_shift_scale requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_shift_scale requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_shift_scale(arg0, arg1, arg2, arg3, arg4);
     }
@@ -77,10 +77,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int intspanset_upper(Pointer arg0) {
+    public static int intspanset_upper(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_upper requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_upper requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_upper(arg0);
     }
@@ -91,10 +91,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int intspanset_width(Pointer arg0, int arg1) {
+    public static int intspanset_width(jnr.ffi.Pointer arg0, boolean arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_width requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_width requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_width(arg0, arg1);
     }
@@ -105,10 +105,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code constructor}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static Pointer intspanset_in(String arg0) {
+    public static jnr.ffi.Pointer intspanset_in(java.lang.String arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_in requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_in requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_in(arg0);
     }
@@ -119,10 +119,10 @@ public final class MeosOpsIntSpanSet {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String intspanset_out(Pointer arg0) {
+    public static java.lang.String intspanset_out(jnr.ffi.Pointer arg0) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
-                "intspanset_out requires libmeos — set -Dmobilityflink.meos.enabled=true");
+                "intspanset_out requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
         return GeneratedFunctions.intspanset_out(arg0);
     }
