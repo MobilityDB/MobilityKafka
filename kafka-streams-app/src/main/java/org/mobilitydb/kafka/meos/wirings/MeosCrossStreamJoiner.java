@@ -31,7 +31,7 @@ import java.io.Serializable;
 
 /**
  * Kafka Streams wiring for the {@code cross-stream} streaming tier of
- * the generated {@code org.mobilitydb.kafka.meos.MeosOps*} facades.
+ * the generated {@code org.mobilitydb.meos.MeosOps*} facades.
  *
  * <p>The {@code cross-stream} tier (140 of 2,097 emitted methods per
  * v4 baseline) is pairwise across two pre-keyed streams within a

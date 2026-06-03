@@ -39,8 +39,8 @@ import org.apache.kafka.streams.kstream.TimeWindows;
 import org.apache.kafka.streams.processor.api.ProcessorSupplier;
 import org.apache.kafka.streams.state.KeyValueStore;
 import org.apache.kafka.streams.state.Stores;
-import org.mobilitydb.kafka.meos.MeosOpsFreeCore;
-import org.mobilitydb.kafka.meos.MeosOpsTBox;
+import org.mobilitydb.meos.MeosOpsFreeCore;
+import org.mobilitydb.meos.MeosOpsTBox;
 import org.mobilitydb.kafka.meos.wirings.MeosBoundedStateProcessor;
 import org.mobilitydb.kafka.meos.wirings.MeosCrossStreamJoiner;
 import org.mobilitydb.kafka.meos.wirings.MeosOpsRuntime;
@@ -97,7 +97,7 @@ import java.util.Arrays;
  * <pre>{@code
  * mvn -q exec:java \
  *     -Dexec.mainClass=org.mobilitydb.kafka.meos.wirings.demo.MeosWiringsDemoTopology \
- *     -Dmobilitykafka.meos.enabled=true
+ *     -Dmeos.enabled=true
  * }</pre>
  */
 public final class MeosWiringsDemoTopology {
@@ -191,7 +191,7 @@ public final class MeosWiringsDemoTopology {
 
         if (!MeosOpsRuntime.MEOS_AVAILABLE) {
             LOG.warn("MEOS not available — topology built but not executed. "
-                    + "Set -Dmobilitykafka.meos.enabled=true and ensure libmeos is loadable to run.");
+                    + "Set -Dmeos.enabled=true and ensure libmeos is loadable to run.");
             return;
         }
 

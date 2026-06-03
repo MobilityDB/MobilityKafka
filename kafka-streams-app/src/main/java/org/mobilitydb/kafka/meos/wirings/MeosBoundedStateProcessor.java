@@ -35,7 +35,7 @@ import java.io.Serializable;
 
 /**
  * Kafka Streams wiring for the {@code bounded-state} streaming tier of
- * the generated {@code org.mobilitydb.kafka.meos.MeosOps*} facades.
+ * the generated {@code org.mobilitydb.meos.MeosOps*} facades.
  *
  * <p>Wraps any {@code bounded-state} MeosOps method (per the v4 baseline:
  * 797 of 2,097 emitted methods — 513 OO-classified + 284 free-fn) as a

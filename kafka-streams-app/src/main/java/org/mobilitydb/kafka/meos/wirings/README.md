@@ -1,7 +1,7 @@
 # Kafka Streams wirings for the generated MEOS facades
 
 This package supplies thin, generic Kafka-Streams-DSL wrappers around
-the generated `org.mobilitydb.kafka.meos.MeosOps*` facades, organized
+the generated `org.mobilitydb.meos.MeosOps*` facades, organized
 per **streaming tier** (per
 `tools/codegen/meos-ops-manifest.json` + `tools/codegen/meos-ops-free-manifest.json`).
 
@@ -52,7 +52,7 @@ KStream<String, TboxPair> overlapping = stream.filter(
 ```
 
 `MEOS_AVAILABLE` is probed once per JVM by the shared
-`org.mobilitydb.kafka.meos.MeosOpsRuntime` static initializer (the same
+`org.mobilitydb.meos.MeosOpsRuntime` static initializer (the same
 runtime the codegen package uses). When unavailable, every generated
 method throws `UnsupportedOperationException` with a clear message —
 the wirings layer doesn't have to handle that itself.
@@ -75,7 +75,7 @@ Run with:
 ```bash
 mvn -q exec:java \
     -Dexec.mainClass=org.mobilitydb.kafka.meos.wirings.demo.MeosWiringsDemoTopology \
-    -Dmobilitykafka.meos.enabled=true
+    -Dmeos.enabled=true
 ```
 
 The demo uses `TopologyTestDriver` (kafka-streams-test-utils) — no

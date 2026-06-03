@@ -25,11 +25,11 @@
 
 package org.mobilitydb.kafka.meos.wirings;
 
-import org.mobilitydb.kafka.meos.MeosOpsTBox;
+import org.mobilitydb.meos.MeosOpsTBox;
 
 /**
  * Convenience re-export of the shared
- * {@code org.mobilitydb.kafka.meos.MeosOpsRuntime.MEOS_AVAILABLE} flag
+ * {@code org.mobilitydb.meos.MeosOpsRuntime.MEOS_AVAILABLE} flag
  * for the wirings layer.
  *
  * <p>The codegen package already supplies the single
@@ -37,7 +37,7 @@ import org.mobilitydb.kafka.meos.MeosOpsTBox;
  * once per JVM and exposes the result via every {@code MeosOps*.MEOS_AVAILABLE}
  * accessor. This class is just a wirings-package alias that lets wiring
  * code stay package-local without pulling in the full
- * {@code org.mobilitydb.kafka.meos.MeosOpsRuntime} type for what should
+ * {@code org.mobilitydb.meos.MeosOpsRuntime} type for what should
  * be a single boolean read.
  *
  * <p>The flag is checked inside every generated MeosOps method's body

@@ -25,6 +25,8 @@
 
 package org.mobilitydb.kafka.meos;
 
+import org.mobilitydb.meos.*;
+
 import functions.GeneratedFunctions;
 import jnr.ffi.Pointer;
 import org.junit.jupiter.api.AfterAll;
@@ -40,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * correct results. Compiled and run when the build includes the npoint family
  * (the default; dropped with {@code -DNPOINT=OFF}).
  */
-@EnabledIfSystemProperty(named = "mobilitykafka.meos.enabled", matches = "true")
+@EnabledIfSystemProperty(named = "meos.enabled", matches = "true")
 class MeosNpointSmokeTest {
 
     @BeforeAll

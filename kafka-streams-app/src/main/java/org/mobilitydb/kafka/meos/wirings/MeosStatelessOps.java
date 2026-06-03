@@ -32,7 +32,7 @@ import java.io.Serializable;
 
 /**
  * Kafka Streams DSL wirings for the {@code stateless} streaming tier of
- * the generated {@code org.mobilitydb.kafka.meos.MeosOps*} facades.
+ * the generated {@code org.mobilitydb.meos.MeosOps*} facades.
  *
  * <p>Kafka Streams' DSL is lambda-driven — {@code KStream.mapValues}
  * and {@code KStream.filter} accept {@link ValueMapper} and

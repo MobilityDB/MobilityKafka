@@ -32,7 +32,7 @@ import java.io.Serializable;
 
 /**
  * Kafka Streams wiring for the {@code windowed} streaming tier of the
- * generated {@code org.mobilitydb.kafka.meos.MeosOps*} facades.
+ * generated {@code org.mobilitydb.meos.MeosOps*} facades.
  *
  * <p>The {@code windowed} tier (per the v4 baseline: 161 of 2,097
  * emitted methods) emits one MEOS-derived value per window. Canonical
