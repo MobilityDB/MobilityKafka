@@ -53,6 +53,8 @@ public class Query4_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -198,7 +200,7 @@ public class Query4_Main {
                             continue;
                         }
 
-                        // Paper Line 2: tgeo_at_stbox(lon, lat, ts, stbox)
+                        // tgeo_at_stbox(lon, lat, ts, stbox)
                         // Returns null  → point is outside the STBox → skip.
                         // Returns non-null → point is inside the STBox → keep.
                         // border_inc=true means the box boundaries are inclusive ([xmin,xmax],
@@ -217,7 +219,7 @@ public class Query4_Main {
                     // Sort by timestamp: required by tgeogpoint_in for sequence construction.
                     surviving.sort(Comparator.comparingLong(SNCBData::getTimestamp));
 
-                    // Paper Line 4: temporal_sequence(lon, lat, ts).
+                    // temporal_sequence(lon, lat, ts).
                     StringBuilder seq = new StringBuilder("{");
                     for (int i = 0; i < surviving.size(); i++) {
                         SNCBData event = surviving.get(i);

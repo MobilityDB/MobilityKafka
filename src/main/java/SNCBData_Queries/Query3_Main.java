@@ -49,6 +49,8 @@ public class Query3_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -141,7 +143,7 @@ public class Query3_Main {
 
                     String[] rows = record.value().toString().split(";");
 
-                    // Step 1: collect and sort by timestamp.
+                    // Collect and sort by timestamp.
                     // MEOS tgeogpoint_in requires instants in strictly increasing temporal order;
                     // Flink does not guarantee arrival order within a window.
                     List<SNCBData> sorted = new ArrayList<>();
@@ -150,7 +152,7 @@ public class Query3_Main {
 
                     if (sorted.isEmpty()) return;
 
-                    // Step 2 & 3: build the sequence literal: {POINT(lon lat)@ts, ...}
+                    // Build the sequence literal: {POINT(lon lat)@ts, ...}
                     // This is the WKT representation of a tgeogpoint TSequence
                     StringBuilder seq = new StringBuilder("{");
                     for (int i = 0; i < sorted.size(); i++) {
@@ -161,7 +163,7 @@ public class Query3_Main {
                     }
                     seq.append("}");
 
-                    // Step 4: parse the sequence into a native MEOS tgeogpoint pointer.
+                    // Parse the sequence into a native MEOS tgeogpoint pointer.
                     // tgeogpoint_in accepts both single instants ("POINT(lon lat)@ts") and sequences
                     // ("{POINT(...)@ts,...}"). Here we always pass a sequence.
                     Pointer trajectory = functions.tgeogpoint_in(seq.toString());
@@ -170,7 +172,7 @@ public class Query3_Main {
                         return;
                     }
 
-                    // Step 5: serialise the MEOS pointer back to a human-readable WKT string.
+                    // Serialize the MEOS pointer back to a human-readable WKT string.
                     // tspatial_as_ewkt(pointer, maxdd) converts any temporal spatial type to EWKT
                     // (WKT with SRID prefix), producing human-readable "POINT(lon lat)@ts" output.
                     // maxdd=6 gives 6 decimal places.

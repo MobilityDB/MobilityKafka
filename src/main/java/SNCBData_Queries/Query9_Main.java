@@ -74,6 +74,7 @@ public class Query9_Main {
                             gps2,
                             (key, value, aggregate) -> aggregate + "GPS2:" + value + ";"
                     )
+                    //10 seconds tumbling window with a 10 seconds watermark :
                     .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)))
                     .aggregate(
                             () -> ""

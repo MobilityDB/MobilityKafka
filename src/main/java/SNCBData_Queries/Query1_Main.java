@@ -58,6 +58,8 @@ public class Query1_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -176,8 +178,7 @@ public class Query1_Main {
                         for (int i = 0; i < hazardZones.length; i++) {
                             if (hazardZones[i] == null) continue;
 
-                            // edwithin_tgeo_geo returns 1 if tpoint is within distanceMeters of the
-                            // zone polygon at any instant — implements paper Line 2.
+                            // edwithin_tgeo_geo returns 1 if tpoint is within distanceMeters of the zone polygon at any instant
                             int within = functions.edwithin_tgeo_geo(
                                     tpoint, hazardZones[i], distanceMeters);
 

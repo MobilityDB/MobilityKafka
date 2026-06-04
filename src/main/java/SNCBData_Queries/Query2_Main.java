@@ -53,6 +53,8 @@ public class Query2_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -178,7 +180,7 @@ public class Query2_Main {
                             continue;
                         }
 
-                        // Paper Line 2: eintersects_tgeo_geo(lon, lat, ts, INPolygons) == 0
+                        // eintersects_tgeo_geo(lon, lat, ts, INPolygons) == 0
                         // Skip the event if it intersects any maintenance area.
                         // eintersects_tgeo_geo returns 1 if the temporal point ever intersects the
                         // polygon, 0 otherwise. We keep only non-intersecting points (== 0).
@@ -201,11 +203,11 @@ public class Query2_Main {
 
                     if (faValues.isEmpty() || ffValues.isEmpty()) return; // no surviving events in this window
 
-                    // Paper Line 4: variation(FA) and variation(FF): statistical variance
+                    // variation(FA) and variation(FF): statistical variance
                     double varFA = variance(faValues);
                     double varFF = variance(ffValues);
 
-                    // Paper Line 5: varFA > 0.6 && varFF <= 0.5
+                    // varFA > 0.6 && varFF <= 0.5
                     if (varFA > varFaThreshold && varFF <= varFfThreshold) {
                         String alert = String.format(
                                 "[ALERT][Q2] DeviceID=%-12s | varFA=%6.4f bar² (>%.1f) | varFF=%6.4f bar² (<=%.1f)"

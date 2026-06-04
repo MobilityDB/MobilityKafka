@@ -44,6 +44,8 @@ public class Query9_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -71,6 +73,7 @@ public class Query9_Main {
                             gps2,
                             (key, value, aggregate) -> aggregate + "GPS2:" + value + ";"
                     )
+                    //10 seconds tumbling window with a 10 seconds watermark :
                     .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)))
                     .aggregate(
                             () -> ""
@@ -173,7 +176,7 @@ public class Query9_Main {
                         geoRights.add(geo);
                     }
 
-                    // Step 1: cross-product with mmsi1 != mmsi2, keeping min dist per (mmsi1, mmsi2).
+                    // cross-product with mmsi1 != mmsi2, keeping min dist per (mmsi1, mmsi2).
                     //
                     // Unlike Query 7 (mmsi1 < mmsi2), here we keep BOTH (A,B) and (B,A) because
                     // A's kNN list and B's kNN list are computed independently.
@@ -192,7 +195,7 @@ public class Query9_Main {
                             Pointer geoRight = geoRights.get(j);
                             if (geoRight == null) continue;
 
-                            // Paper Line 2: device_id != device_id2
+                            // device_id != device_id2
                             if (left.getMmsi() == right.getMmsi()) continue;
 
                             double dist = functions.geog_distance(geoLeft, geoRight);
@@ -209,7 +212,7 @@ public class Query9_Main {
                     }
                     if (minDistMap.isEmpty()) return;
 
-                    // Step 2: groupBy device_id (paper Line 5):
+                    // groupBy device_id :
                     // Build a per-mmsi1 list of (mmsi2, dist) entries.
                     Map<Integer, List<double[]>> byDevice = new HashMap<>();
                     for (double[] entry : minDistMap.values()) {
@@ -217,8 +220,8 @@ public class Query9_Main {
                         byDevice.computeIfAbsent(mmsi1, x -> new ArrayList<>()).add(entry);
                     }
 
-                    // Step 3: knn_agg(mindist, device_id2, k) (paper Line 6):
-                    // For each device, sort by dist ascending and keep the k nearest neighbours.
+                    // knn_agg(mindist, device_id2, k) :
+                    // For each device, sort by dist ascending and keep the k nearest neighbors.
                     for (Map.Entry<Integer, List<double[]>> deviceEntry : byDevice.entrySet()) {
                         int          mmsi1     = deviceEntry.getKey();
                         List<double[]> neighbours = deviceEntry.getValue();

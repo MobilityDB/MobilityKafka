@@ -43,6 +43,8 @@ public class Query7_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -101,6 +103,7 @@ public class Query7_Main {
             }
         }
     }
+
     // Internal class for the join process
     public static class ClosestPairsCoGroupFunction implements ProcessorSupplier<String, Object, String, String> {
 
@@ -183,7 +186,7 @@ public class Query7_Main {
                             Pointer geoRight = geoRights.get(j);
                             if (geoRight == null) continue;
 
-                            // Paper Line 2: device_id < device_id2
+                            // device_id < device_id2
                             if (left.getMmsi() >= right.getMmsi()) continue;
 
                             double dist = functions.geog_distance(geoLeft, geoRight);

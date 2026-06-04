@@ -110,9 +110,9 @@ jobs:
           # - query: 8
           #   alert_pattern: "[Q8]"
           #   csv: ais_instants.csv
-          # - query: 9
-          #   alert_pattern: "[Q9]"
-          #   csv: ais_instants.csv
+          - query: 9
+            alert_pattern: "[Q9]"
+            csv: ais_instants.csv
       fail-fast: false   # ne pas annuler les autres queries si une échoue
 
     name: "Integration test — Query ${{ matrix.query }}"

@@ -69,6 +69,8 @@ public class Query4_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -127,7 +129,7 @@ public class Query4_Main {
         /**
          * Parsed STBox pointer. Initialised once in init() via {@code stbox_make()}
          * and reused across all window invocations since construction is expensive and the box
-         * never changes. Declared transient because JNR-FFI Pointer objects are not serialisable.
+         * never changes. Declared transient because JNR-FFI Pointer objects are not serializable.
          */
         private Pointer stbox;
 
@@ -160,14 +162,15 @@ public class Query4_Main {
                     functions.meos_initialize_timezone("UTC");
                     functions.meos_initialize_error_handler(errorHandler);
 
-                    // stbox_make parameters:
-                    //   hasx=true   → include spatial (XY) dimensions
-                    //   hasz=false  → no Z (altitude) dimension
-                    //   geodetic=true → geography/WGS-84, consistent with tgeogpoint_in
-                    //   srid=4326   → WGS-84
-                    //   xmin/xmax/ymin/ymax → spatial bounds (lon/lat in degrees)
-                    //   zmin/zmax=0 → unused (hasz=false)
-                    //   s           → temporal span pointer (tstzspan)
+                    /* stbox_make parameters:
+                       hasx=true   → include spatial (XY) dimensions
+                       hasz=false  → no Z (altitude) dimension
+                       geodetic=true → geography/WGS-84, consistent with tgeogpoint_in
+                       srid=4326   → WGS-84
+                       xmin/xmax/ymin/ymax → spatial bounds (lon/lat in degrees)
+                       zmin/zmax=0 → unused (hasz=false)
+                       s           → temporal span pointer (tstzspan)
+                    */
                     Pointer tspan = functions.tstzspan_in(tspanLiteral);
                     if (tspan == null) {
                         log.error("tstzspan_in returned null for: {}", tspanLiteral);
@@ -213,11 +216,12 @@ public class Query4_Main {
                             continue;
                         }
 
-                        // Paper Line 2: tgeo_at_stbox(lon, lat, ts, stbox)
-                        // Returns null  → point is outside the STBox → skip.
-                        // Returns non-null → point is inside the STBox → keep.
-                        // border_inc=true means the box boundaries are inclusive ([xmin,xmax],
-                        // [ymin,ymax], [tsmin,tsmax]), matching the paper's closed-interval notation.
+                        /* tgeo_at_stbox(lon, lat, ts, stbox)
+                         Returns null  → point is outside the STBox → skip.
+                         Returns non-null → point is inside the STBox → keep.
+                         border_inc=true means the box boundaries are inclusive ([xmin,xmax],
+                         [ymin,ymax], [tsmin,tsmax]), matching the paper's closed-interval notation.
+                        */
                         Pointer restricted = functions.tgeo_at_stbox(tpoint, stbox, true);
                         if (restricted == null) {
                             log.debug("MMSI={} skipped: point outside STBox at ts={}", mmsi, ts);
@@ -232,7 +236,7 @@ public class Query4_Main {
                     // Sort by timestamp: required by tgeogpoint_in for sequence construction.
                     surviving.sort(Comparator.comparingLong(AISData::getTimestamp));
 
-                    // Paper Line 4: temporal_sequence(lon, lat, ts).
+                    // temporal_sequence(lon, lat, ts).
                     StringBuilder seq = new StringBuilder("{");
                     for (int i = 0; i < surviving.size(); i++) {
                         AISData event = surviving.get(i);

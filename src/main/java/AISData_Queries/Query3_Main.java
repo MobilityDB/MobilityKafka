@@ -49,6 +49,8 @@ public class Query3_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -170,7 +172,7 @@ public class Query3_Main {
                         return;
                     }
 
-                    // Step 5: serialise the MEOS pointer back to a human-readable WKT string.
+                    // Step 5: serialize the MEOS pointer back to a human-readable WKT string.
                     // tspatial_as_ewkt(pointer, maxdd) converts any temporal spatial type to EWKT
                     // (WKT with SRID prefix), producing human-readable "POINT(lon lat)@ts" output.
                     // maxdd=6 gives 6 decimal places.

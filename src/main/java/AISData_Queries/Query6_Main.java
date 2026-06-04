@@ -41,6 +41,8 @@ public class Query6_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -154,7 +156,7 @@ public class Query6_Main {
 
                     double mindist = functions.geog_distance(geoLeft, geoRight);
 
-                    // Paper Line 5: filter(lat > 0.0): keep only pairs where left-side lat is positive.
+                    // filter(lat > 0.0): keep only pairs where left-side lat is positive.
                     // All AIS positions in this dataset are in the Northern Hemisphere (~55–58°N),
                     // so all pairs pass this filter.
                     if (left.getLat() <= 0.0) return ;
