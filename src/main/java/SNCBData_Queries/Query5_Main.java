@@ -61,6 +61,8 @@ public class Query5_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -77,7 +79,7 @@ public class Query5_Main {
                     })
                     .groupByKey()
                     //45 seconds sliding (hopping) window with 5 seconds steps and a 10 seconds watermark :
-                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)).advanceBy(Duration.ofSeconds(5)))
+                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(45), Duration.ofSeconds(10)).advanceBy(Duration.ofSeconds(5)))
                     .aggregate(
                             () -> "",  // 1. initializer: start with empty string
                             (key, value, aggregate) -> aggregate.isEmpty() ? value : aggregate + ";" + value, // 2. aggregator: append rows separated by ";"
@@ -111,6 +113,14 @@ public class Query5_Main {
         }
     }
 
+    // =========================================================================
+    // V1: Geofence filter + WKT StringBuilder + tgeogpoint_in
+    // =========================================================================
+
+    /**
+     * Filters events through the geofence, accumulates survivors in a WKT string,
+     * and calls {@code tgeogpoint_in()} once to build the final trajectory.
+     */
     private static class HighSpeedAlertV1_WKT implements ProcessorSupplier<Windowed<String>, Object, String, String> {
 
         private final String geofenceWkt;
@@ -187,7 +197,7 @@ public class Query5_Main {
                             continue;
                         }
 
-                        // Paper Line 2: edwithin_tgeo_geo(lon, lat, ts, POLYGON, 1) == 1
+                        // edwithin_tgeo_geo(lon, lat, ts, POLYGON, 1) == 1
                         // Distance=1m is effectively an intersection test.
                         if (functions.edwithin_tgeo_geo(tpoint, geofence, geofenceDistMeters) != 1) {
                             log.debug("DeviceID={} skipped: outside geofence at ts={}", device_id, ts);
@@ -201,7 +211,7 @@ public class Query5_Main {
 
                     surviving.sort(Comparator.comparingLong(SNCBData::getTimestamp));
 
-                    // Paper Line 5: three aggregations computation
+                    // Three aggregations computation :
 
                     // (a) temporal_sequence(lon, lat, ts).
                     StringBuilder seq = new StringBuilder("{");
@@ -225,7 +235,7 @@ public class Query5_Main {
 
                     double avgSpeedMs = speedSumMs / surviving.size();
 
-                    // Paper Line 6: (avg_speed > 50) || (min_speed > 20)
+                    // (avg_speed > 50) || (min_speed > 20)
                     // OR condition: alert if either aggregate crosses its threshold.
                     if (avgSpeedMs <= avgSpeedThresholdMs && minSpeedMs <= minSpeedThresholdMs) return;
 

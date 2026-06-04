@@ -77,9 +77,9 @@
                                 <manifest>
                                     <!--Modify with the name of the Example class you want to run-->
                                     <!--
-                                    <mainClass>SNCBData_Queries.Query9_Main</mainClass>
-                                    -->
                                     <mainClass>AISData_Queries.Query5_Main</mainClass>
+                                    -->
+                                    <mainClass>SNCBData_Queries.Query5_Main</mainClass>
 
                                 </manifest>
                             </archive>
