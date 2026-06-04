@@ -72,7 +72,7 @@ RUN mvn install:install-file \
     -Dversion=1.0-SNAPSHOT \
     -Dpackaging=jar
 RUN cd /build \
-    && mvn clean package -DskipTests -DqueryMainClass="AISData_Queries.Query8_Main" \
+    && mvn clean package -DskipTests -DqueryMainClass="SNCBData_Queries.Query8_Main" \
     && mkdir -p /app \
     && cp target/MobilityKafka-1.0-SNAPSHOT-jar-with-dependencies.jar /app/kafka2postgres.jar
 

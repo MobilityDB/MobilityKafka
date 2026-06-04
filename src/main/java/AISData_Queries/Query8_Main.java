@@ -50,6 +50,8 @@ public class Query8_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -65,8 +67,8 @@ public class Query8_Main {
                         return new KeyValue<>(mmsi, value); // set mmsi as key, keep full row as value
                     })
                     .groupByKey()
-                    //45 seconds sliding (hopping) window with 5 seconds steps and a 10 seconds watermark :
-                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)).advanceBy(Duration.ofSeconds(5)))
+                    //10 seconds tumbling window with a 10 seconds watermark :
+                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)))
                     .aggregate(
                             () -> "",  // 1. initializer: start with empty string
                             (key, value, aggregate) -> aggregate.isEmpty() ? value : aggregate + ";" + value, // 2. aggregator: append rows separated by ";"
@@ -143,7 +145,7 @@ public class Query8_Main {
 
                     String[] rows = record.value().toString().split(";");
 
-                    // 1. Collect and sort
+                    // Collect and sort
                     List<AISData> sorted = new ArrayList<>();
                     for (String aisData : rows){
                         AISData event = AISData.fromCsv(aisData);
@@ -154,7 +156,7 @@ public class Query8_Main {
 
                     jnr.ffi.Runtime runtime = jnr.ffi.Runtime.getSystemRuntime();
 
-                    // 2. Single-point case: EKF not applicable, emit raw point directly.
+                    // Single-point case: EKF not applicable, emit raw point directly.
                     if (sorted.size() < 2) {
                         AISData event = sorted.get(0);
                         String wkt   = String.format("POINT(%f %f)@%s",
@@ -170,14 +172,14 @@ public class Query8_Main {
                                 "[EKF-V2][Q8] MMSI=%-12s | points=1 | EKF skipped (single point)"
                                         + " | window [%s - %s]%n"
                                         + "             raw=cleaned: %s",
-                                mmsi, windowStart, windowEnd,
+                                mmsi, millisToTimestamp(windowStart), millisToTimestamp(windowEnd),
                                 functions.tspatial_as_ewkt(singleSeq, 6));
                         log.info(result);
                         context.forward(new Record<>(mmsi, result, record.timestamp()));
                         return;
                     }
 
-                    // 3. Build tgeompoint instants via tgeompoint_in (WKT string).
+                    // Build tgeompoint instants via tgeompoint_in (WKT string).
                     List<Pointer> instants = new ArrayList<>(sorted.size());
                     for (AISData event : sorted) {
                         String ts   = millisToTimestamp(event.getTimestamp());
@@ -191,7 +193,7 @@ public class Query8_Main {
                     }
                     if (instants.size() < 2) return;
 
-                    // 4. Assemble raw tgeompoint sequence.
+                    // Assemble raw tgeompoint sequence.
                     Pointer ptrArray = Memory.allocate(runtime, Math.toIntExact((long) instants.size() * Long.BYTES));
                     for (int i = 0; i < instants.size(); i++) {
                         ptrArray.putPointer((long) i * Long.BYTES, instants.get(i));
@@ -203,7 +205,7 @@ public class Query8_Main {
                         return;
                     }
 
-                    // 5. Apply MEOS native Extended Kalman Filter.
+                    // Apply MEOS native Extended Kalman Filter.
                     Pointer cleanedSeq = functions.temporal_ext_kalman_filter(rawSeq, gate, q, r, dropOutliers);
                     if (cleanedSeq == null) {
                         log.warn("[EKF-V2] temporal_ext_kalman_filter returned null for MMSI={} "

@@ -65,7 +65,7 @@ services:
   query-app:
     build:
       context: .
-      #dockerfile: Dockerfile_q8_meos_kalman
+      dockerfile: Dockerfile_q8_meos_kalman
     depends_on:
       kafka-setup:
         condition: service_completed_successfully
