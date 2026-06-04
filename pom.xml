@@ -91,7 +91,7 @@
                 </executions>
             </plugin>
 
-            <!--plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.12.1</version>
@@ -101,7 +101,7 @@
                         <exclude>SNCBData_Queries/Query8_Main.java</exclude>
                     </excludes>
                 </configuration>
-            </plugin-->
+            </plugin>
 
             <!-- Java Compiler -->
             <plugin>
