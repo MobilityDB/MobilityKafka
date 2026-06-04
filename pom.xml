@@ -64,6 +64,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -78,7 +79,7 @@
                                     <!--
                                     <mainClass>SNCBData_Queries.Query9_Main</mainClass>
                                     -->
-                                    <mainClass>AISData_Queries.Query9_Main</mainClass>
+                                    <mainClass>AISData_Queries.Query5_Main</mainClass>
 
                                 </manifest>
                             </archive>
@@ -89,6 +90,19 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>AISData_Queries/Query8_Main.java</exclude>
+                        <exclude>SNCBData_Queries/Query8_Main.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
             <!-- Java Compiler -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

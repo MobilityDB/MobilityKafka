@@ -72,7 +72,7 @@ public class Query5_Main {
                     })
                     .groupByKey()
                     //45 seconds sliding (hopping) window with 5 seconds steps and a 10 seconds watermark :
-                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(10), Duration.ofSeconds(10)).advanceBy(Duration.ofSeconds(5)))
+                    .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofSeconds(45), Duration.ofSeconds(10)).advanceBy(Duration.ofSeconds(5)))
                     .aggregate(
                             () -> "",  // 1. initializer: start with empty string
                             (key, value, aggregate) -> aggregate.isEmpty() ? value : aggregate + ";" + value, // 2. aggregator: append rows separated by ";"
