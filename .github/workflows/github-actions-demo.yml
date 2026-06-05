@@ -12,7 +12,7 @@ env:
 
 jobs:
 
-  # ── Job 1 : quick compilation (no MEOS, just Java syntax) ────────────
+  # ── Job 1 : Quick Java compilation check (no Docker) ──────────────────────
   compile:
     runs-on: ubuntu-latest
     steps:
@@ -39,11 +39,16 @@ jobs:
             -Dversion=1.0-SNAPSHOT \
             -Dpackaging=jar
 
-      - name: Compile (sans tests)
+      - name: Compile (skip tests)
         run: mvn compile -DskipTests
 
-  # ── Job 2 : Docker build (MEOS + Maven package) ───────────────────
-  docker-build:
+  # ── Job 2 : Build Docker image ONCE (all non-Q8 classes compiled in) ───────
+  #
+  # Key insight: pom.xml excludes only Q8 from compilation. All other
+  # Query*_Main classes land in the same fat JAR regardless of queryMainClass.
+  # A single image can serve Q1–Q7 and Q9 — only the CMD needs to change.
+  #
+  build-base:
     runs-on: ubuntu-latest
     needs: compile
     permissions:
@@ -51,8 +56,7 @@ jobs:
       packages: write
 
     steps:
-      - name: checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set lowercase image name
         id: image
@@ -66,97 +70,183 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build image (all non-Q8 classes baked in)
+        run: docker build -f Dockerfile -t query-app:ci .
 
-      - name: Build Docker image
-        uses: docker/build-push-action@v5
+      # Push versioned tags to GitHub Container Registry on main only
+      - name: Push to GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
+        run: |
+          docker tag query-app:ci ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:latest
+          docker tag query-app:ci ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:${{ github.sha }}
+          docker push ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:latest
+          docker push ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:${{ github.sha }}
+
+      # Share the image with test jobs via artifact (avoids rebuilding per job)
+      - name: Export image as artifact
+        run: docker save query-app:ci | gzip > /tmp/query-app.tar.gz
+
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v4
         with:
-          context: .
-          file: ./Dockerfile
-          push: ${{ github.ref == 'refs/heads/main' }}
-          tags: |
-            ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:latest
-            ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:${{ github.sha }}
+          name: query-app-image
+          path: /tmp/query-app.tar.gz
+          retention-days: 1  # only needed within the same workflow run
 
-  # ── Job 3 : Integrations tests ────────────────────────────────────────────
+  # ── Job 3 : Integration tests Q1–Q7, Q9 (reuse single pre-built image) ────
+  #
+  # Each matrix job:
+  #   1. Downloads the shared image artifact (built once above)
+  #   2. Appends a single CMD layer pointing to the right main class — instant,
+  #      no Maven, no MEOS recompilation, no full Docker rebuild
+  #   3. Runs docker compose and waits for output
+  #
   integration-test:
     runs-on: ubuntu-latest
-    needs: docker-build
-    #timeout-minutes: 15
+    needs: build-base
 
     strategy:
       matrix:
         include:
-          - query: 1
-            alert_pattern: "[Q1]"
-            csv: input_sncb.csv
-          - query: 2
-            alert_pattern: "[Q2]"
-            csv: input_sncb.csv
-          - query: 3
-            alert_pattern: "[Q3]"
-            csv: input_sncb.csv
-          - query: 4
-            alert_pattern: "[Q4]"
-            csv: input_sncb.csv
-          - query: 5
-            alert_pattern: "[Q5]"
-            csv: input_sncb.csv
-          - query: 6
-            alert_pattern: "[Q6]"
-            csv: input_sncb.csv
-          - query: 7
-            alert_pattern: "[Q7]"
-            csv: input_sncb.csv
-          # - query: 8
-          #   alert_pattern: "[Q8]"
-          #   csv: input_sncb.csv
-          - query: 9
-            alert_pattern: "[Q9]"
-            csv: input_sncb.csv
-      fail-fast: false   # do not cancel other queries if one fails
+          - { query_key: ais1, class: AISData_Queries.Query1_Main, dataset: input_ais, alert: "[Q1]" }
+          - { query_key: ais2, class: AISData_Queries.Query2_Main, dataset: input_ais, alert: "[Q2]" }
+          - { query_key: ais3, class: AISData_Queries.Query3_Main, dataset: input_ais, alert: "[Q3]" }
+          - { query_key: ais4, class: AISData_Queries.Query4_Main, dataset: input_ais, alert: "[Q4]" }
+          - { query_key: ais5, class: AISData_Queries.Query5_Main, dataset: input_ais, alert: "[Q5]" }
+          - { query_key: ais6, class: AISData_Queries.Query6_Main, dataset: input_ais, alert: "[Q6]" }
+          - { query_key: ais7, class: AISData_Queries.Query7_Main, dataset: input_ais, alert: "[Q7]" }
+          - { query_key: ais9, class: AISData_Queries.Query9_Main, dataset: input_ais, alert: "[Q9]" }
+      fail-fast: false
 
-    name: "Integration test — Query ${{ matrix.query }}"
-
+    name: "Integration test — ${{ matrix.query_key }}"
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set mainClass for Query${{ matrix.query }}
+      - name: Download pre-built image
+        uses: actions/download-artifact@v4
+        with:
+          name: query-app-image
+          path: /tmp
+
+      - name: Load image into Docker daemon
+        run: docker load < /tmp/query-app.tar.gz
+
+      # Create a near-zero-cost image layer that just overrides CMD.
+      # All classes are already compiled — this step takes ~1 second.
+      - name: Override CMD for ${{ matrix.class }}
         run: |
-          sed -i 's|<mainClass>.*</mainClass>|<mainClass>Queries.Query${{ matrix.query }}_Main</mainClass>|' pom.xml
+          printf 'FROM query-app:ci\n'                                                           > /tmp/Dockerfile.cmd
+          printf 'CMD ["java",\n'                                                                >> /tmp/Dockerfile.cmd
+          printf '    "--add-opens", "java.base/java.lang=ALL-UNNAMED",\n'                      >> /tmp/Dockerfile.cmd
+          printf '    "-Djava.library.path=/usr/local/lib",\n'                                  >> /tmp/Dockerfile.cmd
+          printf '    "-cp", "target/MobilityKafka-1.0-SNAPSHOT-jar-with-dependencies.jar:/tmp/JMEOS.jar",\n' >> /tmp/Dockerfile.cmd
+          printf '    "%s"]\n' "${{ matrix.class }}"                                            >> /tmp/Dockerfile.cmd
+          docker build -f /tmp/Dockerfile.cmd -t query-app .
 
-      - name: Start stack
-        run: docker compose up -d --build
-        timeout-minutes: 10
-
-#      - name: Wait for producer to finish
-#        run: |
-#          docker compose wait producer
-#          sleep 15
-
-#      - name: Check output for alerts
-#        run: |
-#          OUTPUT=$(docker compose logs consumer 2>&1)
-#          echo "$OUTPUT"
-#          echo "$OUTPUT" | grep -qF "${{ matrix.alert_pattern }}" \
-#          && echo "Query${{ matrix.query }} — output found" \
-#          || (echo "Query${{ matrix.query }} — no output detected" && exit 1)
+      - name: Start stack (${{ matrix.query_key }})
+        env:
+          DATASET: ${{ matrix.dataset }}
+        run: docker compose up -d
+        timeout-minutes: 5
 
       - name: Wait for output
         run: |
           docker compose wait producer
-          echo "Waiting for Kafka Streams to emit output..."
+          echo "Waiting for Kafka Streams output (${{ matrix.alert }})..."
           for i in $(seq 1 12); do
             OUTPUT=$(docker compose logs consumer 2>&1)
-            if echo "$OUTPUT" | grep -qF "[Q${{ matrix.query }}]"; then
-              echo "Output detected after ${i}x5s"
+            if echo "$OUTPUT" | grep -qF "${{ matrix.alert }}"; then
+              echo "✅ Output detected at attempt $i"
               exit 0
             fi
             echo "Attempt $i/12 — not yet, waiting 5s..."
             sleep 5
           done
-          echo "No output after 60s"
-          docker compose logs query-app   # affiche les logs de l'app pour debug
+          echo "❌ No output after 60s"
+          docker compose logs query-app
+          exit 1
+
+      - name: Print consumer output
+        if: always()
+        run: docker compose logs consumer
+
+      - name: Teardown
+        if: always()
+        run: docker compose down -v
+
+
+  # ── Job 4 : Integration test Q8 (full build — Dockerfile_q8_meos_kalman) ──
+  #
+  # Q8 cannot reuse the shared image because:
+  #   - It requires temporal_ext_kalman_filter, absent from the standard JMEOS
+  #   - Its source files are excluded from compilation in the standard build
+  #   - It uses a dedicated Dockerfile that patches JMEOS and rebuilds Maven
+  #     entirely inside Docker (no Maven needed on the runner)
+  #
+  # This job is independent of build-base; it runs its own full Docker build.
+  # Expect ~20–30 min for MEOS compilation.
+  #
+  integration-test-q8:
+    runs-on: ubuntu-latest
+    needs: compile  # no dependency on build-base — builds its own image
+
+    strategy:
+      matrix:
+        include:
+          - { query_key: sncb8, class: SNCBData_Queries.Query8_Main, dataset: input_sncb, alert: "[Q8]" }
+          # - { query_key: ais8, class: AISData_Queries.Query8_Main, dataset: ais_instants, alert: "[Q8]" }
+      fail-fast: false
+
+    name: "Integration test — ${{ matrix.query_key }} (full build)"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Remove the Q8 compile-time exclusions that exist to protect
+      # standard builds. Inside Dockerfile_q8, the patched JMEOS is available
+      # so the exclusions must be lifted before `mvn package` runs.
+      - name: Remove Q8 exclusions from pom.xml
+        run: |
+          sed -i \
+            -e '/<exclude>AISData_Queries\/Query8_Main.java<\/exclude>/d' \
+            -e '/<exclude>SNCBData_Queries\/Query8_Main.java<\/exclude>/d' \
+            pom.xml
+
+      # Patch Dockerfile_q8 to point to the right main class.
+      # Mirrors the logic in run_query.sh (two sed passes: ENTRYPOINT + mvn arg).
+      - name: Patch Dockerfile_q8 for ${{ matrix.class }}
+        run: |
+          sed -i \
+            -e 's@"[a-zA-Z_]*Queries\.[A-Za-z0-9_]*"\]@"${{ matrix.class }}"]@g' \
+            -e 's@-DqueryMainClass="[A-Za-z_]*Queries\.[A-Za-z0-9_]*"@-DqueryMainClass="${{ matrix.class }}"@g' \
+            Dockerfile_q8_meos_kalman
+
+      - name: Build Q8 image (MEOS + patched JMEOS + Maven — slow)
+        run: docker build -f Dockerfile_q8_meos_kalman -t query-app .
+        timeout-minutes: 45
+
+      - name: Start stack (${{ matrix.query_key }})
+        env:
+          DATASET: ${{ matrix.dataset }}
+        run: docker compose up -d
+        timeout-minutes: 5
+
+      - name: Wait for output
+        run: |
+          docker compose wait producer
+          echo "Waiting for Kafka Streams output (${{ matrix.alert }})..."
+          for i in $(seq 1 12); do
+            OUTPUT=$(docker compose logs consumer 2>&1)
+            if echo "$OUTPUT" | grep -qF "${{ matrix.alert }}"; then
+              echo "✅ Output detected at attempt $i"
+              exit 0
+            fi
+            echo "Attempt $i/12 — not yet, waiting 5s..."
+            sleep 5
+          done
+          echo "❌ No output after 60s"
+          docker compose logs query-app
           exit 1
 
       - name: Print consumer output
