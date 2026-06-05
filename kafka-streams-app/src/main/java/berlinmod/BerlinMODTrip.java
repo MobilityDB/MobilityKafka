@@ -41,6 +41,7 @@ public class BerlinMODTrip implements Serializable {
     private int vehicleId;
     private double lon;
     private double lat;
+    private String h3Cell; // precomputed H3 cell of the event point (from the dataset)
 
     public BerlinMODTrip() {}
 
@@ -59,4 +60,6 @@ public class BerlinMODTrip implements Serializable {
     public void setLon(double lon) { this.lon = lon; }
     public double getLat() { return lat; }
     public void setLat(double lat) { this.lat = lat; }
+    public String getH3Cell() { return h3Cell; }
+    public void setH3Cell(String h3Cell) { this.h3Cell = h3Cell; }
 }

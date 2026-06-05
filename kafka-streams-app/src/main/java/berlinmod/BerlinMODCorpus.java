@@ -110,9 +110,11 @@ public final class BerlinMODCorpus {
         return events;
     }
 
-    /** Real BerlinMOD instants from {@code berlinmod_instants.csv}
-     * (columns {@code tripid,vehid,day,seqno,geom,t}), reprojected 3857→4326
-     * through MEOS, sorted by timestamp. {@code maxRows <= 0} loads all rows. */
+    /** Real BerlinMOD instants from {@code instants.csv}
+     * (columns {@code tripid,vehid,day,seqno,geom,t,h3_cell}), reprojected
+     * 3857→4326 through MEOS, sorted by timestamp. The per-event H3 cell is
+     * read straight from the dataset (column {@code h3_cell}) and carried on
+     * the trip; it is not recomputed here. {@code maxRows <= 0} loads all rows. */
     public static List<BerlinMODTrip> fromInstantsCsv(String path, int maxRows) throws Exception {
         ensureMeos();
         List<BerlinMODTrip> events = new ArrayList<>();
@@ -129,7 +131,11 @@ public final class BerlinMODCorpus {
                         GeneratedFunctions.geom_in(f[4].trim(), -1), 4326);
                 String txt = GeneratedFunctions.geo_as_text(g4326, 7); // POINT(lon lat)
                 String[] xy = txt.substring(txt.indexOf('(') + 1, txt.indexOf(')')).trim().split("\\s+");
-                events.add(make(vid, ms, Double.parseDouble(xy[0]), Double.parseDouble(xy[1])));
+                BerlinMODTrip trip = make(vid, ms, Double.parseDouble(xy[0]), Double.parseDouble(xy[1]));
+                if (f.length > 6) {
+                    trip.setH3Cell(f[6].trim());
+                }
+                events.add(trip);
             }
         }
         events.sort((a, b) -> Long.compare(a.getTimestamp(), b.getTimestamp()));
