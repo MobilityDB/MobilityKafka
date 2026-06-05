@@ -48,11 +48,14 @@ services:
       kafka-setup:
         condition: service_completed_successfully
     volumes:
-      #- ./ais_instants.csv:/ais_instants.csv                        # mount your CSV file
+      - ./ais_instants.csv:/ais_instants.csv # mount your CSV file
       - ./input_sncb.csv:/input_sncb.csv
     entrypoint: [ "/bin/sh", "-c" ]
+    # DATASET is set by run_query.sh: "ais" or "sncb"
+    command: [ "cat /${DATASET:-input_sncb}.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ]
+    # Commands if you want to run the queries by hand without the scripts
     #command: [ "cat /ais_instants.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #AISData versiom
-    command: [ "cat /input_sncb.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #SNCB Data version
+    #command: [ "cat /input_sncb.csv | kafka-console-producer --bootstrap-server kafka:9092 --topic query-input" ] #SNCB Data version
 
   consumer:
     image: confluentinc/cp-kafka:latest
@@ -63,9 +66,10 @@ services:
     command: [ "kafka-console-consumer --bootstrap-server kafka:9092 --topic query-output --from-beginning --formatter-property print.key=true --formatter-property key.separator=' -> '" ]
 
   query-app:
-    build:
-      context: .
-      #dockerfile: Dockerfile_q8_meos_kalman
+    # Uses the pre-built image from run_query.sh — do NOT add "build:" here
+    # Docker command if you don't want to use the script (adapt the Dockerfile to your needs) :
+    # docker build -f Dockerfile_q8_meos_kalman -t query-app .
+    image: query-app
     depends_on:
       kafka-setup:
         condition: service_completed_successfully

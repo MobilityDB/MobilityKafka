@@ -82,6 +82,16 @@ fi
 CLASS="${QUERY_CLASS[$QUERY_KEY]}"
 DESC="${QUERY_DESC[$QUERY_KEY]}"
 BASE_DOCKERFILE="${QUERY_DOCKERFILE[$QUERY_KEY]}"
+
+# Extract dataset prefix ("ais" or "sncb") for the producer CSV selection
+# Export so docker-compose can use it as $DATASET
+if [[ "$QUERY_KEY" == ais* ]]; then
+  export DATASET="ais_instants"
+else
+  export DATASET="input_sncb"
+fi
+
+# Detect if this is a Q8 query
 IS_Q8=false
 [[ "$QUERY_KEY" == "ais8" || "$QUERY_KEY" == "sncb8" ]] && IS_Q8=true
 
@@ -120,83 +130,11 @@ if [[ ! -f "$BASE_DOCKERFILE" ]]; then
 fi
 success "Dockerfile: $BASE_DOCKERFILE"
 
-# Maven
-if ! command -v mvn &>/dev/null; then
-  error "mvn is not install or missing in the PATH."
-  exit 1
-fi
-success "Maven OK"
-
-# Ignoring query8 files during the mvn build
-Q8_STASHED=()
-
-stash_q8_files() {
-  while IFS= read -r -d '' f; do
-    mv "$f" "${f}.bak"
-    Q8_STASHED+=("$f")
-    warn "Temporarily excluded from the compilation : $f"
-  done < <(grep -rl --include="*.java" -Z "temporal_ext_kalman_filter" src/ 2>/dev/null || true)
-}
-
-restore_q8_files() {
-  for f in "${Q8_STASHED[@]:-}"; do
-    [[ -f "${f}.bak" ]] && mv "${f}.bak" "$f"
-  done
-}
-
-trap 'restore_q8_files; rm -f "$TMP_DOCKERFILE" 2>/dev/null || true' EXIT
-
-echo ""
-info "Step 1/3: Build Maven (mvn clean package -DskipTests) ..."
-
-if [[ "$QUERY_KEY" != "ais8" ]]; then
-  info "Temporarily masking Query8 files (temporal_ext_kalman_filter not available before the patch)..."
-  stash_q8_files
-  if [[ ${#Q8_STASHED[@]} -eq 0 ]]; then
-    warn "No Query8 files found to mask."
-  fi
-fi
-
-if ! mvn clean package -DskipTests -DqueryMainClass="${CLASS}" -q; then
-  error "Maven build failed."
-  exit 1
-fi
-
-# Restoring the query8 files after the mvn build
-restore_q8_files
-Q8_STASHED=()
-
-success "Build Maven done."
-
-# Finding the JAR
-JAR_PATH=""
-for candidate in \
-    "target/flink-kafka2postgres-1.0-SNAPSHOT.jar" \
-    "jar/JMEOS-fat.jar" \
-    target/*.jar jar/*.jar; do
-  if [[ -f "$candidate" ]]; then
-    JAR_PATH="$candidate"
-    break
-  fi
-done
-
-if [[ -z "$JAR_PATH" ]]; then
-  error "No JAR found after building maven (target/ & jar/ have been verified)."
-  exit 1
-fi
-success "JAR detected : $JAR_PATH"
-
-
 # ── Step 1: Build Docker image with the right CMD ─────────────────────────────
 echo ""
 info "Step 1/2: Building Docker image..."
 info "  Class targeted : ${CLASS}"
 info "  Dockerfile     : ${BASE_DOCKERFILE}"
-
-if ! grep -q "^CMD" "${BASE_DOCKERFILE}"; then
-  error "No CMD found in ${BASE_DOCKERFILE}."
-  exit 1
-fi
 
 # Patch the CMD line in the Dockerfile to point to the right main class.
 # The CMD ends with "SomePackage.QueryX_Main"] — replace just that class token.
@@ -204,14 +142,26 @@ TMP_DF=$(mktemp /tmp/Dockerfile.query.XXXXXX)
 trap 'rm -f "$TMP_DF" 2>/dev/null || true' EXIT
 sed "s@\"[a-zA-Z_]*Queries\.[A-Za-z0-9_]*\"\]@\"${CLASS}\"]@g" "${BASE_DOCKERFILE}" > "${TMP_DF}"
 
-if ! grep -q "${CLASS}" "${TMP_DF}"; then
-  error "The patch failed: '${CLASS}' absent from the buffer Dockerfile."
-  error "CMD found : $(grep '^CMD' ${BASE_DOCKERFILE})"
-  rm -f "${TMP_DF}"; exit 1
-fi
+# Also patch the mvn build arg inside Dockerfile_q8 if present
+# (line: mvn clean package -DqueryMainClass="...")
+sed -i "s@-DqueryMainClass=\"[A-Za-z_]*Queries\.[A-Za-z0-9_]*\"@-DqueryMainClass=\"${CLASS}\"@g" "${TMP_DF}"
 
-PATCHED_CMD=$(grep "^CMD" "${TMP_DF}")
-success "Patched CMD: ${PATCHED_CMD}"
+
+if ! grep -q "${CLASS}" "${TMP_DF}"; then
+    error "Patch failed: '${CLASS}' not found in the patched Dockerfile."
+    if $IS_Q8; then
+      error "ENTRYPOINT found: $(grep '^ENTRYPOINT' ${BASE_DOCKERFILE} || echo 'none')"
+    else
+      error "CMD found: $(grep '^CMD' ${BASE_DOCKERFILE} || echo 'none')"
+    fi
+    rm -f "${TMP_DF}"; exit 1
+  fi
+
+if $IS_Q8; then
+  success "Patched ENTRYPOINT: $(grep '^ENTRYPOINT' ${TMP_DF})"
+else
+  success "Patched CMD: $(grep '^CMD' ${TMP_DF})"
+fi
 
 info "Building Docker image 'query-app'..."
 if ! docker build -f "${TMP_DF}" --build-arg QUERY_MAIN_CLASS="${CLASS}" -t query-app .; then
@@ -220,14 +170,25 @@ if ! docker build -f "${TMP_DF}" --build-arg QUERY_MAIN_CLASS="${CLASS}" -t quer
 fi
 rm -f "${TMP_DF}"
 
-BUILT_CMD=$(docker inspect --format='{{json .Config.Cmd}}' query-app 2>/dev/null || echo "")
-if [[ "${BUILT_CMD}" != *"${CLASS}"* ]]; then
-  error "Built image does not contain '${CLASS}' in its CMD."
-  error "CMD detected: ${BUILT_CMD}"
-  exit 1
+# Verify the built image contains the right class
+if $IS_Q8; then
+  BUILT_EP=$(docker inspect --format='{{json .Config.Entrypoint}}' query-app 2>/dev/null || echo "")
+  if [[ "${BUILT_EP}" != *"${CLASS}"* ]]; then
+    error "Built image does not contain '${CLASS}' in its ENTRYPOINT."
+    error "ENTRYPOINT detected: ${BUILT_EP}"
+    exit 1
+  fi
+  success "Image 'query-app' built. ENTRYPOINT: ${BUILT_EP}"
+else
+  BUILT_CMD=$(docker inspect --format='{{json .Config.Cmd}}' query-app 2>/dev/null || echo "")
+  if [[ "${BUILT_CMD}" != *"${CLASS}"* ]]; then
+    error "Built image does not contain '${CLASS}' in its CMD."
+    error "CMD detected: ${BUILT_CMD}"
+    exit 1
+  fi
+  success "Image 'query-app' built. CMD: ${BUILT_CMD}"
 fi
-success "Image 'query-app' built."
-info  "  CMD: ${BUILT_CMD}"
+
 
 # ── Step 2: docker compose up ─────────────────────────────────────────────────
 echo ""

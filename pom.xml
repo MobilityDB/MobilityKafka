@@ -91,6 +91,7 @@
                 </executions>
             </plugin>
 
+            <!--Comment this plugin if you want to run the query8-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
