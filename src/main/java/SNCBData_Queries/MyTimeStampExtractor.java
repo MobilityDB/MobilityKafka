@@ -1,10 +1,8 @@
-package Queries;
+package SNCBData_Queries;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.streams.processor.TimestampExtractor;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 public class MyTimeStampExtractor implements TimestampExtractor {
@@ -18,8 +16,7 @@ public class MyTimeStampExtractor implements TimestampExtractor {
         if (value != null && !value.trim().isEmpty()) {
             try {
                 String[] cols = value.split(",");
-                LocalDateTime dt = LocalDateTime.parse(cols[0].trim(), FORMATTER);
-                return dt.toInstant(ZoneOffset.UTC).toEpochMilli();
+                return Long.parseLong(cols[0].trim())*1000L;
             } catch (Exception e) {
                 // header row or malformed line
             }

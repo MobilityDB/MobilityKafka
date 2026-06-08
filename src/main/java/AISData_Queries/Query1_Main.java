@@ -1,8 +1,7 @@
-package Queries;
+package AISData_Queries;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Properties;
 
 import jnr.ffi.Pointer;
@@ -60,6 +59,8 @@ public class Query1_Main {
                     System.getenv().getOrDefault("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092"));
             props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+            //Close the window by force after 1 minute if no record is processed during this 1 minute
+            props.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, "60000"); // 1 minute
 
             StreamsBuilder builder = new StreamsBuilder();
 
@@ -128,17 +129,20 @@ public class Query1_Main {
             return new Processor<Windowed<String>, Object, String, String>() {
 
                 private ProcessorContext<String, String> context;
-                private transient Pointer[] hazardZones;
+                private Pointer[] hazardZones;
 
                 private final Logger log =
                         LoggerFactory.getLogger(HighRiskZoneWindowFunction.class);
 
+                private MeosErrorHandler errorHandler;
+
                 @Override
                 public void init(ProcessorContext<String, String> context) {
                     this.context = context;
-                    MeosErrorHandler errorHandler = new MeosErrorHandler();
+                    errorHandler = new MeosErrorHandler();
                     functions.meos_initialize_timezone("UTC");
                     functions.meos_initialize_error_handler(errorHandler);
+
                     this.hazardZones = new Pointer[zoneWkt.length];
                     for (int i = 0; i < zoneWkt.length; i++) {
                         hazardZones[i] = functions.geog_in(zoneWkt[i], -1);
@@ -146,7 +150,7 @@ public class Query1_Main {
                             log.error("geog_in returned null for ZONE {}", i + 1);
                         }
                     }
-                    log.info("MEOS initialized in HighRiskZoneWindowFunction.open(), {} hazard zones parsed", hazardZones.length);
+                    log.info("MEOS initialized in HighRiskZoneWindowFunction.init(), {} hazard zones parsed", hazardZones.length);
                 }
                 @Override
                 public void process(Record<Windowed<String>, Object> record) {
@@ -177,8 +181,7 @@ public class Query1_Main {
                         for (int i = 0; i < hazardZones.length; i++) {
                             if (hazardZones[i] == null) continue;
 
-                            // edwithin_tgeo_geo returns 1 if tpoint is within distanceMeters of the
-                            // zone polygon at any instant — implements paper Line 2.
+                            // edwithin_tgeo_geo returns 1 if tpoint is within distanceMeters of the zone polygon at any instant
                             int within = functions.edwithin_tgeo_geo(
                                     tpoint, hazardZones[i], distanceMeters);
 
@@ -193,7 +196,6 @@ public class Query1_Main {
                                         distanceMeters,
                                         i + 1,
                                         millisToTimestamp(windowStart), millisToTimestamp(windowEnd));
-
 
                                 // if alert, forward to output
                                 log.warn(alert);
