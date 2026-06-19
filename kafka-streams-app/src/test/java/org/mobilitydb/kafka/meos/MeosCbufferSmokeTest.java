@@ -23,39 +23,45 @@
  *
  *****************************************************************************/
 
-package berlinmod;
+package org.mobilitydb.kafka.meos;
 
-import org.apache.kafka.streams.processor.api.Processor;
-import org.apache.kafka.streams.processor.api.ProcessorContext;
-import org.apache.kafka.streams.processor.api.Record;
+import org.mobilitydb.meos.*;
+
+import functions.GeneratedFunctions;
+import jnr.ffi.Pointer;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * BerlinMOD-Q2 — <b>continuous form</b>, Kafka-Streams Processor API.
- *
- * <p><i>"Where is vehicle X right now?"</i>
- *
- * <p>Pure stateless filter: forward records whose key matches the queried
- * {@code targetVehicleId}, drop the rest. Matches the MobilityFlink
- * {@code Q2ContinuousFunction} pattern.
+ * Runtime check that the cbuffer facade family calls into libmeos and returns
+ * correct results. Compiled and run only when the build includes the cbuffer
+ * family ({@code -DCBUFFER=ON}); the family requires a libmeos built with
+ * {@code -DCBUFFER=ON}.
  */
-public class Q2ContinuousProcessor implements Processor<Integer, BerlinMODTrip, Integer, BerlinMODTrip> {
+@EnabledIfSystemProperty(named = "meos.enabled", matches = "true")
+class MeosCbufferSmokeTest {
 
-    private final int targetVehicleId;
-    private ProcessorContext<Integer, BerlinMODTrip> ctx;
-
-    public Q2ContinuousProcessor(int targetVehicleId) {
-        this.targetVehicleId = targetVehicleId;
+    @BeforeAll
+    static void init() {
+        GeneratedFunctions.meos_initialize_error_handler((level, code, message) -> { });
+        GeneratedFunctions.meos_initialize();
     }
 
-    @Override
-    public void init(ProcessorContext<Integer, BerlinMODTrip> context) {
-        this.ctx = context;
+    @AfterAll
+    static void finalizeMeos() {
+        GeneratedFunctions.meos_finalize();
     }
 
-    @Override
-    public void process(Record<Integer, BerlinMODTrip> record) {
-        if (record.key() != null && record.key() == targetVehicleId) {
-            ctx.forward(record);
-        }
+    @Test
+    void cbuffer() {
+        Pointer cb = MeosOpsFreeCbuffer.cbuffer_make(MeosOpsFreeGeo.geom_in("POINT(1 1)", 0), 0.5);
+        assertNotNull(cb);
+        assertEquals(0.5, MeosOpsFreeCbuffer.cbuffer_radius(cb), 1e-9);
+        assertNotNull(MeosOpsFreeCbuffer.cbuffer_out(cb, 6));
     }
 }
