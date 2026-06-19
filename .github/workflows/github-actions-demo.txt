@@ -1,0 +1,172 @@
+name: CI/CD MobilityKafka
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ main, dev ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+
+  # ── Job 1 : Quick Java compilation check (no Docker) ──────────────────────
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      - name: Cache Maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: Install JMEOS stub in local Maven repo
+        run: |
+          mvn install:install-file \
+            -Dfile=jar/JMEOS.jar \
+            -DgroupId=org.jmeos \
+            -DartifactId=jmeos \
+            -Dversion=1.0-SNAPSHOT \
+            -Dpackaging=jar
+
+      - name: Compile (skip tests)
+        run: mvn compile -DskipTests
+
+  # ── Job 2 : Build Docker image ONCE (all non-Q8 classes compiled in) ───────
+  #
+  # Key insight: pom.xml excludes only Q8 from compilation. All other
+  # Query*_Main classes land in the same fat JAR regardless of queryMainClass.
+  # A single image can serve Q1–Q7 and Q9 — only the CMD needs to change.
+  #
+  build-base:
+    runs-on: ubuntu-latest
+    needs: compile
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set lowercase image name
+        id: image
+        run: echo "name=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Log in to GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build image (all non-Q8 classes baked in)
+        run: docker build -f Dockerfile -t query-app:ci .
+
+      # Push versioned tags to GitHub Container Registry on main only
+      - name: Push to GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
+        run: |
+          docker tag query-app:ci ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:latest
+          docker tag query-app:ci ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:${{ github.sha }}
+          docker push ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:latest
+          docker push ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:${{ github.sha }}
+
+      # Share the image with test jobs via artifact (avoids rebuilding per job)
+      - name: Export image as artifact
+        run: docker save query-app:ci | gzip > /tmp/query-app.tar.gz
+
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: query-app-image
+          path: /tmp/query-app.tar.gz
+          retention-days: 1  # only needed within the same workflow run
+
+  # ── Job 3 : Integration tests Q1–Q7, Q9 (reuse single pre-built image) ────
+  #
+  # Each matrix job:
+  #   1. Downloads the shared image artifact (built once above)
+  #   2. Appends a single CMD layer pointing to the right main class — instant,
+  #      no Maven, no MEOS recompilation, no full Docker rebuild
+  #   3. Runs docker compose and waits for output
+  #
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: build-base
+
+    strategy:
+      matrix:
+        include:
+          - { query_key: ais1, class: AISData_Queries.Query1_Main, dataset: input_ais, alert: "[Q1]" }
+          - { query_key: ais2, class: AISData_Queries.Query2_Main, dataset: input_ais, alert: "[Q2]" }
+          - { query_key: ais3, class: AISData_Queries.Query3_Main, dataset: input_ais, alert: "[Q3]" }
+          - { query_key: ais4, class: AISData_Queries.Query4_Main, dataset: input_ais, alert: "[Q4]" }
+          - { query_key: ais5, class: AISData_Queries.Query5_Main, dataset: input_ais, alert: "[Q5]" }
+          - { query_key: ais6, class: AISData_Queries.Query6_Main, dataset: input_ais, alert: "[Q6]" }
+          - { query_key: ais7, class: AISData_Queries.Query7_Main, dataset: input_ais, alert: "[Q7]" }
+          - { query_key: ais9, class: AISData_Queries.Query9_Main, dataset: input_ais, alert: "[Q9]" }
+      fail-fast: false
+
+    name: "Integration test — ${{ matrix.query_key }}"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download pre-built image
+        uses: actions/download-artifact@v4
+        with:
+          name: query-app-image
+          path: /tmp
+
+      - name: Load image into Docker daemon
+        run: docker load < /tmp/query-app.tar.gz
+
+      # Create a near-zero-cost image layer that just overrides CMD.
+      # All classes are already compiled — this step takes ~1 second.
+      - name: Override CMD for ${{ matrix.class }}
+        run: |
+          printf 'FROM query-app:ci\nCMD ["java", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-Djava.library.path=/usr/local/lib", "-cp", "target/MobilityKafka-1.0-SNAPSHOT-jar-with-dependencies.jar:/tmp/JMEOS.jar", "%s"]\n' \
+            "${{ matrix.class }}" > /tmp/Dockerfile.cmd
+          docker build -f /tmp/Dockerfile.cmd -t query-app .
+
+      - name: Start stack (${{ matrix.query_key }})
+        env:
+          DATASET: ${{ matrix.dataset }}
+        run: docker compose up -d
+        timeout-minutes: 5
+
+      - name: Wait for output
+        run: |
+          docker compose wait producer
+          echo "Waiting for Kafka Streams output (${{ matrix.alert }})..."
+          for i in $(seq 1 12); do
+            OUTPUT=$(docker compose logs consumer 2>&1)
+            if echo "$OUTPUT" | grep -qF "${{ matrix.alert }}"; then
+              echo "✅ Output detected at attempt $i"
+              exit 0
+            fi
+            echo "Attempt $i/12 — not yet, waiting 5s..."
+            sleep 5
+          done
+          echo "❌ No output after 60s"
+          docker compose logs query-app
+          exit 1
+
+      - name: Print consumer output
+        if: always()
+        run: docker compose logs consumer
+
+      - name: Teardown
+        if: always()
+        run: docker compose down -v
