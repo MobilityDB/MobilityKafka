@@ -21,6 +21,21 @@
     </properties>
 
     <dependencies>
+        <!--
+            JMEOS is consumed as an ordinary local-repository dependency. It is
+            not on Maven Central; install it (and the native libmeos.so) from
+            source by running ../build-jmeos.sh once before building this module.
+        -->
+        <dependency>
+            <groupId>com.mobilitydb</groupId>
+            <artifactId>jmeos</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jnr</groupId>
+            <artifactId>jnr-ffi</artifactId>
+            <version>2.1.10</version>
+        </dependency>
         <dependency>
             <groupId>com.mobilitydb</groupId>
             <artifactId>jmeos</artifactId>
@@ -73,6 +88,44 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Embedded Kafka broker for the runtime throughput benchmark. -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.13</artifactId>
+            <version>${kafka.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.13</artifactId>
+            <version>${kafka.version}</version>
+            <type>test-jar</type><classifier>test</classifier><scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+            <version>${kafka.version}</version>
+            <type>test-jar</type><classifier>test</classifier><scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.version}</version>
+            <type>test-jar</type><classifier>test</classifier><scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-server-common</artifactId>
+            <version>${kafka.version}</version>
+            <type>test-jar</type><classifier>test</classifier><scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
