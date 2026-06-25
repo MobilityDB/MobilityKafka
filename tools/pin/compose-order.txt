@@ -1,0 +1,28 @@
+# USER-APPROVED-PIN-WRITE — creating MobilityKafka's first pin manifest (user 2026-06-25,
+#   per-binding generator policy rollout). New file in the MobilityKafka repo, NOT a mutation
+#   of MobilityDB's pin tooling.
+#
+# MobilityKafka pin — THE canonical, dependency-ordered fold manifest (per-binding policy).
+#
+# MobilityKafka is a CONSUMER binding: it binds the JMEOS jar (not MEOS-API directly) and
+# generates its org.mobilitydb.meos facades from it. (policy: generator-per-binding-canonical-policy)
+#
+# SCOPE: MobilityKafka owns its generator IN-REPO at `tools/codegen_facades.py` — it reads
+# the bundled JMEOS raw-FFI surface and emits the `org.mobilitydb.meos.MeosOps*` facade
+# forwarders the kafka-streams-app consumes (the same generator as MobilityFlink).
+#
+# Format:  <PR#> <head-branch>            # role.   '?' = membership/order UNCONFIRMED.
+# base = current origin/main.
+
+# ── WAVE 0 — (no open PRs to main) ──
+# (verified this turn: MobilityKafka has 0 open PRs.)
+
+# ════════════════════════════════════════════════════════════════════════════════════
+# TOPOLOGY GAP (committer review): the MEOS streaming consumer + the facade generator
+# (`tools/codegen_facades.py`) live on the FORK branch `estebanzimanyi:consolidate/kafka-benchmark`
+# but have NO open PR to `main` (the prior #14/#15 stack merged fork-internally, never to main).
+# ACTION: open a base=main PR carrying the consumer + the generator, then this manifest folds it.
+# The bundled JMEOS jar is built via build-jmeos.sh (never committed) from a deliverable-PR head;
+# the libmeos it links is built from the SAME pin the JMEOS surface was generated against. See
+# GENERATION.md.
+# ════════════════════════════════════════════════════════════════════════════════════
