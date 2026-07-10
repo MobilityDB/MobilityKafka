@@ -152,7 +152,7 @@ public final class MeosOpsFreeNpoint {
      * <p>Pure per-event; safe in any scalar position.</p>
      * <p>Classification: scalar comparison/hash</p>
      */
-    public static int npoint_hash_extended(Pointer arg0, int arg1) {
+    public static long npoint_hash_extended(Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "npoint_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");

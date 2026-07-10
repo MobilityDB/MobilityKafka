@@ -116,6 +116,26 @@ LIBMEOS_SO="$(find "${MDB_DIR}/build" -name 'libmeos.so' -print -quit)"
 log "Built ${LIBMEOS_SO}"
 
 # ---------------------------------------------------------------------------
+# 1b. Provision MEOS's SRID/network reference data at its default runtime path.
+# ---------------------------------------------------------------------------
+# libmeos resolves SRIDs by reading spatial_ref_sys.csv from a fixed default
+# path (meos/src/geo/tspatial_transform_meos.c: SPATIAL_REF_SYS_CSV =
+# "/usr/local/share/spatial_ref_sys.csv"). A full `cmake --install` would place
+# it there (meos/CMakeLists.txt), but this script only builds the `meos` target,
+# so the data files are staged explicitly. Without them, any SRID-touching call
+# (npoint, tgeompoint) makes libmeos print "Cannot open the spatial_ref_sys.csv
+# file" to stdout, which corrupts the surefire fork channel and terminates the
+# JVM under test ("The forked VM terminated without properly saying goodbye").
+MEOS_DATA_DIR="${MEOS_DATA_DIR:-/usr/local/share}"
+log "Provisioning MEOS reference data into ${MEOS_DATA_DIR}"
+provision_data() {
+  local src="$1" dst="$2"
+  install -Dm644 "${src}" "${dst}" 2>/dev/null || sudo install -Dm644 "${src}" "${dst}"
+}
+provision_data "${MDB_DIR}/meos/src/geo/spatial_ref_sys.csv" "${MEOS_DATA_DIR}/spatial_ref_sys.csv"
+provision_data "${MDB_DIR}/meos/examples/data/ways1000.csv"  "${MEOS_DATA_DIR}/ways1000.csv"
+
+# ---------------------------------------------------------------------------
 # 2. Build JMEOS.jar against that libmeos.so.
 # ---------------------------------------------------------------------------
 JMEOS_DIR="${WORK_DIR}/JMEOS"
