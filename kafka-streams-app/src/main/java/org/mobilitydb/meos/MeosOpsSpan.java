@@ -162,7 +162,7 @@ public final class MeosOpsSpan {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int span_hash_extended(Pointer arg0, int arg1) {
+    public static long span_hash_extended(Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "span_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");

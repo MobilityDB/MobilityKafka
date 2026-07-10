@@ -275,7 +275,7 @@ public final class MeosOpsSTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int stbox_hash_extended(Pointer arg0, int arg1) {
+    public static long stbox_hash_extended(Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "stbox_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");
@@ -695,12 +695,12 @@ public final class MeosOpsSTBox {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String stbox_as_hexwkb(Pointer arg0, byte arg1, Pointer arg2) {
+    public static String stbox_as_hexwkb(Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "stbox_as_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.stbox_as_hexwkb(arg0, arg1, arg2);
+        return GeneratedFunctions.stbox_as_hexwkb(arg0, arg1);
     }
 
     /**

@@ -176,7 +176,7 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code accessor}.</p>
      * <p>Classification: role=accessor</p>
      */
-    public static int tbox_hash_extended(Pointer arg0, int arg1) {
+    public static long tbox_hash_extended(Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "tbox_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");
@@ -400,12 +400,12 @@ public final class MeosOpsTBox {
      * <p>Object-model role: {@code output}.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String tbox_as_hexwkb(Pointer arg0, byte arg1, Pointer arg2) {
+    public static String tbox_as_hexwkb(Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "tbox_as_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.tbox_as_hexwkb(arg0, arg1, arg2);
+        return GeneratedFunctions.tbox_as_hexwkb(arg0, arg1);
     }
 
     /**

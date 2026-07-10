@@ -139,7 +139,7 @@ public final class MeosOpsFreePose {
      * <p>Pure per-event; safe in any scalar position.</p>
      * <p>Classification: scalar comparison/hash</p>
      */
-    public static int pose_hash_extended(Pointer arg0, int arg1) {
+    public static long pose_hash_extended(Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "pose_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");
@@ -906,12 +906,12 @@ public final class MeosOpsFreePose {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String pose_as_hexwkb(Pointer arg0, byte arg1, Pointer arg2) {
+    public static String pose_as_hexwkb(Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "pose_as_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.pose_as_hexwkb(arg0, arg1, arg2);
+        return GeneratedFunctions.pose_as_hexwkb(arg0, arg1);
     }
 
     /**

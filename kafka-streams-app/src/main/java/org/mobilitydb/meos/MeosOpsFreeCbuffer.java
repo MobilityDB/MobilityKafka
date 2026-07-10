@@ -100,7 +100,7 @@ public final class MeosOpsFreeCbuffer {
      * <p>Pure per-event; safe in any scalar position.</p>
      * <p>Classification: scalar comparison/hash</p>
      */
-    public static int cbuffer_hash_extended(Pointer arg0, int arg1) {
+    public static long cbuffer_hash_extended(Pointer arg0, long arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "cbuffer_hash_extended requires libmeos — set -Dmobilitykafka.meos.enabled=true");
@@ -1868,12 +1868,12 @@ public final class MeosOpsFreeCbuffer {
      * <p>I/O / catalog / lifecycle helper.</p>
      * <p>Classification: IO/serialization</p>
      */
-    public static String cbuffer_as_hexwkb(Pointer arg0, byte arg1, Pointer arg2) {
+    public static String cbuffer_as_hexwkb(Pointer arg0, byte arg1) {
         if (!MEOS_AVAILABLE) {
             throw new UnsupportedOperationException(
                 "cbuffer_as_hexwkb requires libmeos — set -Dmobilitykafka.meos.enabled=true");
         }
-        return GeneratedFunctions.cbuffer_as_hexwkb(arg0, arg1, arg2);
+        return GeneratedFunctions.cbuffer_as_hexwkb(arg0, arg1);
     }
 
     /**
