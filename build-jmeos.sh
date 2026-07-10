@@ -93,48 +93,59 @@ clone_at() {
 }
 
 # ---------------------------------------------------------------------------
-# 1. Build libmeos.so from MobilityDB.
+# 1. Obtain libmeos.so.
 # ---------------------------------------------------------------------------
-MDB_DIR="${WORK_DIR}/MobilityDB"
-clone_at "${MOBILITYDB_REPO}" "${MOBILITYDB_REF}" "${MDB_DIR}"
+# When a libmeos is already installed — e.g. CI builds and installs it through
+# the shared MobilityDB/MEOS-API provision-meos action, whose `cmake --install`
+# also provisions spatial_ref_sys.csv / ways1000.csv under /usr/local/share —
+# reuse it and build only the JMEOS jar against it. Otherwise build libmeos from
+# the pinned MobilityDB commit here (and stage the reference data explicitly).
+INSTALLED_LIBMEOS="${INSTALLED_LIBMEOS:-/usr/local/lib/libmeos.so}"
+if [ -f "${INSTALLED_LIBMEOS}" ]; then
+  LIBMEOS_SO="${INSTALLED_LIBMEOS}"
+  log "Reusing pre-installed libmeos: ${LIBMEOS_SO} (skipping the MobilityDB build)"
+else
+  MDB_DIR="${WORK_DIR}/MobilityDB"
+  clone_at "${MOBILITYDB_REPO}" "${MOBILITYDB_REF}" "${MDB_DIR}"
 
-# Build every optional MEOS family via -DALL so the facades link against a
-# libmeos with the full symbol surface (circular buffers, H3, JSON, network
-# points, pgPointCloud, geoposes, quadbin, raster, rigid geometries, Arrow).
-# H3 is pinned to the distro's system library (the CI apt step installs
-# libh3-dev); pgPointCloud's vendored libpc.a needs pg_config, pinned to the
-# apt.postgresql.org PostgreSQL 17 the CI workflow installs. Override via
-# MEOS_CMAKE_ARGS for a non-Debian layout.
-MEOS_CMAKE_ARGS="${MEOS_CMAKE_ARGS:--DALL=ON -DH3_LIBRARY=/usr/lib/x86_64-linux-gnu/libh3.so -DH3_INCLUDE_DIR=/usr/include/h3 -DPOSTGRESQL_PG_CONFIG=/usr/lib/postgresql/17/bin/pg_config}"
+  # Build every optional MEOS family via -DALL so the facades link against a
+  # libmeos with the full symbol surface (circular buffers, H3, JSON, network
+  # points, pgPointCloud, geoposes, quadbin, raster, rigid geometries, Arrow).
+  # H3 is pinned to the distro's system library (the CI apt step installs
+  # libh3-dev); pgPointCloud's vendored libpc.a needs pg_config, pinned to the
+  # apt.postgresql.org PostgreSQL 17 the CI workflow installs. Override via
+  # MEOS_CMAKE_ARGS for a non-Debian layout.
+  MEOS_CMAKE_ARGS="${MEOS_CMAKE_ARGS:--DALL=ON -DH3_LIBRARY=/usr/lib/x86_64-linux-gnu/libh3.so -DH3_INCLUDE_DIR=/usr/include/h3 -DPOSTGRESQL_PG_CONFIG=/usr/lib/postgresql/17/bin/pg_config}"
 
-log "Building libmeos.so (MEOS=ON ${MEOS_CMAKE_ARGS})"
-rm -rf "${MDB_DIR}/build"
-cmake -S "${MDB_DIR}" -B "${MDB_DIR}/build" -DMEOS=ON ${MEOS_CMAKE_ARGS} >/dev/null
-cmake --build "${MDB_DIR}/build" --target meos -j "${JOBS}"
+  log "Building libmeos.so (MEOS=ON ${MEOS_CMAKE_ARGS})"
+  rm -rf "${MDB_DIR}/build"
+  cmake -S "${MDB_DIR}" -B "${MDB_DIR}/build" -DMEOS=ON ${MEOS_CMAKE_ARGS} >/dev/null
+  cmake --build "${MDB_DIR}/build" --target meos -j "${JOBS}"
 
-LIBMEOS_SO="$(find "${MDB_DIR}/build" -name 'libmeos.so' -print -quit)"
-[ -n "${LIBMEOS_SO}" ] || { echo "error: libmeos.so not produced by the MEOS build" >&2; exit 1; }
-log "Built ${LIBMEOS_SO}"
+  LIBMEOS_SO="$(find "${MDB_DIR}/build" -name 'libmeos.so' -print -quit)"
+  [ -n "${LIBMEOS_SO}" ] || { echo "error: libmeos.so not produced by the MEOS build" >&2; exit 1; }
+  log "Built ${LIBMEOS_SO}"
 
-# ---------------------------------------------------------------------------
-# 1b. Provision MEOS's SRID/network reference data at its default runtime path.
-# ---------------------------------------------------------------------------
-# libmeos resolves SRIDs by reading spatial_ref_sys.csv from a fixed default
-# path (meos/src/geo/tspatial_transform_meos.c: SPATIAL_REF_SYS_CSV =
-# "/usr/local/share/spatial_ref_sys.csv"). A full `cmake --install` would place
-# it there (meos/CMakeLists.txt), but this script only builds the `meos` target,
-# so the data files are staged explicitly. Without them, any SRID-touching call
-# (npoint, tgeompoint) makes libmeos print "Cannot open the spatial_ref_sys.csv
-# file" to stdout, which corrupts the surefire fork channel and terminates the
-# JVM under test ("The forked VM terminated without properly saying goodbye").
-MEOS_DATA_DIR="${MEOS_DATA_DIR:-/usr/local/share}"
-log "Provisioning MEOS reference data into ${MEOS_DATA_DIR}"
-provision_data() {
-  local src="$1" dst="$2"
-  install -Dm644 "${src}" "${dst}" 2>/dev/null || sudo install -Dm644 "${src}" "${dst}"
-}
-provision_data "${MDB_DIR}/meos/src/geo/spatial_ref_sys.csv" "${MEOS_DATA_DIR}/spatial_ref_sys.csv"
-provision_data "${MDB_DIR}/meos/examples/data/ways1000.csv"  "${MEOS_DATA_DIR}/ways1000.csv"
+  # -------------------------------------------------------------------------
+  # 1b. Provision MEOS's SRID/network reference data at its default runtime path.
+  # -------------------------------------------------------------------------
+  # libmeos resolves SRIDs by reading spatial_ref_sys.csv from a fixed default
+  # path (meos/src/geo/tspatial_transform_meos.c: SPATIAL_REF_SYS_CSV =
+  # "/usr/local/share/spatial_ref_sys.csv"). A full `cmake --install` would place
+  # it there (meos/CMakeLists.txt), but this branch only builds the `meos` target,
+  # so the data files are staged explicitly. Without them, any SRID-touching call
+  # (npoint, tgeompoint) makes libmeos print "Cannot open the spatial_ref_sys.csv
+  # file" to stdout, which corrupts the surefire fork channel and terminates the
+  # JVM under test ("The forked VM terminated without properly saying goodbye").
+  MEOS_DATA_DIR="${MEOS_DATA_DIR:-/usr/local/share}"
+  log "Provisioning MEOS reference data into ${MEOS_DATA_DIR}"
+  provision_data() {
+    local src="$1" dst="$2"
+    install -Dm644 "${src}" "${dst}" 2>/dev/null || sudo install -Dm644 "${src}" "${dst}"
+  }
+  provision_data "${MDB_DIR}/meos/src/geo/spatial_ref_sys.csv" "${MEOS_DATA_DIR}/spatial_ref_sys.csv"
+  provision_data "${MDB_DIR}/meos/examples/data/ways1000.csv"  "${MEOS_DATA_DIR}/ways1000.csv"
+fi
 
 # ---------------------------------------------------------------------------
 # 2. Build JMEOS.jar against that libmeos.so.
