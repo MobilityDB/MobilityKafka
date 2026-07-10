@@ -98,13 +98,14 @@ clone_at() {
 MDB_DIR="${WORK_DIR}/MobilityDB"
 clone_at "${MOBILITYDB_REPO}" "${MOBILITYDB_REF}" "${MDB_DIR}"
 
-# Enable the MEOS type families the streaming app exercises: circular buffers,
-# network points (default ON) and geoposes (which auto-enables rigid geometries).
-# The facade smoke tests link these symbols, so they must be in libmeos.so.
-# H3 and POINTCLOUD are left OFF — the app does not use them and they require
-# extra system libraries (libh3, libpointcloud); enable them via MEOS_CMAKE_ARGS
-# if a downstream consumer ever needs them.
-MEOS_CMAKE_ARGS="${MEOS_CMAKE_ARGS:--DCBUFFER=ON -DNPOINT=ON -DPOSE=ON}"
+# Build every optional MEOS family via -DALL so the facades link against a
+# libmeos with the full symbol surface (circular buffers, H3, JSON, network
+# points, pgPointCloud, geoposes, quadbin, raster, rigid geometries, Arrow).
+# H3 is pinned to the distro's system library (the CI apt step installs
+# libh3-dev); pgPointCloud's vendored libpc.a needs pg_config, pinned to the
+# apt.postgresql.org PostgreSQL 17 the CI workflow installs. Override via
+# MEOS_CMAKE_ARGS for a non-Debian layout.
+MEOS_CMAKE_ARGS="${MEOS_CMAKE_ARGS:--DALL=ON -DH3_LIBRARY=/usr/lib/x86_64-linux-gnu/libh3.so -DH3_INCLUDE_DIR=/usr/include/h3 -DPOSTGRESQL_PG_CONFIG=/usr/lib/postgresql/17/bin/pg_config}"
 
 log "Building libmeos.so (MEOS=ON ${MEOS_CMAKE_ARGS})"
 rm -rf "${MDB_DIR}/build"
