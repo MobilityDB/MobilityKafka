@@ -20,40 +20,28 @@ jobs:
           java-version: "21"
           cache: maven
 
-      # Prefer apt.postgresql.org over the runner's preinstalled PostgreSQL so
-      # the postgresql-server-dev package resolves cleanly. Only pg_config is
-      # needed here — pgPointCloud produces a static libpc.a, no server.
-      - name: Remove existing PostgreSQL installations [prefer apt.postgresql.org]
-        run: |
-          sudo service postgresql stop || true
-          sudo apt-get --purge remove postgresql* -y || true
-          sudo rm -rf /var/lib/postgresql/ /etc/postgresql/ \
-            /var/log/postgresql/ || true
+      # Read the pinned MobilityDB commit from the single recorded surface file
+      # so no SHA is duplicated across this workflow.
+      - name: Read the pinned MobilityDB commit
+        id: meos
+        run: echo "sha=$(tr -d '[:space:]' < tools/meos-source-commit.txt)" >> "$GITHUB_OUTPUT"
 
-      - name: Add PostgreSQL APT repository
-        run: |
-          sudo apt-get install -y curl ca-certificates gnupg
-          curl https://www.postgresql.org/media/keys/ACCC4CF8.asc \
-            | sudo apt-key add -
-          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ \
-            $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+      # Build and install libmeos (all families, + spatial_ref_sys.csv /
+      # ways1000.csv under /usr/local/share) through the shared MEOS build
+      # recipe instead of an inline copy of it. build-jmeos.sh then only builds
+      # the JMEOS jar against this installed libmeos.
+      - name: Build and install libmeos via the shared provision-meos action
+        uses: MobilityDB/MEOS-API/.github/actions/provision-meos@master
+        with:
+          mobilitydb-ref: ${{ steps.meos.outputs.sha }}
+          build-libmeos: "true"
 
-      - name: Install MEOS build dependencies
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y \
-            cmake build-essential \
-            libjson-c-dev libgeos-dev libproj-dev libgsl-dev \
-            libh3-dev libgdal-dev libxml2-dev \
-            autoconf automake libtool pkg-config \
-            postgresql-17 postgresql-server-dev-17
-
-      - name: Build libmeos.so + JMEOS.jar from the tracked commit
-        # build-jmeos.sh builds libmeos from the recorded MobilityDB commit, builds the
-        # JMEOS jar from JMEOS main, installs the jar into the local Maven repo, and stages
-        # libmeos.so under kafka-streams-app/lib. MOBILITYDB_REF is read from the single
-        # recorded surface commit so no SHA is duplicated in this workflow.
-        run: MOBILITYDB_REF="$(tr -d '[:space:]' < tools/meos-source-commit.txt)" JOBS=2 ./build-jmeos.sh
+      - name: Build JMEOS.jar against the installed libmeos
+        # libmeos is already built and installed under /usr/local by the
+        # provision-meos action, so build-jmeos.sh skips its own libmeos build
+        # and only builds the JMEOS jar from JMEOS main, installs it into the
+        # local Maven repo, and stages libmeos.so under kafka-streams-app/lib.
+        run: JOBS=2 ./build-jmeos.sh
 
       - name: Test the Kafka Streams app
         # The generated MeosOps* facades forward to the installed JMEOS jar; the tests
