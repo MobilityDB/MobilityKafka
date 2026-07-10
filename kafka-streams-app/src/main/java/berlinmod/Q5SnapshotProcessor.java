@@ -1,3 +1,28 @@
+/*****************************************************************************
+ *
+ * This MobilityDB code is provided under The PostgreSQL License.
+ * Copyright (c) 2020-2026, Université libre de Bruxelles and MobilityDB
+ * contributors
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation for any purpose, without fee, and without a written
+ * agreement is hereby granted, provided that the above copyright notice and
+ * this paragraph and the following two paragraphs appear in all copies.
+ *
+ * IN NO EVENT SHALL UNIVERSITE LIBRE DE BRUXELLES BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING
+ * LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION,
+ * EVEN IF UNIVERSITE LIBRE DE BRUXELLES HAS BEEN ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ * UNIVERSITE LIBRE DE BRUXELLES SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON
+ * AN "AS IS" BASIS, AND UNIVERSITE LIBRE DE BRUXELLES HAS NO OBLIGATIONS TO
+ * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+ *
+ *****************************************************************************/
+
 package berlinmod;
 
 import org.apache.kafka.streams.KeyValue;
@@ -69,7 +94,7 @@ public class Q5SnapshotProcessor implements Processor<Integer, BerlinMODTrip, St
                 String[] ll = kv.value.split(",", 2);
                 double lon = Double.parseDouble(ll[0]);
                 double lat = Double.parseDouble(ll[1]);
-                if (Haversine.withinMetres(lon, lat, pLon, pLat, dPMetres)) {
+                if (MEOSBridge.dwithinMetres(lon, lat, pLon, pLat, dPMetres)) {
                     ids.add(new int[]{kv.key});
                     positions.add(new double[]{lon, lat});
                 }
@@ -86,7 +111,7 @@ public class Q5SnapshotProcessor implements Processor<Integer, BerlinMODTrip, St
         }
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                double d = Haversine.distanceMetres(
+                double d = MEOSBridge.distanceMetres(
                         positions.get(i)[0], positions.get(i)[1],
                         positions.get(j)[0], positions.get(j)[1]);
                 if (d <= dMeetMetres) {

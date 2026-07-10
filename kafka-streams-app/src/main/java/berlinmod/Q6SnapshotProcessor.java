@@ -1,3 +1,28 @@
+/*****************************************************************************
+ *
+ * This MobilityDB code is provided under The PostgreSQL License.
+ * Copyright (c) 2020-2026, Université libre de Bruxelles and MobilityDB
+ * contributors
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation for any purpose, without fee, and without a written
+ * agreement is hereby granted, provided that the above copyright notice and
+ * this paragraph and the following two paragraphs appear in all copies.
+ *
+ * IN NO EVENT SHALL UNIVERSITE LIBRE DE BRUXELLES BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING
+ * LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION,
+ * EVEN IF UNIVERSITE LIBRE DE BRUXELLES HAS BEEN ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ * UNIVERSITE LIBRE DE BRUXELLES SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON
+ * AN "AS IS" BASIS, AND UNIVERSITE LIBRE DE BRUXELLES HAS NO OBLIGATIONS TO
+ * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+ *
+ *****************************************************************************/
+
 package berlinmod;
 
 import org.apache.kafka.streams.KeyValue;
@@ -20,7 +45,7 @@ import java.util.List;
  * up to T?"</i>
  *
  * <p>Caller keys the input by a constant. State value "lon,lat,total"
- * per vehicleId. Per event: accumulate Haversine delta. Per STREAM_TIME
+ * per vehicleId. Per event: accumulate the MEOS geog_distance delta. Per STREAM_TIME
  * punctuator fire: emit {@code (currentTick, vehicleId, total)} for
  * every vehicle (sorted by vehicleId), encoded as "vid:total".
  */
@@ -57,7 +82,7 @@ public class Q6SnapshotProcessor implements Processor<Integer, BerlinMODTrip, Lo
             double lastLon = Double.parseDouble(parts[0]);
             double lastLat = Double.parseDouble(parts[1]);
             double prevTotal = Double.parseDouble(parts[2]);
-            total = prevTotal + Haversine.distanceMetres(lastLon, lastLat, trip.getLon(), trip.getLat());
+            total = prevTotal + MEOSBridge.distanceMetres(lastLon, lastLat, trip.getLon(), trip.getLat());
         }
         state.put(trip.getVehicleId(), trip.getLon() + "," + trip.getLat() + "," + total);
     }

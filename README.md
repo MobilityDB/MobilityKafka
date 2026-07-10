@@ -49,6 +49,24 @@ Spatial predicates today use pure-Java great-circle (`Haversine`) and planar seg
 
 ## Build and run
 
+### MEOS native dependency
+
+The spatial predicates route through MEOS via the [JMEOS](https://github.com/MobilityDB/JMEOS)
+bridge, so the build needs the JMEOS jar and the native `libmeos.so`. Neither is
+committed to this repository — generate them from source with the helper script,
+which clones MobilityDB and JMEOS at pinned, immutable refs, builds `libmeos.so`,
+builds the jar, installs the jar into the local Maven repository, and stages
+`libmeos.so` for the runtime:
+
+```
+./build-jmeos.sh
+```
+
+Run it once (re-run it only to bump the pinned MobilityDB/JMEOS refs at the top of
+the script). After it succeeds, JMEOS resolves as an ordinary Maven dependency.
+
+### Build the app
+
 ```
 cd kafka-streams-app
 mvn -q clean package -DskipTests
