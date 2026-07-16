@@ -120,6 +120,53 @@
 
     <build>
         <plugins>
+            <!-- Generate the org.mobilitydb.meos.MeosOps* facades from the installed JMEOS
+                 jar's surface at build time (into target/, never committed), via the single
+                 generator vendored identically by every JVM binding. The kafka engine emits
+                 the same MeosOps* forwarders the streams app consumes. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-facades</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>exec</goal></goals>
+                        <configuration>
+                            <executable>python3</executable>
+                            <arguments>
+                                <argument>${project.basedir}/../tools/codegen_jvm.py</argument>
+                                <argument>--engine</argument>
+                                <argument>kafka</argument>
+                                <argument>--catalog</argument>
+                                <argument>${project.basedir}/../tools/meos-idl.json</argument>
+                                <argument>--jar</argument>
+                                <argument>${settings.localRepository}/com/mobilitydb/jmeos/1.4.0/jmeos-1.4.0.jar</argument>
+                                <argument>--out</argument>
+                                <argument>${project.build.directory}/generated-facades</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>add-generated-facades</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>add-source</goal></goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-facades/src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.12.1</version>
