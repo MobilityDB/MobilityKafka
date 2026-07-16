@@ -20,21 +20,24 @@ jobs:
           java-version: "21"
           cache: maven
 
-      # Read the pinned MobilityDB commit from the single recorded surface file
-      # so no SHA is duplicated across this workflow.
-      - name: Read the pinned MobilityDB commit
-        id: meos
-        run: echo "sha=$(tr -d '[:space:]' < tools/meos-source-commit.txt)" >> "$GITHUB_OUTPUT"
-
-      # Build and install libmeos (all families, + spatial_ref_sys.csv /
-      # ways1000.csv under /usr/local/share) through the shared MEOS build
-      # recipe instead of an inline copy of it. build-jmeos.sh then only builds
-      # the JMEOS jar against this installed libmeos.
-      - name: Build and install libmeos via the shared provision-meos action
+      # Derive the MEOS catalog (meos-idl.json via run.py) and build+install the
+      # all-families libmeos.so (+ spatial_ref_sys.csv / ways1000.csv under
+      # /usr/local/share) from upstream MobilityDB master through the shared
+      # provision-meos action. Tracking master (not a pinned commit) keeps the
+      # source, the catalog, the JMEOS jar and the libmeos the tests load all moving
+      # together, so the generated facades can never drift from the surface they run
+      # against. build-jmeos.sh then only builds the JMEOS jar against this libmeos.
+      - name: Provision MEOS catalog + libmeos
+        id: provision
         uses: MobilityDB/MEOS-API/.github/actions/provision-meos@master
         with:
-          mobilitydb-ref: ${{ steps.meos.outputs.sha }}
+          mobilitydb-ref: master
           build-libmeos: "true"
+
+      - name: Stage the derived MEOS catalog
+        # codegen_jvm.py reads tools/meos-idl.json; place the derived catalog there.
+        # The catalog is gitignored — it only ever exists as a build artifact.
+        run: cp "${{ steps.provision.outputs.catalog-path }}" tools/meos-idl.json
 
       - name: Build JMEOS.jar against the installed libmeos
         # libmeos is already built and installed under /usr/local by the

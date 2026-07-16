@@ -24,9 +24,8 @@
 # an ordinary dependency — no committed jar/so required.
 #
 # The refs below track upstream MobilityDB master and MobilityDB/JMEOS main — the
-# surfaces this project is generated against. They are recorded as immutable head
-# SHAs (overridable env vars) so a build is reproducible; bump them to the current
-# master/main tips when refreshing the generated surface (see GENERATION.md).
+# surfaces this project is generated against — as branch names (overridable env
+# vars), so a build always picks up the current master/main tips.
 #
 set -euo pipefail
 
@@ -36,12 +35,12 @@ set -euo pipefail
 # MobilityDB master — the surface the JMEOS facade is generated against, so the
 # built libmeos.so matches the facade catalog. Overridable via the environment.
 MOBILITYDB_REPO="${MOBILITYDB_REPO:-https://github.com/MobilityDB/MobilityDB.git}"
-MOBILITYDB_REF="${MOBILITYDB_REF:-d984d747acc1fcdee895ebaf7517912d596ea598}"  # master 2026-07-10
+MOBILITYDB_REF="${MOBILITYDB_REF:-master}"  # track upstream master (only used when libmeos is not pre-installed)
 
 # JMEOS main — functions.GeneratedFunctions (built at build-time from the committed
 # catalog) plus the org.mobilitydb.meos.MeosOps* facades.
 JMEOS_REPO="${JMEOS_REPO:-https://github.com/MobilityDB/JMEOS.git}"
-JMEOS_REF="${JMEOS_REF:-5275e7d44cf9a62b731b2c3c2c9aa4ccebafc604}"  # main 2026-07-10
+JMEOS_REF="${JMEOS_REF:-main}"  # track upstream main
 
 # Maven coordinates the jar is installed under (must match kafka-streams-app/pom.xml).
 JMEOS_GROUP_ID="${JMEOS_GROUP_ID:-com.mobilitydb}"
@@ -155,6 +154,20 @@ clone_at "${JMEOS_REPO}" "${JMEOS_REF}" "${JMEOS_DIR}"
 
 # JMEOS' build bundles src/libmeos.so into the jar and JarLibraryLoader extracts it.
 cp -f "${LIBMEOS_SO}" "${JMEOS_DIR}/jmeos-core/src/libmeos.so"
+
+# JMEOS main derives functions.GeneratedFunctions from codegen/input/meos-idl.json
+# but tracks the MEOS-API catalog (it no longer commits it). Stage the catalog
+# derived by provision-meos — the workflow puts it at tools/meos-idl.json — so the
+# jar is built from the same master surface as the libmeos and the facades.
+MEOS_CATALOG="${MEOS_CATALOG:-${SCRIPT_DIR}/tools/meos-idl.json}"
+if [ -s "${MEOS_CATALOG}" ]; then
+  mkdir -p "${JMEOS_DIR}/codegen/input"
+  cp -f "${MEOS_CATALOG}" "${JMEOS_DIR}/codegen/input/meos-idl.json"
+  log "Staged MEOS catalog into ${JMEOS_DIR}/codegen/input/meos-idl.json"
+else
+  echo "error: MEOS catalog not found at ${MEOS_CATALOG}; stage it (provision-meos) first" >&2
+  exit 1
+fi
 
 log "Building JMEOS.jar"
 # FunctionsGenerator lives in the codegen module, which jmeos-core does not
