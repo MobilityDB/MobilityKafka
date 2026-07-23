@@ -26,6 +26,7 @@
 package berlinmod;
 
 import functions.GeneratedFunctions;
+import functions.error_handler_fn;
 import jnr.ffi.Pointer;
 
 /**
@@ -38,23 +39,59 @@ import jnr.ffi.Pointer;
  * {@code eintersects_tgeo_geo} between the point's {@code tgeompoint} instant
  * and the region polygon; distances are {@code geog_distance}. This class holds
  * no spatial mathematics of its own: it constructs the MEOS inputs and delegates
- * the computation to libmeos, initialising MEOS once per stream thread.
+ * the computation to libmeos, installing MEOS's process-global state once and
+ * its thread-local caches once per stream thread.
  */
 public final class MEOSBridge {
 
-    private static final ThreadLocal<Boolean> INITIALIZED =
-            ThreadLocal.withInitial(() -> Boolean.FALSE);
+    /**
+     * No-exit MEOS error handler. MEOS's default handler calls exit(EXIT_FAILURE)
+     * on an ERROR, which would tear the JVM down if a MEOS error fired inside a
+     * stream thread; this handler returns instead, and the error still surfaces
+     * because MEOS sets meos_errno. Held as a static field so JNR keeps the
+     * native callback alive for the process lifetime.
+     */
+    private static final error_handler_fn NOEXIT_ERROR_HANDLER =
+            (level, code, message) -> { /* do not exit the JVM */ };
+
+    /**
+     * Process-global MEOS setup, installed exactly once per JVM: the allocator
+     * and the error handler are process-global, not thread-local. The holder's
+     * class initialiser runs under the JVM class-initialisation lock. meos_initialize()
+     * runs first — it installs MEOS's exiting default handler — and the no-exit
+     * handler then replaces it, so a thread reaching its per-thread setup always
+     * sees the no-exit handler and the exiting default is never observable.
+     */
+    private static final class ProcessInit {
+        static {
+            GeneratedFunctions.meos_initialize();
+            GeneratedFunctions.meos_initialize_error_handler(NOEXIT_ERROR_HANDLER);
+        }
+        /** Invoking this forces the class initialiser above to run once. */
+        static void ensure() { /* side effect: class initialisation */ }
+    }
+
+    /**
+     * Per-thread MEOS setup, run once per native thread: only the thread-local
+     * caches. The timezone and collation caches are thread-local and set
+     * explicitly per thread; the PROJ, GEOS and GSL contexts are thread-local too
+     * and created lazily by MEOS on first use. Full meos_initialize() is NOT run
+     * per thread — it re-installs the exiting default error handler that every
+     * other thread relies on being the no-exit one.
+     */
+    private static final ThreadLocal<Boolean> INITIALIZED = ThreadLocal.withInitial(() -> {
+        ProcessInit.ensure();
+        GeneratedFunctions.meos_initialize_timezone("UTC");
+        GeneratedFunctions.meos_initialize_collation();
+        return Boolean.TRUE;
+    });
 
     private MEOSBridge() {
         // utility
     }
 
     private static void ensureInitializedOnThread() {
-        if (!INITIALIZED.get()) {
-            GeneratedFunctions.meos_initialize_error_handler((level, code, message) -> { });
-            GeneratedFunctions.meos_initialize();
-            INITIALIZED.set(Boolean.TRUE);
-        }
+        INITIALIZED.get();
     }
 
     /** @return {@code true} iff {@code (lon1, lat1)} is within {@code radiusMetres}
