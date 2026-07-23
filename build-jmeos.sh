@@ -17,10 +17,10 @@
 #   3. Registers the jar in the local Maven repository via
 #      `mvn install:install-file` under the coordinates the kafka-streams-app
 #      pom depends on (com.mobilitydb:jmeos:1.4.0 by default).
-#   4. Copies libmeos.so into kafka-streams-app/lib/ for the test/runtime
+#   4. Copies libmeos.so into the reactor-root lib/ for the test/runtime
 #      LD_LIBRARY_PATH.
 #
-# After running this once, `cd kafka-streams-app && mvn test` resolves JMEOS as
+# After running this once, `mvn test` resolves JMEOS as
 # an ordinary dependency — no committed jar/so required.
 #
 # The refs below track upstream MobilityDB master and MobilityDB/JMEOS main — the
@@ -51,7 +51,7 @@ JMEOS_VERSION="${JMEOS_VERSION:-1.4.0}"
 # Layout.
 # ---------------------------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APP_DIR="${SCRIPT_DIR}/kafka-streams-app"
+APP_DIR="${SCRIPT_DIR}"
 WORK_DIR="${WORK_DIR:-${SCRIPT_DIR}/.build-jmeos}"
 JOBS="${JOBS:-$(nproc 2>/dev/null || echo 4)}"
 

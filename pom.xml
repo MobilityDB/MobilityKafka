@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mobilitydb.kafka</groupId>
+    <artifactId>mobility-kafka-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>binding</module>
+        <module>benchmark</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <kafka.version>3.6.0</kafka.version>
+        <jackson.version>2.18.2</jackson.version>
+        <slf4j.version>2.0.16</slf4j.version>
+        <junit.version>5.11.4</junit.version>
+        <jmeos.version>1.4.0</jmeos.version>
+        <jnr.version>2.1.10</jnr.version>
+        <meos.enabled>true</meos.enabled>
+        <!-- The native libmeos.so both modules load at test time. build-jmeos.sh stages it
+             here (the reactor root) so the binding and the benchmark share one library. -->
+        <meos.lib.dir>${maven.multiModuleProjectDirectory}/lib</meos.lib.dir>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.12.1</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+                <!-- Both modules run MEOS through JNR, so both need the native library on the
+                     fork's LD_LIBRARY_PATH and the same JPMS opens. -->
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                    <configuration>
+                        <reuseForks>false</reuseForks>
+                        <systemPropertyVariables>
+                            <meos.enabled>${meos.enabled}</meos.enabled>
+                        </systemPropertyVariables>
+                        <environmentVariables>
+                            <LD_LIBRARY_PATH>${meos.lib.dir}</LD_LIBRARY_PATH>
+                        </environmentVariables>
+                        <argLine>--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED</argLine>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

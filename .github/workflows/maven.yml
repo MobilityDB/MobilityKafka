@@ -43,11 +43,10 @@ jobs:
         # libmeos is already built and installed under /usr/local by the
         # provision-meos action, so build-jmeos.sh skips its own libmeos build
         # and only builds the JMEOS jar from JMEOS main, installs it into the
-        # local Maven repo, and stages libmeos.so under kafka-streams-app/lib.
+        # local Maven repo, and stages libmeos.so under the reactor-root lib/.
         run: JOBS=2 ./build-jmeos.sh
 
       - name: Test the Kafka Streams app
         # The generated MeosOps* facades forward to the installed JMEOS jar; the tests
         # exercise them against the freshly built libmeos, resolved via LD_LIBRARY_PATH.
-        working-directory: kafka-streams-app
         run: LD_LIBRARY_PATH="$PWD/lib" mvn -B test
