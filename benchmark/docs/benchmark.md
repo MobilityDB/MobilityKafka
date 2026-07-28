@@ -38,8 +38,8 @@ gone idle. The trailing settle time is excluded from the wall; each consumed
 record runs the cell's MEOS predicate, so this is the steady-state per-event
 processing rate, directly comparable to the MobilityFlink figures.
 
-Run from `kafka-streams-app/` after `../build-jmeos.sh` (which installs JMEOS into
-the local Maven repository and stages `libmeos.so` under `lib/`). The test-scope
+Run after building the chain (see `GENERATION.md`), which installs JMEOS as
+`org.jmeos:meos:1.0` and libmeos under `/usr/local/lib`. The test-scope
 classpath that `mvn` reconstructs already carries JMEOS and the embedded broker, so
 no jar is referenced by path:
 

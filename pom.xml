@@ -22,12 +22,12 @@
         <jackson.version>2.18.2</jackson.version>
         <slf4j.version>2.0.16</slf4j.version>
         <junit.version>5.11.4</junit.version>
-        <jmeos.version>1.4.0</jmeos.version>
+        <jmeos.version>1.0</jmeos.version>
         <jnr.version>2.1.10</jnr.version>
         <meos.enabled>true</meos.enabled>
-        <!-- The native libmeos.so both modules load at test time. build-jmeos.sh stages it
-             here (the reactor root) so the binding and the benchmark share one library. -->
-        <meos.lib.dir>${maven.multiModuleProjectDirectory}/lib</meos.lib.dir>
+        <!-- The native libmeos.so both modules load at test time, installed under /usr/local
+             by the provision-meos action; the binding and the benchmark share one library. -->
+        <meos.lib.dir>/usr/local/lib</meos.lib.dir>
     </properties>
 
     <build>

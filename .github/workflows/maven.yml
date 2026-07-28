@@ -26,7 +26,7 @@ jobs:
       # provision-meos action. Tracking master (not a pinned commit) keeps the
       # source, the catalog, the JMEOS jar and the libmeos the tests load all moving
       # together, so the generated facades can never drift from the surface they run
-      # against. build-jmeos.sh then only builds the JMEOS jar against this libmeos.
+      # against. The JMEOS jar is then built from JMEOS main against this libmeos.
       - name: Provision MEOS catalog + libmeos
         id: provision
         uses: MobilityDB/MEOS-API/.github/actions/provision-meos@master
@@ -39,14 +39,28 @@ jobs:
         # The catalog is gitignored — it only ever exists as a build artifact.
         run: cp "${{ steps.provision.outputs.catalog-path }}" tools/meos-idl.json
 
-      - name: Build JMEOS.jar against the installed libmeos
-        # libmeos is already built and installed under /usr/local by the
-        # provision-meos action, so build-jmeos.sh skips its own libmeos build
-        # and only builds the JMEOS jar from JMEOS main, installs it into the
-        # local Maven repo, and stages libmeos.so under the reactor-root lib/.
-        run: JOBS=2 ./build-jmeos.sh
+      - name: Check out JMEOS
+        uses: actions/checkout@v4
+        with:
+          repository: MobilityDB/JMEOS
+          path: jmeos
+
+      - name: Build + install the JMEOS jar as org.jmeos:meos:1.0
+        # Mirror MobilitySpark and MobilityFlink: stage the derived catalog + libmeos into the
+        # JMEOS checkout and build it (jmeos-core's generate-sources emits GeneratedFunctions
+        # from the catalog), then install the plain jar/JMEOS.jar under the org.jmeos:meos:1.0
+        # coordinates the binding depends on. Tests are skipped — JMEOS's own CI exercises its
+        # FFI suite; only the jar is needed here.
+        run: |
+          mkdir -p jmeos/codegen/input
+          cp "${{ steps.provision.outputs.catalog-path }}" jmeos/codegen/input/meos-idl.json
+          cp /usr/local/lib/libmeos.so jmeos/jmeos-core/src/
+          mvn -B -f jmeos/pom.xml clean install -Dmaven.test.skip=true
+          mvn -B install:install-file \
+            -Dfile=jmeos/jar/JMEOS.jar \
+            -DgroupId=org.jmeos -DartifactId=meos -Dversion=1.0 -Dpackaging=jar
 
       - name: Test the Kafka Streams app
-        # The generated MeosOps* facades forward to the installed JMEOS jar; the tests
-        # exercise them against the freshly built libmeos, resolved via LD_LIBRARY_PATH.
-        run: LD_LIBRARY_PATH="$PWD/lib" mvn -B test
+        # The generated MeosOps* facades forward to the installed JMEOS jar; the tests exercise
+        # them against libmeos from /usr/local/lib (surefire sets LD_LIBRARY_PATH=meos.lib.dir).
+        run: mvn -B clean test
