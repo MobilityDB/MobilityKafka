@@ -18,8 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.mobilitydb</groupId>
-            <artifactId>jmeos</artifactId>
+            <groupId>org.jmeos</groupId>
+            <artifactId>meos</artifactId>
             <version>${jmeos.version}</version>
         </dependency>
         <dependency>
@@ -87,7 +87,7 @@
                                 <argument>--catalog</argument>
                                 <argument>${project.basedir}/../tools/meos-idl.json</argument>
                                 <argument>--jar</argument>
-                                <argument>${settings.localRepository}/com/mobilitydb/jmeos/${jmeos.version}/jmeos-${jmeos.version}.jar</argument>
+                                <argument>${settings.localRepository}/org/jmeos/meos/${jmeos.version}/meos-${jmeos.version}.jar</argument>
                                 <argument>--out</argument>
                                 <argument>${project.build.directory}/generated-facades</argument>
                             </arguments>
