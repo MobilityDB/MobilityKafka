@@ -30,7 +30,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
-import org.mobilitydb.meos.MeosSetSetJoin;
+import org.mobilitydb.meos.MeosOpsFreeGeo;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -40,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Verifies the BerlinMOD trip-level NxN spatial join (the kernel-pruned
- * {@link MeosSetSetJoin} set-set family) against an independent per-pair scalar
+ * {@link MeosOpsFreeGeo} set-set family) against an independent per-pair scalar
  * baseline ({@code edwithin_tgeo_tgeo} / {@code eintersects_tgeo_tgeo}). The two
  * code paths must agree exactly on which trip pairs ever meet / are always
  * disjoint. Runs only with {@code -Dmeos.enabled=true} and an extended libmeos
@@ -82,7 +82,7 @@ class BerlinMODSetSetJoinTest {
 
     @Test
     void eDwithinPairsMatchesScalarBaseline() {
-        Set<Long> kernel = pairSet(MeosSetSetJoin.eDwithinPairs(trips, trips, MEET_DIST));
+        Set<Long> kernel = pairSet(MeosOpsFreeGeo.eDwithinPairs(trips, trips, MEET_DIST));
         Set<Long> baseline = new HashSet<>();
         for (int i = 0; i < trips.length; i++)
             for (int j = 0; j < trips.length; j++)
@@ -95,7 +95,7 @@ class BerlinMODSetSetJoinTest {
 
     @Test
     void aDisjointPairsMatchesScalarBaseline() {
-        Set<Long> kernel = pairSet(MeosSetSetJoin.aDisjointPairs(trips, trips));
+        Set<Long> kernel = pairSet(MeosOpsFreeGeo.aDisjointPairs(trips, trips));
         Set<Long> baseline = new HashSet<>();
         for (int i = 0; i < trips.length; i++)
             for (int j = 0; j < trips.length; j++)
@@ -106,9 +106,9 @@ class BerlinMODSetSetJoinTest {
 
     @Test
     void tDwithinPairsSupersetOfEverWithinWithPeriods() {
-        MeosSetSetJoin.TDwithin t = MeosSetSetJoin.tDwithinPairs(trips, trips, MEET_DIST);
+        MeosOpsFreeGeo.PairsAndPeriods t = MeosOpsFreeGeo.tDwithinPairs(trips, trips, MEET_DIST);
         Set<Long> tdw = pairSet(t.pairs);
-        Set<Long> ever = pairSet(MeosSetSetJoin.eDwithinPairs(trips, trips, MEET_DIST));
+        Set<Long> ever = pairSet(MeosOpsFreeGeo.eDwithinPairs(trips, trips, MEET_DIST));
         // Continuous tDwithin also reports transient trajectory crossings (e.g. T0/T1
         // coincide at the mid-window crossing) that the ever-within predicate misses,
         // so the within-interval pairs are a superset of the ever-within pairs.
