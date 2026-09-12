@@ -49,7 +49,7 @@ import java.io.Serializable;
  *
  * <p><b>Typical usage</b> — per-vehicle-pair "did they come within
  * 100m of each other in the last 5 minutes?" via
- * {@code MeosOpsTGeo.edwithin_tgeo_tgeo}:
+ * {@code MeosOpsFreeGeo.edwithin_tgeo_tgeo}:
  *
  * <pre>{@code
  * KStream<Integer, VehiclePosition> a = ...;   // keyed by regionId
@@ -60,7 +60,7 @@ import java.io.Serializable;
  *     MeosCrossStreamJoiner.joiner((left, right) -> {
  *         Pointer leftT  = left.toTGeoPointer();
  *         Pointer rightT = right.toTGeoPointer();
- *         if (MeosOpsTGeo.edwithin_tgeo_tgeo(leftT, rightT, 100.0) != 0) {
+ *         if (MeosOpsFreeGeo.edwithin_tgeo_tgeo(leftT, rightT, 100.0) != 0) {
  *             return new MeetingEvent(left.id(), right.id(), System.currentTimeMillis());
  *         }
  *         return null;  // joined out

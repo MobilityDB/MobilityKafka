@@ -36,8 +36,8 @@ import java.io.Serializable;
  *
  * <p>The {@code windowed} tier (per the v4 baseline: 161 of 2,097
  * emitted methods) emits one MEOS-derived value per window. Canonical
- * examples are {@code temporal_length(tgeo)} (one length per
- * trajectory window) and {@code temporal_twavg(tnumber)} (one
+ * examples are {@code tpoint_length(tpoint)} (one length per
+ * trajectory window) and {@code tnumber_twavg(tnumber)} (one
  * time-weighted average per window).
  *
  * <p>Kafka Streams' {@code KStream.groupByKey().windowedBy(...).aggregate(
