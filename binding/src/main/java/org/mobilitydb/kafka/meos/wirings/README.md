@@ -75,7 +75,7 @@ Run with:
 ```bash
 mvn -q exec:java \
     -Dexec.mainClass=org.mobilitydb.kafka.meos.wirings.demo.MeosWiringsDemoTopology \
-    -Dmeos.enabled=true
+    -Dmobilitykafka.meos.enabled=true
 ```
 
 The demo uses `TopologyTestDriver` (kafka-streams-test-utils) — no

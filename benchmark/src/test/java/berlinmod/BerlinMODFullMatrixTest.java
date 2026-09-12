@@ -74,12 +74,11 @@ class BerlinMODFullMatrixTest {
             }
 
             // Q5 ("pairs of vehicles meeting near P") is the one cell whose count
-            // differs between the pure-Java Haversine approximation (scaffold) and
-            // the MEOS geodetic engine (integration): the MEOS pair-meeting path
-            // emits none under these params while the planar approximation is more
-            // permissive. The other 26 cells are engine-invariant. TODO(meos):
-            // reconcile the Q5 pair-meeting semantics across the two engines.
-            boolean meos = Boolean.getBoolean("meos.enabled");
+            // depends on the engine: the MEOS geodetic pair-meeting path emits none
+            // under these params, where the pure-Java Haversine scaffold emits 199
+            // continuous, 7 windowed and 28 snapshot pairs. The other 26 cells are
+            // engine-invariant. TODO(meos): reconcile the Q5 pair-meeting semantics
+            // across the two engines.
 
             // ---- continuous outputs ----
             assertCount(driver, BerlinMODTopology.Q1_CONTINUOUS_OUTPUT, "Q1-continuous", 5,
@@ -90,7 +89,7 @@ class BerlinMODFullMatrixTest {
                         Serdes.Integer().deserializer(), new BooleanDeserializer());
             assertCount(driver, BerlinMODTopology.Q4_CONTINUOUS_OUTPUT, "Q4-continuous", 2,
                         Serdes.Integer().deserializer(), new LongDeserializer());
-            assertCount(driver, BerlinMODTopology.Q5_CONTINUOUS_OUTPUT, "Q5-continuous", meos ? 0 : 199,
+            assertCount(driver, BerlinMODTopology.Q5_CONTINUOUS_OUTPUT, "Q5-continuous", 0,
                         new StringDeserializer(), new DoubleDeserializer());
             assertCount(driver, BerlinMODTopology.Q6_CONTINUOUS_OUTPUT, "Q6-continuous", 200,
                         Serdes.Integer().deserializer(), new DoubleDeserializer());
@@ -110,7 +109,7 @@ class BerlinMODFullMatrixTest {
                         new LongDeserializer(), new LongDeserializer());
             assertCount(driver, BerlinMODTopology.Q4_WINDOWED_OUTPUT, "Q4-windowed", 21,
                         new LongDeserializer(), new StringDeserializer());
-            assertCount(driver, BerlinMODTopology.Q5_WINDOWED_OUTPUT, "Q5-windowed", meos ? 0 : 7,
+            assertCount(driver, BerlinMODTopology.Q5_WINDOWED_OUTPUT, "Q5-windowed", 0,
                         new StringDeserializer(), new DoubleDeserializer());
             assertCount(driver, BerlinMODTopology.Q6_WINDOWED_OUTPUT, "Q6-windowed", 46,
                         new LongDeserializer(), new StringDeserializer());
@@ -130,7 +129,7 @@ class BerlinMODFullMatrixTest {
                         new LongDeserializer(), new IntegerDeserializer());
             assertCount(driver, BerlinMODTopology.Q4_SNAPSHOT_OUTPUT, "Q4-snapshot", 57,
                         new LongDeserializer(), new StringDeserializer());
-            assertCount(driver, BerlinMODTopology.Q5_SNAPSHOT_OUTPUT, "Q5-snapshot", meos ? 0 : 28,
+            assertCount(driver, BerlinMODTopology.Q5_SNAPSHOT_OUTPUT, "Q5-snapshot", 0,
                         new StringDeserializer(), new DoubleDeserializer());
             assertCount(driver, BerlinMODTopology.Q6_SNAPSHOT_OUTPUT, "Q6-snapshot", 141,
                         new LongDeserializer(), new StringDeserializer());

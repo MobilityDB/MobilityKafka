@@ -97,7 +97,7 @@ import java.util.Arrays;
  * <pre>{@code
  * mvn -q exec:java \
  *     -Dexec.mainClass=org.mobilitydb.kafka.meos.wirings.demo.MeosWiringsDemoTopology \
- *     -Dmeos.enabled=true
+ *     -Dmobilitykafka.meos.enabled=true
  * }</pre>
  */
 public final class MeosWiringsDemoTopology {
@@ -191,7 +191,7 @@ public final class MeosWiringsDemoTopology {
 
         if (!MeosOpsRuntime.MEOS_AVAILABLE) {
             LOG.warn("MEOS not available — topology built but not executed. "
-                    + "Set -Dmeos.enabled=true and ensure libmeos is loadable to run.");
+                    + "Set -Dmobilitykafka.meos.enabled=true and ensure libmeos is loadable to run.");
             return;
         }
 
