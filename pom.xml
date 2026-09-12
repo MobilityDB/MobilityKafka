@@ -24,7 +24,6 @@
         <junit.version>5.11.4</junit.version>
         <jmeos.version>1.0</jmeos.version>
         <jnr.version>2.1.10</jnr.version>
-        <meos.enabled>true</meos.enabled>
         <!-- The native libmeos.so both modules load at test time, installed under /usr/local
              by the provision-meos action; the binding and the benchmark share one library. -->
         <meos.lib.dir>/usr/local/lib</meos.lib.dir>
@@ -48,9 +47,6 @@
                     <version>3.2.5</version>
                     <configuration>
                         <reuseForks>false</reuseForks>
-                        <systemPropertyVariables>
-                            <meos.enabled>${meos.enabled}</meos.enabled>
-                        </systemPropertyVariables>
                         <environmentVariables>
                             <LD_LIBRARY_PATH>${meos.lib.dir}</LD_LIBRARY_PATH>
                         </environmentVariables>
