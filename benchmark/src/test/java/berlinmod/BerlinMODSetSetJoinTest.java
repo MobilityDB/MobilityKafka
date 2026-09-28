@@ -112,6 +112,6 @@ class BerlinMODSetSetJoinTest {
         org.junit.jupiter.api.Assertions.assertTrue(tdw.containsAll(ever),
             "every ever-within pair has a within-interval");
         for (int k = 0; k < t.pairs.length; k++)
-            assertNotNull(t.periodsHexwkb[k], "every within pair carries its in-range period spanset");
+            assertNotNull(t.periodsWkb[k], "every within pair carries its in-range period spanset");
     }
 }
