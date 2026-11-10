@@ -79,11 +79,11 @@ class BerlinMODSetSetJoinTest {
 
     @Test
     void eDwithinPairsMatchesScalarBaseline() {
-        Set<Long> kernel = pairSet(MeosOpsFreeGeo.eDwithinPairs(trips, trips, MEET_DIST));
+        Set<Long> kernel = pairSet(MeosOpsFreeGeo.eDwithinPairs(trips, trips, MEET_DIST, true));
         Set<Long> baseline = new HashSet<>();
         for (int i = 0; i < trips.length; i++)
             for (int j = 0; j < trips.length; j++)
-                if (GeneratedFunctions.edwithin_tgeo_tgeo(trips[i], trips[j], MEET_DIST) == 1)
+                if (GeneratedFunctions.edwithin_tgeo_tgeo(trips[i], trips[j], MEET_DIST, true) == 1)
                     baseline.add(((long) i << 32) | j);
         assertEquals(baseline, kernel, "set-set eDwithinPairs must equal the per-pair edwithin scalar");
         // T0/T3 coincide and T1 crosses T0 — the join is non-empty.
@@ -103,9 +103,9 @@ class BerlinMODSetSetJoinTest {
 
     @Test
     void tDwithinPairsSupersetOfEverWithinWithPeriods() {
-        MeosOpsFreeGeo.PairsAndPeriods t = MeosOpsFreeGeo.tDwithinPairs(trips, trips, MEET_DIST);
+        MeosOpsFreeGeo.PairsAndPeriods t = MeosOpsFreeGeo.tDwithinPairs(trips, trips, MEET_DIST, true);
         Set<Long> tdw = pairSet(t.pairs);
-        Set<Long> ever = pairSet(MeosOpsFreeGeo.eDwithinPairs(trips, trips, MEET_DIST));
+        Set<Long> ever = pairSet(MeosOpsFreeGeo.eDwithinPairs(trips, trips, MEET_DIST, true));
         // Continuous tDwithin also reports transient trajectory crossings (e.g. T0/T1
         // coincide at the mid-window crossing) that the ever-within predicate misses,
         // so the within-interval pairs are a superset of the ever-within pairs.

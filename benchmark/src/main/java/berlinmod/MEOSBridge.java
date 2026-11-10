@@ -100,7 +100,7 @@ public final class MEOSBridge {
                                         double lon2, double lat2, double radiusMetres) {
         ensureInitializedOnThread();
         return GeneratedFunctions.edwithin_tgeo_geo(
-                tgeogInst(lon1, lat1), pointGeog(lon2, lat2), radiusMetres) == 1;
+                tgeogInst(lon1, lat1), pointGeog(lon2, lat2), radiusMetres, true) == 1;
     }
 
     /** @return {@code true} iff {@code (pLon, pLat)} is within {@code radiusMetres}
@@ -110,7 +110,7 @@ public final class MEOSBridge {
                                                double s2Lon, double s2Lat, double radiusMetres) {
         ensureInitializedOnThread();
         return GeneratedFunctions.edwithin_tgeo_geo(
-                tgeogInst(pLon, pLat), lineGeog(s1Lon, s1Lat, s2Lon, s2Lat), radiusMetres) == 1;
+                tgeogInst(pLon, pLat), lineGeog(s1Lon, s1Lat, s2Lon, s2Lat), radiusMetres, true) == 1;
     }
 
     /** @return {@code true} iff {@code (lon, lat)} lies in the axis-aligned box, via
@@ -125,7 +125,7 @@ public final class MEOSBridge {
     /** @return the WGS84 spheroidal distance in metres between two points, via MEOS {@code geog_distance}. */
     public static double distanceMetres(double lon1, double lat1, double lon2, double lat2) {
         ensureInitializedOnThread();
-        return GeneratedFunctions.geog_distance(pointGeog(lon1, lat1), pointGeog(lon2, lat2));
+        return GeneratedFunctions.geog_distance(pointGeog(lon1, lat1), pointGeog(lon2, lat2), true);
     }
 
     /** @return the WGS84 spheroidal distance in metres from a point to the LineString,
@@ -134,7 +134,7 @@ public final class MEOSBridge {
                                                double s1Lon, double s1Lat, double s2Lon, double s2Lat) {
         ensureInitializedOnThread();
         return GeneratedFunctions.geog_distance(
-                pointGeog(pLon, pLat), lineGeog(s1Lon, s1Lat, s2Lon, s2Lat));
+                pointGeog(pLon, pLat), lineGeog(s1Lon, s1Lat, s2Lon, s2Lat), true);
     }
 
     private static Pointer tgeogInst(double lon, double lat) {
