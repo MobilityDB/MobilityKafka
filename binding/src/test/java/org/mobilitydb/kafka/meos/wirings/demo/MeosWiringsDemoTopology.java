@@ -134,16 +134,16 @@ public final class MeosWiringsDemoTopology {
         ProcessorSupplier<Integer, String, Integer, String> runningUnionSupplier =
                 () -> new MeosBoundedStateProcessor<Integer, String, Integer, String>(
                         STATE_STORE,
-                        ptr -> MeosOpsTBox.tbox_out(ptr, 6).getBytes(StandardCharsets.UTF_8),
-                        bytes -> MeosOpsTBox.tbox_in(new String(bytes, StandardCharsets.UTF_8)),
+                        ptr -> MeosOpsTBox.asText(ptr, 6).getBytes(StandardCharsets.UTF_8),
+                        bytes -> MeosOpsTBox.tboxFromText(new String(bytes, StandardCharsets.UTF_8)),
                         (prior, record) -> {
-                            Pointer eventTbox = MeosOpsTBox.tbox_in(record.value());
+                            Pointer eventTbox = MeosOpsTBox.tboxFromText(record.value());
                             Pointer newUnion = (prior == null)
                                     ? eventTbox
                                     : MeosOpsFreeCore.union_tbox_tbox(prior, eventTbox, /*strict=*/false);
                             return new MeosBoundedStateProcessor.MeosStep<>(
                                     newUnion,
-                                    record.withValue(MeosOpsTBox.tbox_out(newUnion, 6)));
+                                    record.withValue(MeosOpsTBox.asText(newUnion, 6)));
                         });
 
         KStream<Integer, String> runningUnion = inRegion.process(runningUnionSupplier, STATE_STORE);
@@ -167,8 +167,8 @@ public final class MeosWiringsDemoTopology {
         KStream<Integer, String> overlaps = windowed.join(
                 queries,
                 MeosCrossStreamJoiner.joiner((vehAggWkt, queryWkt) -> {
-                    Pointer aggTbox = MeosOpsTBox.tbox_in(vehAggWkt);
-                    Pointer queryTbox = MeosOpsTBox.tbox_in(queryWkt);
+                    Pointer aggTbox = MeosOpsTBox.tboxFromText(vehAggWkt);
+                    Pointer queryTbox = MeosOpsTBox.tboxFromText(queryWkt);
                     if (MeosOpsFreeCore.overlaps_tbox_tbox(aggTbox, queryTbox)) {
                         return "MATCH: agg=" + vehAggWkt + " query=" + queryWkt;
                     }

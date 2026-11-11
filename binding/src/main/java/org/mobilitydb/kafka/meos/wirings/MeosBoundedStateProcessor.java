@@ -74,8 +74,8 @@ import java.io.Serializable;
  *     "running-union",
  *     () -> new MeosBoundedStateProcessor<String, VehicleEvent, String, RunningTbox>(
  *         "running-union-state",
- *         ptr -> MeosOpsTBox.tbox_out(ptr, 6).getBytes(StandardCharsets.UTF_8),
- *         bytes -> MeosOpsTBox.tbox_in(new String(bytes, StandardCharsets.UTF_8)),
+ *         ptr -> MeosOpsTBox.asText(ptr, 6).getBytes(StandardCharsets.UTF_8),
+ *         bytes -> MeosOpsTBox.tboxFromText(new String(bytes, StandardCharsets.UTF_8)),
  *         (prior, record) -> { ... return new MeosStep<>(newState, record.withValue(...)); }),
  *     "src");
  * topology.addStateStore(
